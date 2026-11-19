@@ -1,0 +1,303 @@
+2025-06-11T08:00:00.000Z INFO edge-gateway routed call request_id=a0000 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:00:01.500Z INFO basket-service record saved request_id=a0000 db_latency_ms=7
+2025-06-11T08:00:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:00:10.000Z INFO edge-gateway routed call request_id=a0001 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:00:11.500Z INFO invoice-service record saved request_id=a0001 db_latency_ms=8
+2025-06-11T08:00:20.000Z INFO edge-gateway routed call request_id=a0002 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:00:21.500Z INFO basket-service record saved request_id=a0002 db_latency_ms=9
+2025-06-11T08:00:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:00:30.000Z INFO edge-gateway routed call request_id=a0003 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:00:31.500Z INFO invoice-service record saved request_id=a0003 db_latency_ms=7
+2025-06-11T08:00:40.000Z INFO edge-gateway routed call request_id=a0004 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:00:41.500Z INFO basket-service record saved request_id=a0004 db_latency_ms=8
+2025-06-11T08:00:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:00:50.000Z INFO edge-gateway routed call request_id=a0005 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:00:51.500Z INFO invoice-service record saved request_id=a0005 db_latency_ms=9
+2025-06-11T08:01:00.000Z INFO edge-gateway routed call request_id=a0006 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:01:01.500Z INFO basket-service record saved request_id=a0006 db_latency_ms=7
+2025-06-11T08:01:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:01:10.000Z INFO edge-gateway routed call request_id=a0007 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:01:11.500Z INFO invoice-service record saved request_id=a0007 db_latency_ms=8
+2025-06-11T08:01:20.000Z INFO edge-gateway routed call request_id=a0008 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:01:21.500Z INFO basket-service record saved request_id=a0008 db_latency_ms=9
+2025-06-11T08:01:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:01:30.000Z INFO edge-gateway routed call request_id=a0009 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:01:31.500Z INFO invoice-service record saved request_id=a0009 db_latency_ms=7
+2025-06-11T08:01:40.000Z INFO edge-gateway routed call request_id=a0010 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:01:41.500Z INFO basket-service record saved request_id=a0010 db_latency_ms=8
+2025-06-11T08:01:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:01:50.000Z INFO edge-gateway routed call request_id=a0011 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:01:51.500Z INFO invoice-service record saved request_id=a0011 db_latency_ms=9
+2025-06-11T08:02:00.000Z INFO edge-gateway routed call request_id=a0012 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:02:01.500Z INFO basket-service record saved request_id=a0012 db_latency_ms=7
+2025-06-11T08:02:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:02:10.000Z INFO edge-gateway routed call request_id=a0013 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:02:11.500Z INFO invoice-service record saved request_id=a0013 db_latency_ms=8
+2025-06-11T08:02:20.000Z INFO edge-gateway routed call request_id=a0014 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:02:21.500Z INFO basket-service record saved request_id=a0014 db_latency_ms=9
+2025-06-11T08:02:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:02:30.000Z INFO edge-gateway routed call request_id=a0015 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:02:31.500Z INFO invoice-service record saved request_id=a0015 db_latency_ms=7
+2025-06-11T08:02:40.000Z INFO edge-gateway routed call request_id=a0016 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:02:41.500Z INFO basket-service record saved request_id=a0016 db_latency_ms=8
+2025-06-11T08:02:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:02:50.000Z INFO edge-gateway routed call request_id=a0017 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:02:51.500Z INFO invoice-service record saved request_id=a0017 db_latency_ms=9
+2025-06-11T08:03:00.000Z INFO edge-gateway routed call request_id=a0018 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:03:01.500Z INFO basket-service record saved request_id=a0018 db_latency_ms=7
+2025-06-11T08:03:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:03:10.000Z INFO edge-gateway routed call request_id=a0019 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:03:11.500Z INFO invoice-service record saved request_id=a0019 db_latency_ms=8
+2025-06-11T08:03:20.000Z INFO edge-gateway routed call request_id=a0020 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:03:21.500Z INFO basket-service record saved request_id=a0020 db_latency_ms=9
+2025-06-11T08:03:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:03:30.000Z INFO edge-gateway routed call request_id=a0021 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:03:31.500Z INFO invoice-service record saved request_id=a0021 db_latency_ms=7
+2025-06-11T08:03:40.000Z INFO edge-gateway routed call request_id=a0022 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:03:41.500Z INFO basket-service record saved request_id=a0022 db_latency_ms=8
+2025-06-11T08:03:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:03:50.000Z INFO edge-gateway routed call request_id=a0023 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:03:51.500Z INFO invoice-service record saved request_id=a0023 db_latency_ms=9
+2025-06-11T08:04:00.000Z INFO edge-gateway routed call request_id=a0024 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:04:01.500Z INFO basket-service record saved request_id=a0024 db_latency_ms=7
+2025-06-11T08:04:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:04:10.000Z INFO edge-gateway routed call request_id=a0025 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:04:11.500Z INFO invoice-service record saved request_id=a0025 db_latency_ms=8
+2025-06-11T08:04:20.000Z INFO edge-gateway routed call request_id=a0026 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:04:21.500Z INFO basket-service record saved request_id=a0026 db_latency_ms=9
+2025-06-11T08:04:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:04:30.000Z INFO edge-gateway routed call request_id=a0027 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:04:31.500Z INFO invoice-service record saved request_id=a0027 db_latency_ms=7
+2025-06-11T08:04:40.000Z INFO edge-gateway routed call request_id=a0028 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:04:41.500Z INFO basket-service record saved request_id=a0028 db_latency_ms=8
+2025-06-11T08:04:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:04:50.000Z INFO edge-gateway routed call request_id=a0029 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:04:51.500Z INFO invoice-service record saved request_id=a0029 db_latency_ms=9
+2025-06-11T08:05:00.000Z INFO edge-gateway routed call request_id=a0030 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:05:01.500Z INFO basket-service record saved request_id=a0030 db_latency_ms=7
+2025-06-11T08:05:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:05:10.000Z INFO edge-gateway routed call request_id=a0031 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:05:11.500Z INFO invoice-service record saved request_id=a0031 db_latency_ms=8
+2025-06-11T08:05:20.000Z INFO edge-gateway routed call request_id=a0032 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:05:21.500Z INFO basket-service record saved request_id=a0032 db_latency_ms=9
+2025-06-11T08:05:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:05:30.000Z INFO edge-gateway routed call request_id=a0033 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:05:31.500Z INFO invoice-service record saved request_id=a0033 db_latency_ms=7
+2025-06-11T08:05:40.000Z INFO edge-gateway routed call request_id=a0034 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:05:41.500Z INFO basket-service record saved request_id=a0034 db_latency_ms=8
+2025-06-11T08:05:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:05:50.000Z INFO edge-gateway routed call request_id=a0035 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:05:51.500Z INFO invoice-service record saved request_id=a0035 db_latency_ms=9
+2025-06-11T08:06:00.000Z WARN catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=2 txn_per_s=140
+2025-06-11T08:06:02.000Z WARN basket-service waiting for free connection in pool request_id=b000 wait_ms=640 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:05.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b000","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:06:10.000Z WARN catalog-db pool report db_cluster=catalog active_connections=58 max_connections=80 waiting_clients=6 txn_per_s=120
+2025-06-11T08:06:12.000Z WARN invoice-service waiting for free connection in pool request_id=b001 wait_ms=655 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:15.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b001","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:06:20.000Z WARN catalog-db pool report db_cluster=catalog active_connections=70 max_connections=80 waiting_clients=11 txn_per_s=100
+2025-06-11T08:06:22.000Z WARN basket-service waiting for free connection in pool request_id=b002 wait_ms=670 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:25.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b002","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:06:30.000Z WARN catalog-db pool report db_cluster=catalog active_connections=80 max_connections=80 waiting_clients=22 txn_per_s=82
+2025-06-11T08:06:32.000Z WARN invoice-service waiting for free connection in pool request_id=b003 wait_ms=685 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:35.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b003","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:06:40.000Z WARN catalog-db pool report db_cluster=catalog active_connections=80 max_connections=80 waiting_clients=19 txn_per_s=70
+2025-06-11T08:06:42.000Z WARN basket-service waiting for free connection in pool request_id=b004 wait_ms=700 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:45.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b004","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:06:50.000Z WARN catalog-db pool report db_cluster=catalog active_connections=79 max_connections=80 waiting_clients=16 txn_per_s=74
+2025-06-11T08:06:52.000Z WARN invoice-service waiting for free connection in pool request_id=b005 wait_ms=715 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:06:55.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b005","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:00.000Z WARN catalog-db pool report db_cluster=catalog active_connections=80 max_connections=80 waiting_clients=13 txn_per_s=78
+2025-06-11T08:07:02.000Z WARN basket-service waiting for free connection in pool request_id=b006 wait_ms=730 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:05.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b006","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:10.000Z WARN catalog-db pool report db_cluster=catalog active_connections=77 max_connections=80 waiting_clients=10 txn_per_s=80
+2025-06-11T08:07:12.000Z WARN invoice-service waiting for free connection in pool request_id=b007 wait_ms=745 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:15.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b007","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:20.000Z WARN catalog-db pool report db_cluster=catalog active_connections=75 max_connections=80 waiting_clients=8 txn_per_s=84
+2025-06-11T08:07:22.000Z WARN basket-service waiting for free connection in pool request_id=b008 wait_ms=760 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:25.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b008","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:30.000Z WARN catalog-db pool report db_cluster=catalog active_connections=72 max_connections=80 waiting_clients=6 txn_per_s=88
+2025-06-11T08:07:32.000Z WARN invoice-service waiting for free connection in pool request_id=b009 wait_ms=775 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:35.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b009","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:40.000Z WARN catalog-db pool report db_cluster=catalog active_connections=70 max_connections=80 waiting_clients=4 txn_per_s=92
+2025-06-11T08:07:42.000Z WARN basket-service waiting for free connection in pool request_id=b010 wait_ms=790 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:45.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b010","upstream":"basket-service","status":504,"latency_ms":2800}
+2025-06-11T08:07:50.000Z WARN catalog-db pool report db_cluster=catalog active_connections=66 max_connections=80 waiting_clients=3 txn_per_s=96
+2025-06-11T08:07:52.000Z WARN invoice-service waiting for free connection in pool request_id=b011 wait_ms=805 pool_in_use=16 pool_idle=0
+{"ts":"2025-06-11T08:07:55.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream timeout","request_id":"b011","upstream":"invoice-service","status":504,"latency_ms":2800}
+2025-06-11T08:08:00.000Z INFO edge-gateway routed call request_id=c0200 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:08:01.500Z INFO basket-service record saved request_id=c0200 db_latency_ms=9
+2025-06-11T08:08:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:08:10.000Z INFO edge-gateway routed call request_id=c0201 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:08:11.500Z INFO invoice-service record saved request_id=c0201 db_latency_ms=7
+2025-06-11T08:08:20.000Z INFO edge-gateway routed call request_id=c0202 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:08:21.500Z INFO basket-service record saved request_id=c0202 db_latency_ms=8
+2025-06-11T08:08:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:08:30.000Z INFO edge-gateway routed call request_id=c0203 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:08:31.500Z INFO invoice-service record saved request_id=c0203 db_latency_ms=9
+2025-06-11T08:08:40.000Z INFO edge-gateway routed call request_id=c0204 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:08:41.500Z INFO basket-service record saved request_id=c0204 db_latency_ms=7
+2025-06-11T08:08:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:08:50.000Z INFO edge-gateway routed call request_id=c0205 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:08:51.500Z INFO invoice-service record saved request_id=c0205 db_latency_ms=8
+2025-06-11T08:09:00.000Z INFO edge-gateway routed call request_id=c0206 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:09:01.500Z INFO basket-service record saved request_id=c0206 db_latency_ms=9
+2025-06-11T08:09:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:09:10.000Z INFO edge-gateway routed call request_id=c0207 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:09:11.500Z INFO invoice-service record saved request_id=c0207 db_latency_ms=7
+2025-06-11T08:09:20.000Z INFO edge-gateway routed call request_id=c0208 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:09:21.500Z INFO basket-service record saved request_id=c0208 db_latency_ms=8
+2025-06-11T08:09:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:09:30.000Z INFO edge-gateway routed call request_id=c0209 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:09:31.500Z INFO invoice-service record saved request_id=c0209 db_latency_ms=9
+2025-06-11T08:09:40.000Z INFO edge-gateway routed call request_id=c0210 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:09:41.500Z INFO basket-service record saved request_id=c0210 db_latency_ms=7
+2025-06-11T08:09:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:09:50.000Z INFO edge-gateway routed call request_id=c0211 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:09:51.500Z INFO invoice-service record saved request_id=c0211 db_latency_ms=8
+2025-06-11T08:10:00.000Z INFO edge-gateway routed call request_id=c0212 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:10:01.500Z INFO basket-service record saved request_id=c0212 db_latency_ms=9
+2025-06-11T08:10:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:10:10.000Z INFO edge-gateway routed call request_id=c0213 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:10:11.500Z INFO invoice-service record saved request_id=c0213 db_latency_ms=7
+2025-06-11T08:10:20.000Z INFO edge-gateway routed call request_id=c0214 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:10:21.500Z INFO basket-service record saved request_id=c0214 db_latency_ms=8
+2025-06-11T08:10:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:10:30.000Z INFO edge-gateway routed call request_id=c0215 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:10:31.500Z INFO invoice-service record saved request_id=c0215 db_latency_ms=9
+2025-06-11T08:10:40.000Z INFO edge-gateway routed call request_id=c0216 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:10:41.500Z INFO basket-service record saved request_id=c0216 db_latency_ms=7
+2025-06-11T08:10:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:10:50.000Z INFO edge-gateway routed call request_id=c0217 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:10:51.500Z INFO invoice-service record saved request_id=c0217 db_latency_ms=8
+2025-06-11T08:11:00.000Z INFO edge-gateway routed call request_id=c0218 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:11:01.500Z INFO basket-service record saved request_id=c0218 db_latency_ms=9
+2025-06-11T08:11:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:11:10.000Z INFO edge-gateway routed call request_id=c0219 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:11:11.500Z INFO invoice-service record saved request_id=c0219 db_latency_ms=7
+2025-06-11T08:11:20.000Z INFO edge-gateway routed call request_id=c0220 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:11:21.500Z INFO basket-service record saved request_id=c0220 db_latency_ms=8
+2025-06-11T08:11:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:11:30.000Z INFO edge-gateway routed call request_id=c0221 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:11:31.500Z INFO invoice-service record saved request_id=c0221 db_latency_ms=9
+2025-06-11T08:11:40.000Z INFO edge-gateway routed call request_id=c0222 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:11:41.500Z INFO basket-service record saved request_id=c0222 db_latency_ms=7
+2025-06-11T08:11:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:11:50.000Z INFO edge-gateway routed call request_id=c0223 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:11:51.500Z INFO invoice-service record saved request_id=c0223 db_latency_ms=8
+2025-06-11T08:12:00.000Z INFO edge-gateway routed call request_id=c0224 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:12:01.500Z INFO basket-service record saved request_id=c0224 db_latency_ms=9
+2025-06-11T08:12:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:12:10.000Z INFO edge-gateway routed call request_id=c0225 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:12:11.500Z INFO invoice-service record saved request_id=c0225 db_latency_ms=7
+2025-06-11T08:12:20.000Z INFO edge-gateway routed call request_id=c0226 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:12:21.500Z INFO basket-service record saved request_id=c0226 db_latency_ms=8
+2025-06-11T08:12:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:12:30.000Z INFO edge-gateway routed call request_id=c0227 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:12:31.500Z INFO invoice-service record saved request_id=c0227 db_latency_ms=9
+2025-06-11T08:12:40.000Z INFO edge-gateway routed call request_id=c0228 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:12:41.500Z INFO basket-service record saved request_id=c0228 db_latency_ms=7
+2025-06-11T08:12:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:12:50.000Z INFO edge-gateway routed call request_id=c0229 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:12:51.500Z INFO invoice-service record saved request_id=c0229 db_latency_ms=8
+2025-06-11T08:13:00.000Z INFO edge-gateway routed call request_id=c0230 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:13:01.500Z INFO basket-service record saved request_id=c0230 db_latency_ms=9
+2025-06-11T08:13:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:13:10.000Z INFO edge-gateway routed call request_id=c0231 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:13:11.500Z INFO invoice-service record saved request_id=c0231 db_latency_ms=7
+2025-06-11T08:13:20.000Z INFO edge-gateway routed call request_id=c0232 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:13:21.500Z INFO basket-service record saved request_id=c0232 db_latency_ms=8
+2025-06-11T08:13:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:13:30.000Z INFO edge-gateway routed call request_id=c0233 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:13:31.500Z INFO invoice-service record saved request_id=c0233 db_latency_ms=9
+2025-06-11T08:13:40.000Z INFO edge-gateway routed call request_id=c0234 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:13:41.500Z INFO basket-service record saved request_id=c0234 db_latency_ms=7
+2025-06-11T08:13:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:13:50.000Z INFO edge-gateway routed call request_id=c0235 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:13:51.500Z INFO invoice-service record saved request_id=c0235 db_latency_ms=8
+2025-06-11T08:14:00.000Z INFO edge-gateway routed call request_id=c0236 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:14:01.500Z INFO basket-service record saved request_id=c0236 db_latency_ms=9
+2025-06-11T08:14:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:14:10.000Z INFO edge-gateway routed call request_id=c0237 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:14:11.500Z INFO invoice-service record saved request_id=c0237 db_latency_ms=7
+2025-06-11T08:14:20.000Z INFO edge-gateway routed call request_id=c0238 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:14:21.500Z INFO basket-service record saved request_id=c0238 db_latency_ms=8
+2025-06-11T08:14:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:14:30.000Z INFO edge-gateway routed call request_id=c0239 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:14:31.500Z INFO invoice-service record saved request_id=c0239 db_latency_ms=9
+2025-06-11T08:14:40.000Z INFO edge-gateway routed call request_id=c0240 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:14:41.500Z INFO basket-service record saved request_id=c0240 db_latency_ms=7
+2025-06-11T08:14:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:14:50.000Z INFO edge-gateway routed call request_id=c0241 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:14:51.500Z INFO invoice-service record saved request_id=c0241 db_latency_ms=8
+2025-06-11T08:15:00.000Z INFO edge-gateway routed call request_id=c0242 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:15:01.500Z INFO basket-service record saved request_id=c0242 db_latency_ms=9
+2025-06-11T08:15:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:15:10.000Z INFO edge-gateway routed call request_id=c0243 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:15:11.500Z INFO invoice-service record saved request_id=c0243 db_latency_ms=7
+2025-06-11T08:15:20.000Z INFO edge-gateway routed call request_id=c0244 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:15:21.500Z INFO basket-service record saved request_id=c0244 db_latency_ms=8
+2025-06-11T08:15:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:15:30.000Z INFO edge-gateway routed call request_id=c0245 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:15:31.500Z INFO invoice-service record saved request_id=c0245 db_latency_ms=9
+2025-06-11T08:15:40.000Z INFO edge-gateway routed call request_id=c0246 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:15:41.500Z INFO basket-service record saved request_id=c0246 db_latency_ms=7
+2025-06-11T08:15:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:15:50.000Z INFO edge-gateway routed call request_id=c0247 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:15:51.500Z INFO invoice-service record saved request_id=c0247 db_latency_ms=8
+2025-06-11T08:16:00.000Z INFO edge-gateway routed call request_id=c0248 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:16:01.500Z INFO basket-service record saved request_id=c0248 db_latency_ms=9
+2025-06-11T08:16:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:16:10.000Z INFO edge-gateway routed call request_id=c0249 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:16:11.500Z INFO invoice-service record saved request_id=c0249 db_latency_ms=7
+2025-06-11T08:16:20.000Z INFO edge-gateway routed call request_id=c0250 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:16:21.500Z INFO basket-service record saved request_id=c0250 db_latency_ms=8
+2025-06-11T08:16:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=44 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:16:30.000Z INFO edge-gateway routed call request_id=c0251 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:16:31.500Z INFO invoice-service record saved request_id=c0251 db_latency_ms=9
+2025-06-11T08:16:40.000Z INFO edge-gateway routed call request_id=c0252 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:16:41.500Z INFO basket-service record saved request_id=c0252 db_latency_ms=7
+2025-06-11T08:16:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=46 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:16:50.000Z INFO edge-gateway routed call request_id=c0253 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:16:51.500Z INFO invoice-service record saved request_id=c0253 db_latency_ms=8
+2025-06-11T08:17:00.000Z INFO edge-gateway routed call request_id=c0254 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:17:01.500Z INFO basket-service record saved request_id=c0254 db_latency_ms=9
+2025-06-11T08:17:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=48 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:17:10.000Z INFO edge-gateway routed call request_id=c0255 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:17:11.500Z INFO invoice-service record saved request_id=c0255 db_latency_ms=7
+2025-06-11T08:17:20.000Z INFO edge-gateway routed call request_id=c0256 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:17:21.500Z INFO basket-service record saved request_id=c0256 db_latency_ms=8
+2025-06-11T08:17:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=50 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:17:30.000Z INFO edge-gateway routed call request_id=c0257 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:17:31.500Z INFO invoice-service record saved request_id=c0257 db_latency_ms=9
+2025-06-11T08:17:40.000Z INFO edge-gateway routed call request_id=c0258 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:17:41.500Z INFO basket-service record saved request_id=c0258 db_latency_ms=7
+2025-06-11T08:17:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=52 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:17:50.000Z INFO edge-gateway routed call request_id=c0259 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:17:51.500Z INFO invoice-service record saved request_id=c0259 db_latency_ms=8
+2025-06-11T08:18:00.000Z ERROR catalog-db background writer process exited abnormally: killed
+2025-06-11T08:18:06.000Z INFO catalog-db all server processes terminated; reinitializing
+2025-06-11T08:18:12.000Z INFO catalog-db database system was interrupted while in recovery
+2025-06-11T08:18:18.000Z ERROR basket-service failed to store record request_id=d000 error="pq: the database system is starting up"
+{"ts":"2025-06-11T08:18:22.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream error","request_id":"d000","upstream":"basket-service","status":503}
+2025-06-11T08:18:27.000Z ERROR invoice-service failed to store record request_id=d001 error="pq: the database system is starting up"
+{"ts":"2025-06-11T08:18:31.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream error","request_id":"d001","upstream":"invoice-service","status":503}
+2025-06-11T08:18:36.000Z ERROR basket-service failed to store record request_id=d002 error="pq: the database system is starting up"
+{"ts":"2025-06-11T08:18:40.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream error","request_id":"d002","upstream":"basket-service","status":503}
+2025-06-11T08:18:45.000Z ERROR invoice-service failed to store record request_id=d003 error="pq: the database system is starting up"
+{"ts":"2025-06-11T08:18:49.000Z","level":"ERROR","service":"edge-gateway","msg":"upstream error","request_id":"d003","upstream":"invoice-service","status":503}
+2025-06-11T08:19:10.000Z INFO catalog-db database system is ready to accept connections
+2025-06-11T08:19:20.000Z INFO edge-gateway routed call request_id=e0400 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:19:21.500Z INFO basket-service record saved request_id=e0400 db_latency_ms=8
+2025-06-11T08:19:22.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:19:30.000Z INFO edge-gateway routed call request_id=e0401 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:19:31.500Z INFO invoice-service record saved request_id=e0401 db_latency_ms=9
+2025-06-11T08:19:40.000Z INFO edge-gateway routed call request_id=e0402 status=200 upstream=basket-service latency_ms=54
+2025-06-11T08:19:41.500Z INFO basket-service record saved request_id=e0402 db_latency_ms=7
+2025-06-11T08:19:42.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:19:50.000Z INFO edge-gateway routed call request_id=e0403 status=200 upstream=invoice-service latency_ms=55
+2025-06-11T08:19:51.500Z INFO invoice-service record saved request_id=e0403 db_latency_ms=8
+2025-06-11T08:20:00.000Z INFO edge-gateway routed call request_id=e0404 status=200 upstream=basket-service latency_ms=52
+2025-06-11T08:20:01.500Z INFO basket-service record saved request_id=e0404 db_latency_ms=9
+2025-06-11T08:20:02.500Z INFO catalog-db pool report db_cluster=catalog active_connections=24 max_connections=80 waiting_clients=0 txn_per_s=150
+2025-06-11T08:20:10.000Z INFO edge-gateway routed call request_id=e0405 status=200 upstream=invoice-service latency_ms=53
+2025-06-11T08:20:11.500Z INFO invoice-service record saved request_id=e0405 db_latency_ms=7

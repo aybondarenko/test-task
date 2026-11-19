@@ -1,0 +1,521 @@
+2026-03-27T14:00:02.968Z INFO api-gateway request_id=req-84011 method=POST path=/v1/orders user_id=usr-201 status=202 upstream=order-service latency_ms=61
+2026-03-27T14:00:04.497Z INFO order-service request_id=req-84011 order_id=ord-51091 stage=validate items=1 db_latency_ms=9 cache_hit=false
+2026-03-27T14:00:07.129Z INFO payment-service request_id=req-84011 order_id=ord-51091 payment_id=pay-7701 authorized amount_cents=4599 provider=stripe latency_ms=104
+2026-03-27T14:00:08.383Z INFO inventory-service request_id=req-84011 order_id=ord-51091 sku=sku-44 reserved qty=1 source=redis-cache lag_ms=25
+2026-03-27T14:00:10.553Z INFO order-service request_id=req-84011 order_id=ord-51091 state=confirmed total_cents=4599 latency_ms=39
+2026-03-27T14:00:13.441Z INFO notification-service request_id=req-84011 order_id=ord-51091 channel=email template=order-confirmed status=sent latency_ms=97
+2026-03-27T14:00:16.571Z INFO billing-worker job_id=job-6101 invoice_id=inv-9101 attempt=1 status=completed queue_depth=2 duration_ms=180
+2026-03-27T14:00:19.371Z INFO postgres-primary db_cluster=orders-payments active_connections=30 idle_connections=49 waiting_clients=0 txn_per_s=114
+2026-03-27T14:00:20.580Z INFO api-gateway route_cache_refresh routes=18 etag=9fca9 updated=false duration_ms=5
+2026-03-27T14:00:21.795Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=liveness latency_ms=1
+2026-03-27T14:00:23.658Z INFO api-gateway request_id=req-84013 method=POST path=/v1/orders user_id=usr-331 status=202 upstream=order-service latency_ms=40
+2026-03-27T14:00:26.263Z INFO order-service request_id=req-84013 order_id=ord-51092 stage=validate items=1 db_latency_ms=16 cache_hit=true
+2026-03-27T14:00:27.728Z INFO payment-service request_id=req-84013 order_id=ord-51092 payment_id=pay-7702 authorized amount_cents=1899 provider=stripe latency_ms=169
+2026-03-27T14:00:29.884Z INFO inventory-service request_id=req-84013 order_id=ord-51092 sku=sku-12 reserved qty=1 source=redis-cache lag_ms=29
+2026-03-27T14:00:31.300Z INFO order-service request_id=req-84013 order_id=ord-51092 state=confirmed total_cents=1899 latency_ms=45
+2026-03-27T14:00:34.147Z INFO notification-service request_id=req-84013 order_id=ord-51092 channel=email template=order-confirmed status=sent latency_ms=87
+2026-03-27T14:00:37.299Z INFO billing-worker job_id=job-6102 invoice_id=inv-9102 attempt=1 status=completed queue_depth=2 duration_ms=136
+2026-03-27T14:00:39.652Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=3 duration_ms=2
+2026-03-27T14:00:43.005Z INFO api-gateway request_id=req-84015 method=POST path=/v1/orders user_id=usr-184 status=202 upstream=order-service latency_ms=54
+2026-03-27T14:00:44.708Z INFO order-service request_id=req-84015 order_id=ord-51093 stage=validate items=1 db_latency_ms=10 cache_hit=true
+2026-03-27T14:00:45.839Z INFO payment-service request_id=req-84015 order_id=ord-51093 payment_id=pay-7703 authorized amount_cents=7499 provider=stripe latency_ms=155
+2026-03-27T14:00:46.968Z INFO inventory-service request_id=req-84015 order_id=ord-51093 sku=sku-77 reserved qty=1 source=redis-cache lag_ms=30
+2026-03-27T14:00:49.667Z INFO order-service request_id=req-84015 order_id=ord-51093 state=confirmed total_cents=7499 latency_ms=68
+2026-03-27T14:00:50.815Z INFO notification-service request_id=req-84015 order_id=ord-51093 channel=email template=order-confirmed status=sent latency_ms=122
+2026-03-27T14:00:52.842Z INFO billing-worker job_id=job-6103 invoice_id=inv-9103 attempt=1 status=completed queue_depth=2 duration_ms=219
+2026-03-27T14:00:54.933Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=3
+2026-03-27T14:00:57.206Z INFO api-gateway request_id=req-84019 method=POST path=/v1/orders user_id=usr-225 status=202 upstream=order-service latency_ms=41
+2026-03-27T14:00:58.249Z INFO order-service request_id=req-84019 order_id=ord-51094 stage=validate items=1 db_latency_ms=13 cache_hit=false
+{"ts":"2026-03-27T14:00:59.407Z","level":"INFO","service":"payment-service","request_id":"req-84019","order_id":"ord-51094","payment_id":"pay-7704","msg":"authorization approved","provider":"stripe","amount_cents":2599,"latency_ms":116}
+2026-03-27T14:01:00.835Z INFO inventory-service request_id=req-84019 order_id=ord-51094 sku=sku-44 reserved qty=1 source=redis-cache lag_ms=25
+2026-03-27T14:01:02.505Z INFO order-service request_id=req-84019 order_id=ord-51094 state=confirmed total_cents=2599 latency_ms=85
+2026-03-27T14:01:04.921Z INFO notification-service request_id=req-84019 order_id=ord-51094 channel=email template=order-confirmed status=sent latency_ms=80
+2026-03-27T14:01:07.284Z INFO billing-worker job_id=job-6104 invoice_id=inv-9104 attempt=1 status=completed queue_depth=1 duration_ms=205
+2026-03-27T14:01:08.403Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=3
+2026-03-27T14:01:10.539Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=3
+2026-03-27T14:01:11.582Z INFO postgres-primary db_cluster=orders-payments active_connections=30 idle_connections=48 waiting_clients=0 txn_per_s=104
+2026-03-27T14:01:14.271Z INFO api-gateway request_id=req-84022 method=POST path=/v1/orders user_id=usr-772 status=202 upstream=order-service latency_ms=31
+2026-03-27T14:01:15.765Z INFO order-service request_id=req-84022 order_id=ord-51095 stage=validate items=1 db_latency_ms=5 cache_hit=true
+2026-03-27T14:01:18.118Z INFO payment-service request_id=req-84022 order_id=ord-51095 payment_id=pay-7705 authorized amount_cents=3199 provider=stripe latency_ms=142
+2026-03-27T14:01:20.672Z INFO inventory-service request_id=req-84022 order_id=ord-51095 sku=sku-90 reserved qty=1 source=redis-cache lag_ms=11
+2026-03-27T14:01:23.099Z INFO order-service request_id=req-84022 order_id=ord-51095 state=confirmed total_cents=3199 latency_ms=50
+{"ts":"2026-03-27T14:01:24.540Z","level":"INFO","service":"notification-service","request_id":"req-84022","order_id":"ord-51095","channel":"email","template":"order-confirmed","msg":"notification sent","latency_ms":81}
+2026-03-27T14:01:25.651Z INFO billing-worker job_id=job-6105 invoice_id=inv-9105 attempt=1 status=completed queue_depth=1 duration_ms=240
+2026-03-27T14:01:27.674Z INFO api-gateway route_cache_refresh routes=18 etag=9fca9 updated=false duration_ms=6
+2026-03-27T14:01:29.484Z INFO api-gateway request_id=req-84027 method=POST path=/v1/orders user_id=usr-114 status=202 upstream=order-service latency_ms=71
+2026-03-27T14:01:31.644Z INFO order-service request_id=req-84027 order_id=ord-51096 stage=validate items=1 db_latency_ms=11 cache_hit=true
+2026-03-27T14:01:33.052Z INFO payment-service request_id=req-84027 order_id=ord-51096 payment_id=pay-7706 authorized amount_cents=1299 provider=stripe latency_ms=132
+2026-03-27T14:01:34.603Z INFO inventory-service request_id=req-84027 order_id=ord-51096 sku=sku-12 reserved qty=1 source=redis-cache lag_ms=20
+2026-03-27T14:01:36.193Z INFO order-service request_id=req-84027 order_id=ord-51096 state=confirmed total_cents=1299 latency_ms=47
+2026-03-27T14:01:37.529Z INFO notification-service request_id=req-84027 order_id=ord-51096 channel=email template=order-confirmed status=sent latency_ms=75
+2026-03-27T14:01:39.878Z INFO billing-worker job_id=job-6106 invoice_id=inv-9106 attempt=1 status=completed queue_depth=1 duration_ms=194
+2026-03-27T14:01:41.138Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=2 duration_ms=1
+2026-03-27T14:01:42.255Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=6
+2026-03-27T14:01:43.702Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=liveness latency_ms=3
+2026-03-27T14:01:46.625Z INFO api-gateway request_id=req-84031 method=POST path=/v1/orders user_id=usr-904 status=202 upstream=order-service latency_ms=70
+2026-03-27T14:01:47.725Z INFO order-service request_id=req-84031 order_id=ord-51097 stage=validate items=1 db_latency_ms=12 cache_hit=true
+2026-03-27T14:01:50.084Z INFO payment-service request_id=req-84031 order_id=ord-51097 payment_id=pay-7707 authorized amount_cents=9999 provider=stripe latency_ms=151
+2026-03-27T14:01:51.580Z INFO inventory-service request_id=req-84031 order_id=ord-51097 sku=sku-08 reserved qty=1 source=redis-cache lag_ms=23
+2026-03-27T14:01:53.820Z INFO order-service request_id=req-84031 order_id=ord-51097 state=confirmed total_cents=9999 latency_ms=72
+2026-03-27T14:01:55.632Z INFO notification-service request_id=req-84031 order_id=ord-51097 channel=email template=order-confirmed status=sent latency_ms=121
+2026-03-27T14:01:58.178Z INFO postgres-primary db_cluster=orders-payments active_connections=30 idle_connections=48 waiting_clients=0 txn_per_s=95
+2026-03-27T14:02:01.867Z INFO api-gateway request_id=req-84036 method=POST path=/v1/orders user_id=usr-288 status=202 upstream=order-service latency_ms=59
+2026-03-27T14:02:03.254Z INFO order-service request_id=req-84036 order_id=ord-51098 stage=validate items=1 db_latency_ms=11 cache_hit=false
+{"ts":"2026-03-27T14:02:05.133Z","level":"INFO","service":"payment-service","request_id":"req-84036","order_id":"ord-51098","payment_id":"pay-7708","msg":"authorization approved","provider":"stripe","amount_cents":2199,"latency_ms":152}
+2026-03-27T14:02:06.319Z INFO inventory-service request_id=req-84036 order_id=ord-51098 sku=sku-44 reserved qty=1 source=redis-cache lag_ms=36
+2026-03-27T14:02:08.362Z INFO order-service request_id=req-84036 order_id=ord-51098 state=confirmed total_cents=2199 latency_ms=67
+2026-03-27T14:02:11.516Z INFO notification-service request_id=req-84036 order_id=ord-51098 channel=email template=order-confirmed status=sent latency_ms=77
+2026-03-27T14:02:13.201Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=2 duration_ms=2
+2026-03-27T14:02:14.182Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=3
+2026-03-27T14:02:17.796Z INFO api-gateway request_id=req-84040 method=POST path=/v1/orders user_id=usr-417 status=202 upstream=order-service latency_ms=64
+2026-03-27T14:02:20.592Z INFO order-service request_id=req-84040 order_id=ord-51099 stage=validate items=1 db_latency_ms=13 cache_hit=true
+2026-03-27T14:02:22.830Z INFO payment-service request_id=req-84040 order_id=ord-51099 payment_id=pay-7709 authorized amount_cents=5699 provider=stripe latency_ms=124
+2026-03-27T14:02:25.806Z INFO inventory-service request_id=req-84040 order_id=ord-51099 sku=sku-33 reserved qty=1 source=redis-cache lag_ms=18
+2026-03-27T14:02:27.903Z INFO order-service request_id=req-84040 order_id=ord-51099 state=confirmed total_cents=5699 latency_ms=73
+2026-03-27T14:02:30.574Z INFO notification-service request_id=req-84040 order_id=ord-51099 channel=email template=order-confirmed status=sent latency_ms=88
+2026-03-27T14:02:31.939Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:02:33.771Z INFO api-gateway route_cache_refresh routes=18 etag=9fca9 updated=false duration_ms=4
+2026-03-27T14:02:36.884Z INFO api-gateway request_id=req-84044 method=POST path=/v1/orders user_id=usr-654 status=202 upstream=order-service latency_ms=50
+2026-03-27T14:02:38.027Z INFO order-service request_id=req-84044 order_id=ord-51100 stage=validate items=1 db_latency_ms=14 cache_hit=true
+2026-03-27T14:02:39.072Z INFO payment-service request_id=req-84044 order_id=ord-51100 payment_id=pay-7710 authorized amount_cents=1799 provider=stripe latency_ms=148
+2026-03-27T14:02:42.073Z INFO inventory-service request_id=req-84044 order_id=ord-51100 sku=sku-18 reserved qty=1 source=redis-cache lag_ms=20
+2026-03-27T14:02:43.950Z INFO order-service request_id=req-84044 order_id=ord-51100 state=confirmed total_cents=1799 latency_ms=74
+{"ts":"2026-03-27T14:02:47.022Z","level":"INFO","service":"notification-service","request_id":"req-84044","order_id":"ord-51100","channel":"email","template":"order-confirmed","msg":"notification sent","latency_ms":105}
+2026-03-27T14:02:49.069Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=3 duration_ms=2
+2026-03-27T14:02:50.118Z INFO postgres-primary db_cluster=orders-payments active_connections=26 idle_connections=51 waiting_clients=0 txn_per_s=108
+2026-03-27T14:02:52.452Z INFO api-gateway request_id=req-84047 method=POST path=/v1/orders user_id=usr-518 status=202 upstream=order-service latency_ms=46
+2026-03-27T14:02:55.108Z INFO order-service request_id=req-84047 order_id=ord-51101 stage=validate items=1 db_latency_ms=7 cache_hit=false
+2026-03-27T14:02:56.840Z INFO payment-service request_id=req-84047 order_id=ord-51101 payment_id=pay-7711 authorized amount_cents=6399 provider=stripe latency_ms=141
+2026-03-27T14:02:58.307Z INFO inventory-service request_id=req-84047 order_id=ord-51101 sku=sku-73 reserved qty=1 source=redis-cache lag_ms=29
+2026-03-27T14:03:00.555Z INFO order-service request_id=req-84047 order_id=ord-51101 state=confirmed total_cents=6399 latency_ms=41
+2026-03-27T14:03:01.746Z INFO notification-service request_id=req-84047 order_id=ord-51101 channel=email template=order-confirmed status=sent latency_ms=60
+2026-03-27T14:03:02.904Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=liveness latency_ms=1
+2026-03-27T14:03:05.398Z INFO api-gateway request_id=req-84052 method=POST path=/v1/orders user_id=usr-149 status=202 upstream=order-service latency_ms=58
+2026-03-27T14:03:07.956Z INFO order-service request_id=req-84052 order_id=ord-51102 stage=validate items=1 db_latency_ms=14 cache_hit=true
+{"ts":"2026-03-27T14:03:10.612Z","level":"INFO","service":"payment-service","request_id":"req-84052","order_id":"ord-51102","payment_id":"pay-7712","msg":"authorization approved","provider":"stripe","amount_cents":2899,"latency_ms":94}
+2026-03-27T14:03:12.592Z INFO inventory-service request_id=req-84052 order_id=ord-51102 sku=sku-44 reserved qty=1 source=redis-cache lag_ms=9
+2026-03-27T14:03:14.650Z INFO order-service request_id=req-84052 order_id=ord-51102 state=confirmed total_cents=2899 latency_ms=72
+2026-03-27T14:03:17.456Z INFO notification-service request_id=req-84052 order_id=ord-51102 channel=email template=order-confirmed status=sent latency_ms=51
+2026-03-27T14:03:18.499Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=4
+2026-03-27T14:03:20.553Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=8
+2026-03-27T14:03:21.869Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=1
+2026-03-27T14:03:24.199Z INFO api-gateway request_id=req-84055 method=POST path=/v1/orders user_id=usr-782 status=202 upstream=order-service latency_ms=62
+2026-03-27T14:03:26.261Z INFO order-service request_id=req-84055 order_id=ord-51103 stage=validate items=1 db_latency_ms=9 cache_hit=true
+2026-03-27T14:03:29.005Z INFO payment-service request_id=req-84055 order_id=ord-51103 payment_id=pay-7713 authorized amount_cents=1499 provider=stripe latency_ms=156
+2026-03-27T14:03:30.880Z INFO inventory-service request_id=req-84055 order_id=ord-51103 sku=sku-12 reserved qty=1 source=redis-cache lag_ms=34
+2026-03-27T14:03:33.430Z INFO order-service request_id=req-84055 order_id=ord-51103 state=confirmed total_cents=1499 latency_ms=38
+2026-03-27T14:03:34.696Z INFO notification-service request_id=req-84055 order_id=ord-51103 channel=email template=order-confirmed status=sent latency_ms=58
+2026-03-27T14:03:36.317Z INFO postgres-primary db_cluster=orders-payments active_connections=28 idle_connections=55 waiting_clients=0 txn_per_s=121
+2026-03-27T14:03:37.913Z INFO api-gateway route_cache_refresh routes=18 etag=9fca9 updated=false duration_ms=4
+2026-03-27T14:03:40.545Z INFO api-gateway request_id=req-84061 method=POST path=/v1/orders user_id=usr-688 status=202 upstream=order-service latency_ms=35
+2026-03-27T14:03:41.977Z INFO order-service request_id=req-84061 order_id=ord-51104 stage=validate items=1 db_latency_ms=7 cache_hit=true
+2026-03-27T14:03:44.726Z INFO payment-service request_id=req-84061 order_id=ord-51104 payment_id=pay-7714 authorized amount_cents=5199 provider=stripe latency_ms=145
+2026-03-27T14:03:46.679Z INFO inventory-service request_id=req-84061 order_id=ord-51104 sku=sku-65 reserved qty=1 source=redis-cache lag_ms=26
+2026-03-27T14:03:48.876Z INFO order-service request_id=req-84061 order_id=ord-51104 state=confirmed total_cents=5199 latency_ms=45
+2026-03-27T14:03:50.310Z INFO notification-service request_id=req-84061 order_id=ord-51104 channel=email template=order-confirmed status=sent latency_ms=79
+2026-03-27T14:03:52.669Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=3 duration_ms=3
+2026-03-27T14:03:55.924Z INFO api-gateway request_id=req-84067 method=POST path=/v1/orders user_id=usr-456 status=202 upstream=order-service latency_ms=40
+2026-03-27T14:03:57.904Z INFO order-service request_id=req-84067 order_id=ord-51105 stage=validate items=1 db_latency_ms=10 cache_hit=true
+2026-03-27T14:03:59.246Z INFO payment-service request_id=req-84067 order_id=ord-51105 payment_id=pay-7715 authorized amount_cents=4499 provider=stripe latency_ms=155
+2026-03-27T14:04:00.445Z INFO inventory-service request_id=req-84067 order_id=ord-51105 sku=sku-31 reserved qty=1 source=redis-cache lag_ms=26
+2026-03-27T14:04:03.409Z INFO order-service request_id=req-84067 order_id=ord-51105 state=confirmed total_cents=4499 latency_ms=65
+{"ts":"2026-03-27T14:04:06.166Z","level":"INFO","service":"notification-service","request_id":"req-84067","order_id":"ord-51105","channel":"email","template":"order-confirmed","msg":"notification sent","latency_ms":115}
+2026-03-27T14:04:08.185Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=9
+2026-03-27T14:04:10.060Z INFO api-gateway request_id=req-84072 method=POST path=/v1/orders user_id=usr-391 status=202 upstream=order-service latency_ms=66
+2026-03-27T14:04:11.326Z INFO order-service request_id=req-84072 order_id=ord-51106 stage=validate items=1 db_latency_ms=15 cache_hit=true
+{"ts":"2026-03-27T14:04:13.472Z","level":"INFO","service":"payment-service","request_id":"req-84072","order_id":"ord-51106","payment_id":"pay-7716","msg":"authorization approved","provider":"stripe","amount_cents":2399,"latency_ms":157}
+2026-03-27T14:04:15.532Z INFO inventory-service request_id=req-84072 order_id=ord-51106 sku=sku-91 reserved qty=1 source=redis-cache lag_ms=28
+2026-03-27T14:04:17.840Z INFO order-service request_id=req-84072 order_id=ord-51106 state=confirmed total_cents=2399 latency_ms=89
+2026-03-27T14:04:19.242Z INFO notification-service request_id=req-84072 order_id=ord-51106 channel=email template=order-confirmed status=sent latency_ms=100
+2026-03-27T14:04:20.517Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=4 duration_ms=2
+2026-03-27T14:04:21.755Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=3
+2026-03-27T14:04:23.928Z INFO postgres-primary db_cluster=orders-payments active_connections=30 idle_connections=47 waiting_clients=0 txn_per_s=107
+2026-03-27T14:04:25.779Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=liveness latency_ms=3
+2026-03-27T14:04:28.685Z INFO billing-worker job_id=job-6107 invoice_id=inv-9107 attempt=1 status=completed queue_depth=0 duration_ms=193
+2026-03-27T14:04:30.234Z INFO redis-cache role=master evictions=0 hit_rate=0.97 connected_clients=44 used_memory_mb=427
+2026-03-27T14:04:31.273Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=182 sync_files=12 duration_ms=61
+2026-03-27T14:04:32.759Z INFO billing-worker job_id=job-6108 invoice_id=inv-9108 attempt=1 status=completed queue_depth=0 duration_ms=210
+2026-03-27T14:04:33.964Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=43 used_memory_mb=425
+2026-03-27T14:04:35.345Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=183 sync_files=15 duration_ms=53
+2026-03-27T14:04:37.196Z INFO billing-worker job_id=job-6109 invoice_id=inv-9109 attempt=1 status=completed queue_depth=0 duration_ms=138
+2026-03-27T14:04:38.895Z INFO redis-cache role=master evictions=0 hit_rate=0.97 connected_clients=45 used_memory_mb=426
+2026-03-27T14:04:40.565Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=137 sync_files=11 duration_ms=55
+2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1
+2026-03-27T14:04:46.050Z WARN payment-service db query latency high op=select_payment_profile duration_ms=641 pool_in_use=27 pool_idle=2
+2026-03-27T14:04:48.167Z INFO api-gateway request_id=req-84079 method=POST path=/v1/orders user_id=usr-511 status=202 upstream=order-service latency_ms=122
+2026-03-27T14:04:50.397Z INFO order-service request_id=req-84079 order_id=ord-51107 stage=validate items=2 db_latency_ms=33 cache_hit=false
+2026-03-27T14:04:52.500Z INFO payment-service request_id=req-84079 order_id=ord-51107 payment_id=pay-7717 authorized amount_cents=8299 provider=stripe latency_ms=244
+2026-03-27T14:04:54.851Z WARN inventory-service request_id=req-84079 order_id=ord-51107 reservation write latency high sku=sku-22 lag_ms=412
+2026-03-27T14:04:56.175Z INFO order-service request_id=req-84079 order_id=ord-51107 state=confirmed total_cents=8299 latency_ms=247
+2026-03-27T14:04:58.114Z INFO notification-service request_id=req-84079 order_id=ord-51107 channel=email template=order-confirmed status=sent latency_ms=188
+2026-03-27T14:04:59.145Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=2
+2026-03-27T14:05:02.164Z WARN postgres-primary db_cluster=orders-payments active_connections=44 idle_connections=28 waiting_clients=3 txn_per_s=101
+2026-03-27T14:05:04.970Z WARN postgres-primary client=10.42.5.14 db=payments pid=48211 could not receive data from client: Connection timed out
+2026-03-27T14:05:06.548Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:05:08.112Z INFO billing-worker job_id=job-6110 invoice_id=inv-9110 attempt=1 status=completed queue_depth=1 duration_ms=231
+2026-03-27T14:05:09.633Z WARN billing-worker job_id=job-6111 invoice_id=inv-9111 attempt=1 retrying reason="payment-service latency high" backoff_ms=500 queue_depth=2
+{"ts":"2026-03-27T14:05:11.316Z","level":"WARN","service":"api-gateway","request_id":"req-84084","method":"POST","path":"/v1/orders","msg":"slow upstream response","upstream":"payment-service","latency_ms":1855,"status":202}
+2026-03-27T14:05:12.787Z INFO order-service request_id=req-84084 order_id=ord-51108 stage=validate items=1 db_latency_ms=41 cache_hit=true
+2026-03-27T14:05:15.158Z WARN payment-service request_id=req-84084 order_id=ord-51108 db acquire connection slow wait_ms=903 pool_in_use=30 pool_idle=0
+2026-03-27T14:05:18.003Z INFO payment-service request_id=req-84084 order_id=ord-51108 payment_id=pay-7718 authorized amount_cents=3899 provider=stripe latency_ms=1189
+2026-03-27T14:05:20.007Z WARN inventory-service request_id=req-84084 order_id=ord-51108 reservation event delayed queue_age_ms=1634 sku=sku-57
+2026-03-27T14:05:21.946Z INFO notification-service request_id=req-84084 order_id=ord-51108 channel=email template=order-confirmed status=sent latency_ms=211
+2026-03-27T14:05:24.168Z INFO api-gateway request_id=req-84172 method=POST path=/v1/orders user_id=usr-922 upstream=order-service
+2026-03-27T14:05:25.758Z INFO order-service request_id=req-84172 order_id=ord-51121 stage=validate items=1 db_latency_ms=58 cache_hit=false
+2026-03-27T14:05:27.151Z WARN order-service request_id=req-84172 order_id=ord-51121 db acquire connection slow wait_ms=1487 pool_in_use=32 pool_idle=0
+2026-03-27T14:05:29.231Z WARN payment-service request_id=req-84172 order_id=ord-51121 db timeout acquiring connection wait_ms=3000 pool_in_use=32 pool_idle=0
+{"ts":"2026-03-27T14:05:31.514Z","level":"ERROR","service":"api-gateway","request_id":"req-84172","method":"POST","path":"/v1/orders","msg":"upstream timeout","upstream":"payment-service","timeout_ms":3000,"status":504}
+2026-03-27T14:05:33.170Z WARN inventory-service request_id=req-84172 order_id=ord-51121 reservation update delayed awaiting order finalization queue_age_ms=2741 sku=sku-44
+2026-03-27T14:05:34.857Z WARN notification-service request_id=req-84172 order_id=ord-51121 delivery deferred reason="order state pending" queue_delay_ms=2210
+2026-03-27T14:05:35.906Z WARN billing-worker job_id=job-6112 invoice_id=inv-9112 attempt=1 retrying reason="upstream timeout" backoff_ms=1000 queue_depth=4
+2026-03-27T14:05:37.312Z INFO api-gateway request_id=req-84175 method=POST path=/v1/orders user_id=usr-733 upstream=order-service
+2026-03-27T14:05:39.735Z WARN order-service request_id=req-84175 order_id=ord-51122 db acquire connection slow wait_ms=1822 pool_in_use=32 pool_idle=0
+2026-03-27T14:05:42.391Z ERROR order-service request_id=req-84175 order_id=ord-51122 failed to persist order error="pq: connection reset by peer"
+{"ts":"2026-03-27T14:05:43.887Z","level":"ERROR","service":"api-gateway","request_id":"req-84175","method":"POST","path":"/v1/orders","msg":"upstream error","upstream":"order-service","status":502,"error":"create order failed"}
+2026-03-27T14:05:45.649Z WARN inventory-service request_id=req-84175 order_id=ord-51122 reservation skipped reason="order not persisted" sku=sku-12
+2026-03-27T14:05:47.381Z WARN notification-service request_id=req-84175 order_id=ord-51122 suppressed template=order-confirmed reason="order state unknown"
+2026-03-27T14:05:49.974Z WARN postgres-primary db_cluster=orders-payments active_connections=71 idle_connections=4 waiting_clients=11 txn_per_s=88
+2026-03-27T14:05:52.235Z ERROR postgres-primary client=10.42.7.18 db=orders pid=48289 could not receive data from client: Connection reset by peer
+2026-03-27T14:05:54.311Z ERROR postgres-primary client=10.42.5.14 db=payments pid=48291 unexpected EOF on client connection with an open transaction
+2026-03-27T14:05:56.428Z WARN postgres-primary db_cluster=orders-payments max_connections=100 active_connections=94 waiting_clients=17
+2026-03-27T14:05:58.937Z ERROR postgres-primary client=10.42.7.22 db=orders pid=48302 could not send data to client: Broken pipe
+2026-03-27T14:06:00.027Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=1
+2026-03-27T14:06:01.568Z INFO kubelet pod=api-gateway-7d99d ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:06:02.703Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:06:05.081Z INFO api-gateway request_id=req-84183 method=POST path=/v1/orders user_id=usr-188 upstream=order-service
+2026-03-27T14:06:06.446Z INFO order-service request_id=req-84183 order_id=ord-51123 stage=validate items=1 db_latency_ms=77 cache_hit=false
+2026-03-27T14:06:08.465Z WARN payment-service request_id=req-84183 order_id=ord-51123 db acquire connection slow wait_ms=2411 pool_in_use=32 pool_idle=0
+2026-03-27T14:06:08.476Z ERROR payment-service request_id=req-84183 order_id=ord-51123 java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 3000ms.
+2026-03-27T14:06:08.478Z ERROR payment-service request_id=req-84183 order_id=ord-51123 	at com.acme.payment.db.ChargeRepository.reserve(ChargeRepository.java:118)
+2026-03-27T14:06:08.480Z ERROR payment-service request_id=req-84183 order_id=ord-51123 	at com.acme.payment.service.AuthorizationService.authorize(AuthorizationService.java:74)
+2026-03-27T14:06:08.482Z ERROR payment-service request_id=req-84183 order_id=ord-51123 	at com.acme.payment.api.PaymentController.authorize(PaymentController.java:39)
+2026-03-27T14:06:08.485Z ERROR payment-service request_id=req-84183 order_id=ord-51123 	at jdk.internal.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+2026-03-27T14:06:08.487Z ERROR payment-service request_id=req-84183 order_id=ord-51123 Caused by: org.postgresql.util.PSQLException: An I/O error occurred while sending to the backend.
+2026-03-27T14:06:08.489Z ERROR payment-service request_id=req-84183 order_id=ord-51123 Caused by: java.net.SocketTimeoutException: Read timed out
+{"ts":"2026-03-27T14:06:10.514Z","level":"ERROR","service":"api-gateway","request_id":"req-84183","method":"POST","path":"/v1/orders","msg":"upstream timeout","upstream":"payment-service","timeout_ms":3000,"status":504}
+2026-03-27T14:06:11.688Z WARN billing-worker job_id=job-6113 invoice_id=inv-9113 attempt=1 retrying reason="payment authorization timeout" backoff_ms=1000 queue_depth=7
+2026-03-27T14:06:13.668Z WARN inventory-service request_id=req-84183 order_id=ord-51123 reservation event delayed queue_age_ms=4066 sku=sku-31
+2026-03-27T14:06:15.383Z WARN notification-service request_id=req-84183 order_id=ord-51123 delivery deferred reason="payment pending" queue_delay_ms=3874
+2026-03-27T14:06:17.232Z INFO api-gateway request_id=req-84188 method=POST path=/v1/orders user_id=usr-410 upstream=order-service
+2026-03-27T14:06:18.833Z WARN order-service request_id=req-84188 order_id=ord-51124 db acquire connection slow wait_ms=2894 pool_in_use=32 pool_idle=0
+2026-03-27T14:06:18.840Z ERROR order-service request_id=req-84188 order_id=ord-51124 org.postgresql.util.PSQLException: This connection has been closed.
+2026-03-27T14:06:18.844Z ERROR order-service request_id=req-84188 order_id=ord-51124 	at org.postgresql.jdbc.PgConnection.checkClosed(PgConnection.java:956)
+2026-03-27T14:06:18.848Z ERROR order-service request_id=req-84188 order_id=ord-51124 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:165)
+2026-03-27T14:06:18.849Z ERROR order-service request_id=req-84188 order_id=ord-51124 	at com.acme.order.db.OrderRepository.insert(OrderRepository.java:143)
+2026-03-27T14:06:18.851Z ERROR order-service request_id=req-84188 order_id=ord-51124 	at com.acme.order.service.OrderCreator.persist(OrderCreator.java:88)
+2026-03-27T14:06:18.853Z ERROR order-service request_id=req-84188 order_id=ord-51124 Caused by: java.io.EOFException: SSL peer shut down incorrectly
+{"ts":"2026-03-27T14:06:20.997Z","level":"ERROR","service":"api-gateway","request_id":"req-84188","method":"POST","path":"/v1/orders","msg":"upstream error","upstream":"order-service","status":502,"error":"create order failed"}
+2026-03-27T14:06:22.827Z WARN billing-worker job_id=job-6114 invoice_id=inv-9114 attempt=1 retrying reason="order write failed" backoff_ms=1000 queue_depth=9
+2026-03-27T14:06:24.264Z WARN inventory-service request_id=req-84188 order_id=ord-51124 reservation skipped reason="order write failed" sku=sku-08
+2026-03-27T14:06:25.526Z WARN notification-service request_id=req-84188 order_id=ord-51124 suppressed template=order-confirmed reason="order create failed"
+2026-03-27T14:06:27.393Z WARN billing-worker job_id=job-6111 invoice_id=inv-9111 attempt=2 retrying reason="payment-service timeout" backoff_ms=2000 queue_depth=6 last_duration_ms=1580
+{"ts":"2026-03-27T14:06:29.108Z","level":"WARN","service":"billing-worker","job_id":"job-6111","invoice_id":"inv-9111","msg":"queue depth updated","queue_depth":6,"oldest_job_age_ms":5580}
+2026-03-27T14:06:31.151Z WARN billing-worker job_id=job-6112 invoice_id=inv-9112 attempt=2 retrying reason="upstream timeout" backoff_ms=2000 queue_depth=8 last_duration_ms=2011
+{"ts":"2026-03-27T14:06:32.774Z","level":"WARN","service":"billing-worker","job_id":"job-6112","invoice_id":"inv-9112","msg":"queue depth updated","queue_depth":8,"oldest_job_age_ms":6440}
+2026-03-27T14:06:34.299Z WARN billing-worker job_id=job-6113 invoice_id=inv-9113 attempt=2 retrying reason="payment authorization timeout" backoff_ms=2000 queue_depth=10 last_duration_ms=2254
+{"ts":"2026-03-27T14:06:35.906Z","level":"WARN","service":"billing-worker","job_id":"job-6113","invoice_id":"inv-9113","msg":"queue depth updated","queue_depth":10,"oldest_job_age_ms":7300}
+2026-03-27T14:06:37.740Z WARN billing-worker job_id=job-6114 invoice_id=inv-9114 attempt=2 retrying reason="order write failed" backoff_ms=2000 queue_depth=12 last_duration_ms=1894
+{"ts":"2026-03-27T14:06:39.111Z","level":"WARN","service":"billing-worker","job_id":"job-6114","invoice_id":"inv-9114","msg":"queue depth updated","queue_depth":12,"oldest_job_age_ms":8160}
+2026-03-27T14:06:40.498Z WARN billing-worker job_id=job-6115 invoice_id=inv-9115 attempt=1 retrying reason="db timeout acquiring connection" backoff_ms=1000 queue_depth=14
+{"ts":"2026-03-27T14:06:42.453Z","level":"WARN","service":"billing-worker","job_id":"job-6115","invoice_id":"inv-9115","msg":"queue depth updated","queue_depth":14,"oldest_job_age_ms":9020}
+2026-03-27T14:06:43.500Z WARN billing-worker job_id=job-6116 invoice_id=inv-9116 attempt=1 retrying reason="db timeout acquiring connection" backoff_ms=1000 queue_depth=17
+{"ts":"2026-03-27T14:06:45.414Z","level":"WARN","service":"billing-worker","job_id":"job-6116","invoice_id":"inv-9116","msg":"queue depth updated","queue_depth":17,"oldest_job_age_ms":10310}
+2026-03-27T14:06:46.848Z WARN postgres-primary db_cluster=orders-payments active_connections=97 idle_connections=1 waiting_clients=21 txn_per_s=64
+2026-03-27T14:06:48.930Z ERROR postgres-primary client=10.42.7.18 db=orders pid=48311 could not receive data from client: Connection timed out
+2026-03-27T14:06:51.170Z ERROR postgres-primary client=10.42.5.14 db=payments pid=48316 could not receive data from client: Connection reset by peer
+2026-03-27T14:06:52.607Z WARN postgres-primary db_cluster=orders-payments active_connections=98 idle_connections=0 waiting_clients=24 txn_per_s=59
+2026-03-27T14:06:54.222Z ERROR postgres-primary client=10.42.7.22 db=orders pid=48320 could not send data to client: Broken pipe
+2026-03-27T14:06:56.493Z ERROR postgres-primary client=10.42.5.14 db=payments pid=48321 unexpected EOF on client connection with an open transaction
+2026-03-27T14:06:57.889Z INFO api-gateway request_id=req-84194 method=POST path=/v1/orders user_id=usr-550 upstream=order-service
+2026-03-27T14:06:59.510Z WARN order-service request_id=req-84194 order_id=ord-51125 db acquire connection slow wait_ms=2380 pool_in_use=32 pool_idle=0
+2026-03-27T14:07:00.772Z WARN payment-service request_id=req-84194 order_id=ord-51125 db timeout acquiring connection wait_ms=3000 pool_in_use=32 pool_idle=0
+{"ts":"2026-03-27T14:07:02.106Z","level":"ERROR","service":"api-gateway","request_id":"req-84194","method":"POST","path":"/v1/orders","msg":"upstream timeout","upstream":"payment-service","timeout_ms":3000,"status":504}
+2026-03-27T14:07:03.399Z WARN inventory-service request_id=req-84194 order_id=ord-51125 reservation event delayed queue_age_ms=5021 sku=sku-91
+2026-03-27T14:07:04.358Z WARN notification-service request_id=req-84194 order_id=ord-51125 delivery deferred reason="payment pending" queue_delay_ms=4450
+2026-03-27T14:07:05.409Z WARN billing-worker job_id=job-6124 invoice_id=inv-9124 attempt=1 retrying reason="downstream timeout" backoff_ms=1000 queue_depth=24
+2026-03-27T14:07:07.352Z INFO api-gateway request_id=req-84201 method=POST path=/v1/orders user_id=usr-310 upstream=order-service
+2026-03-27T14:07:08.534Z WARN order-service request_id=req-84201 order_id=ord-51126 db acquire connection slow wait_ms=2561 pool_in_use=32 pool_idle=0
+2026-03-27T14:07:09.751Z ERROR order-service request_id=req-84201 order_id=ord-51126 failed to persist order error="timeout acquiring connection from pool"
+{"ts":"2026-03-27T14:07:11.188Z","level":"ERROR","service":"api-gateway","request_id":"req-84201","method":"POST","path":"/v1/orders","msg":"upstream timeout","upstream":"order-service","timeout_ms":3000,"status":504}
+2026-03-27T14:07:13.000Z WARN inventory-service request_id=req-84201 order_id=ord-51126 reservation skipped reason="order create timeout" sku=sku-65
+2026-03-27T14:07:14.564Z WARN notification-service request_id=req-84201 order_id=ord-51126 suppressed template=order-confirmed reason="order not finalized"
+2026-03-27T14:07:15.759Z WARN billing-worker job_id=job-6121 invoice_id=inv-9121 attempt=1 retrying reason="downstream timeout" backoff_ms=1000 queue_depth=23
+2026-03-27T14:07:17.155Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=2 duration_ms=3
+2026-03-27T14:07:18.413Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=7
+2026-03-27T14:07:19.944Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=1
+2026-03-27T14:07:21.405Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:07:22.682Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=2 duration_ms=3
+2026-03-27T14:07:24.137Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:07:25.162Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=3
+2026-03-27T14:07:26.824Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=6
+2026-03-27T14:07:28.345Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=2
+2026-03-27T14:07:29.107Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:07:30.326Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=3
+2026-03-27T14:07:31.387Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=7
+2026-03-27T14:07:32.334Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=3
+2026-03-27T14:07:33.680Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=4
+2026-03-27T14:07:34.940Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=3
+2026-03-27T14:07:36.549Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:07:37.385Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=readiness latency_ms=4
+2026-03-27T14:07:38.143Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=1
+2026-03-27T14:07:39.844Z INFO kubelet pod=billing-worker-55dfb ready=true restart_count=0 probe=readiness latency_ms=4
+2026-03-27T14:07:41.270Z INFO kubelet pod=inventory-service-845cc ready=true restart_count=0 probe=readiness latency_ms=1
+2026-03-27T14:07:43.073Z WARN billing-worker job_id=job-6115 invoice_id=inv-9115 attempt=2 retrying reason="db timeout acquiring connection" backoff_ms=2000 queue_depth=26
+{"ts":"2026-03-27T14:07:44.479Z","level":"WARN","service":"billing-worker","job_id":"job-6115","invoice_id":"inv-9115","msg":"backlog growing","queue_depth":26,"oldest_job_age_ms":17720}
+2026-03-27T14:07:45.653Z WARN billing-worker job_id=job-6116 invoice_id=inv-9116 attempt=2 retrying reason="db timeout acquiring connection" backoff_ms=2000 queue_depth=29
+{"ts":"2026-03-27T14:07:47.256Z","level":"WARN","service":"billing-worker","job_id":"job-6116","invoice_id":"inv-9116","msg":"backlog growing","queue_depth":29,"oldest_job_age_ms":19280}
+2026-03-27T14:07:48.486Z WARN billing-worker job_id=job-6117 invoice_id=inv-9117 attempt=1 retrying reason="payment-service timeout" backoff_ms=1000 queue_depth=31
+{"ts":"2026-03-27T14:07:49.982Z","level":"WARN","service":"billing-worker","job_id":"job-6117","invoice_id":"inv-9117","msg":"backlog growing","queue_depth":31,"oldest_job_age_ms":20320}
+2026-03-27T14:07:51.855Z WARN billing-worker job_id=job-6118 invoice_id=inv-9118 attempt=1 retrying reason="order-service timeout" backoff_ms=1000 queue_depth=34
+{"ts":"2026-03-27T14:07:53.240Z","level":"WARN","service":"billing-worker","job_id":"job-6118","invoice_id":"inv-9118","msg":"backlog growing","queue_depth":34,"oldest_job_age_ms":21880}
+2026-03-27T14:07:54.314Z WARN billing-worker job_id=job-6119 invoice_id=inv-9119 attempt=1 retrying reason="payment-service timeout" backoff_ms=1000 queue_depth=37
+{"ts":"2026-03-27T14:07:55.947Z","level":"WARN","service":"billing-worker","job_id":"job-6119","invoice_id":"inv-9119","msg":"backlog growing","queue_depth":37,"oldest_job_age_ms":23440}
+2026-03-27T14:07:57.900Z WARN billing-worker job_id=job-6112 invoice_id=inv-9112 attempt=3 retrying reason="upstream timeout" backoff_ms=2000 queue_depth=39
+{"ts":"2026-03-27T14:07:59.703Z","level":"WARN","service":"billing-worker","job_id":"job-6112","invoice_id":"inv-9112","msg":"backlog growing","queue_depth":39,"oldest_job_age_ms":24480}
+2026-03-27T14:08:01.008Z WARN billing-worker job_id=job-6113 invoice_id=inv-9113 attempt=3 retrying reason="payment authorization timeout" backoff_ms=2000 queue_depth=42
+{"ts":"2026-03-27T14:08:01.948Z","level":"WARN","service":"billing-worker","job_id":"job-6113","invoice_id":"inv-9113","msg":"backlog growing","queue_depth":42,"oldest_job_age_ms":26040}
+2026-03-27T14:08:03.594Z WARN billing-worker job_id=job-6114 invoice_id=inv-9114 attempt=3 retrying reason="order write failed" backoff_ms=2000 queue_depth=45
+{"ts":"2026-03-27T14:08:04.627Z","level":"WARN","service":"billing-worker","job_id":"job-6114","invoice_id":"inv-9114","msg":"backlog growing","queue_depth":45,"oldest_job_age_ms":27600}
+2026-03-27T14:08:05.752Z WARN inventory-service request_id=req-84172 order_id=ord-51121 stale reservation state detected sku=sku-44 event_lag_ms=9067 cache_version_lag=1
+2026-03-27T14:08:06.904Z WARN notification-service request_id=req-84172 order_id=ord-51121 delivery queue lag detected queue_delay_ms=5675 pending_messages=21
+2026-03-27T14:08:08.757Z WARN inventory-service request_id=req-84183 order_id=ord-51123 stale reservation state detected sku=sku-31 event_lag_ms=7165 cache_version_lag=1
+2026-03-27T14:08:09.997Z WARN notification-service request_id=req-84183 order_id=ord-51123 delivery queue lag detected queue_delay_ms=7738 pending_messages=18
+2026-03-27T14:08:11.368Z WARN inventory-service request_id=req-84194 order_id=ord-51125 stale reservation state detected sku=sku-91 event_lag_ms=8381 cache_version_lag=1
+2026-03-27T14:08:12.747Z WARN notification-service request_id=req-84194 order_id=ord-51125 delivery queue lag detected queue_delay_ms=7363 pending_messages=14
+2026-03-27T14:08:14.173Z WARN inventory-service request_id=req-84201 order_id=ord-51126 stale reservation state detected sku=sku-65 event_lag_ms=6262 cache_version_lag=1
+2026-03-27T14:08:15.579Z WARN notification-service request_id=req-84201 order_id=ord-51126 delivery queue lag detected queue_delay_ms=5112 pending_messages=24
+2026-03-27T14:08:16.815Z WARN postgres-primary db_cluster=orders-payments max_connections=100 active_connections=99 waiting_clients=29
+2026-03-27T14:08:18.860Z ERROR postgres-primary client=10.42.7.22 db=orders pid=48351 could not receive data from client: Connection timed out
+2026-03-27T14:08:20.329Z ERROR postgres-primary client=10.42.5.14 db=payments pid=48355 could not send data to client: Broken pipe
+2026-03-27T14:08:22.018Z WARN postgres-primary db_cluster=orders-payments active_connections=100 idle_connections=0 waiting_clients=31 txn_per_s=51
+2026-03-27T14:08:23.934Z ERROR postgres-primary client=10.42.7.18 db=orders pid=48358 unexpected EOF on client connection with an open transaction
+2026-03-27T14:08:25.842Z WARN order-service db acquire connection slow wait_ms=1338 pool_in_use=30 pool_idle=1
+2026-03-27T14:08:28.035Z WARN payment-service db acquire connection slow wait_ms=1244 pool_in_use=29 pool_idle=2
+2026-03-27T14:08:29.383Z INFO postgres-primary db_cluster=orders-payments active_connections=82 idle_connections=6 waiting_clients=12 txn_per_s=68
+2026-03-27T14:08:31.633Z INFO redis-cache role=master hit_rate=0.98 connected_clients=46 used_memory_mb=421 evictions=0
+2026-03-27T14:08:33.057Z WARN billing-worker queue drain slow queue_depth=43 oldest_job_age_ms=22104 success_rate_5m=0.71
+2026-03-27T14:08:35.642Z INFO api-gateway request_id=req-84211 method=POST path=/v1/orders user_id=usr-622 status=202 upstream=order-service latency_ms=958
+2026-03-27T14:08:37.640Z WARN order-service request_id=req-84211 order_id=ord-51127 stage=validate items=1 db_latency_ms=293 cache_hit=true
+2026-03-27T14:08:39.425Z INFO payment-service request_id=req-84211 order_id=ord-51127 payment_id=pay-7801 authorized amount_cents=2799 provider=stripe latency_ms=366
+2026-03-27T14:08:41.218Z WARN inventory-service request_id=req-84211 order_id=ord-51127 sku=sku-18 reserved qty=1 lag_ms=1388
+2026-03-27T14:08:42.939Z INFO order-service request_id=req-84211 order_id=ord-51127 state=confirmed total_cents=2799 latency_ms=846
+2026-03-27T14:08:43.935Z WARN notification-service request_id=req-84211 order_id=ord-51127 channel=email template=order-confirmed status=sent latency_ms=1422 queue_delay_ms=2804
+2026-03-27T14:08:45.546Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=2 duration_ms=1
+2026-03-27T14:08:47.975Z INFO api-gateway request_id=req-84214 method=POST path=/v1/orders user_id=usr-801 status=202 upstream=order-service latency_ms=568
+2026-03-27T14:08:49.785Z WARN order-service request_id=req-84214 order_id=ord-51128 stage=validate items=1 db_latency_ms=156 cache_hit=false
+2026-03-27T14:08:51.248Z WARN payment-service request_id=req-84214 order_id=ord-51128 authorization succeeded after retry attempt=2 db_wait_ms=1188 amount_cents=6999
+2026-03-27T14:08:52.283Z WARN inventory-service request_id=req-84214 order_id=ord-51128 sku=sku-33 reserved qty=1 lag_ms=354
+2026-03-27T14:08:54.043Z INFO order-service request_id=req-84214 order_id=ord-51128 state=confirmed total_cents=6999 latency_ms=1311
+2026-03-27T14:08:55.477Z INFO notification-service request_id=req-84214 order_id=ord-51128 channel=email template=order-confirmed status=sent latency_ms=245
+2026-03-27T14:08:57.030Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=3 duration_ms=4
+2026-03-27T14:08:58.542Z INFO postgres-primary db_cluster=orders-payments active_connections=78 idle_connections=10 waiting_clients=8 txn_per_s=77
+2026-03-27T14:09:00.620Z INFO api-gateway request_id=req-84219 method=POST path=/v1/orders user_id=usr-209 status=202 upstream=order-service latency_ms=924
+2026-03-27T14:09:01.876Z INFO order-service request_id=req-84219 order_id=ord-51129 stage=validate items=1 db_latency_ms=120 cache_hit=false
+2026-03-27T14:09:03.772Z INFO payment-service request_id=req-84219 order_id=ord-51129 payment_id=pay-7803 authorized amount_cents=1599 provider=stripe latency_ms=580
+2026-03-27T14:09:05.383Z WARN inventory-service request_id=req-84219 order_id=ord-51129 sku=sku-44 reserved qty=1 lag_ms=654
+2026-03-27T14:09:06.799Z INFO order-service request_id=req-84219 order_id=ord-51129 state=confirmed total_cents=1599 latency_ms=1181
+2026-03-27T14:09:08.549Z INFO notification-service request_id=req-84219 order_id=ord-51129 channel=email template=order-confirmed status=sent latency_ms=510
+2026-03-27T14:09:10.141Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=1
+2026-03-27T14:09:12.484Z INFO api-gateway request_id=req-84224 method=POST path=/v1/orders user_id=usr-488 status=202 upstream=order-service latency_ms=620
+2026-03-27T14:09:13.966Z INFO order-service request_id=req-84224 order_id=ord-51130 stage=validate items=1 db_latency_ms=293 cache_hit=true
+2026-03-27T14:09:15.843Z INFO payment-service request_id=req-84224 order_id=ord-51130 payment_id=pay-7804 authorized amount_cents=4699 provider=stripe latency_ms=615
+2026-03-27T14:09:17.413Z INFO inventory-service request_id=req-84224 order_id=ord-51130 sku=sku-22 reserved qty=1 lag_ms=1074
+2026-03-27T14:09:18.542Z INFO order-service request_id=req-84224 order_id=ord-51130 state=confirmed total_cents=4699 latency_ms=638
+2026-03-27T14:09:19.724Z INFO notification-service request_id=req-84224 order_id=ord-51130 channel=email template=order-confirmed status=sent latency_ms=312
+2026-03-27T14:09:20.494Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=3
+2026-03-27T14:09:22.285Z INFO postgres-primary db_cluster=orders-payments active_connections=72 idle_connections=14 waiting_clients=9 txn_per_s=81
+2026-03-27T14:09:24.324Z INFO api-gateway request_id=req-84229 method=POST path=/v1/orders user_id=usr-771 status=202 upstream=order-service latency_ms=849
+2026-03-27T14:09:25.894Z INFO order-service request_id=req-84229 order_id=ord-51131 stage=validate items=1 db_latency_ms=77 cache_hit=false
+2026-03-27T14:09:26.943Z INFO payment-service request_id=req-84229 order_id=ord-51131 payment_id=pay-7805 authorized amount_cents=2299 provider=stripe latency_ms=256
+2026-03-27T14:09:28.433Z INFO inventory-service request_id=req-84229 order_id=ord-51131 sku=sku-12 reserved qty=1 lag_ms=1467
+2026-03-27T14:09:30.089Z INFO order-service request_id=req-84229 order_id=ord-51131 state=confirmed total_cents=2299 latency_ms=1194
+2026-03-27T14:09:31.862Z INFO notification-service request_id=req-84229 order_id=ord-51131 channel=email template=order-confirmed status=sent latency_ms=517
+2026-03-27T14:09:33.192Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=3
+2026-03-27T14:09:34.854Z INFO billing-worker job_id=job-6111 invoice_id=inv-9111 attempt=3 status=completed queue_depth=39 duration_ms=1988
+{"ts":"2026-03-27T14:09:36.469Z","level":"INFO","service":"billing-worker","job_id":"job-6111","invoice_id":"inv-9111","msg":"queue depth updated","queue_depth":39,"oldest_job_age_ms":21090}
+2026-03-27T14:09:37.826Z INFO billing-worker job_id=job-6112 invoice_id=inv-9112 attempt=4 status=completed queue_depth=35 duration_ms=2217
+{"ts":"2026-03-27T14:09:39.375Z","level":"INFO","service":"billing-worker","job_id":"job-6112","invoice_id":"inv-9112","msg":"queue depth updated","queue_depth":35,"oldest_job_age_ms":19450}
+2026-03-27T14:09:40.650Z INFO billing-worker job_id=job-6113 invoice_id=inv-9113 attempt=4 status=completed queue_depth=31 duration_ms=2440
+{"ts":"2026-03-27T14:09:41.851Z","level":"INFO","service":"billing-worker","job_id":"job-6113","invoice_id":"inv-9113","msg":"queue depth updated","queue_depth":31,"oldest_job_age_ms":17810}
+2026-03-27T14:09:43.474Z INFO billing-worker job_id=job-6114 invoice_id=inv-9114 attempt=4 status=completed queue_depth=28 duration_ms=2388
+{"ts":"2026-03-27T14:09:44.859Z","level":"INFO","service":"billing-worker","job_id":"job-6114","invoice_id":"inv-9114","msg":"queue depth updated","queue_depth":28,"oldest_job_age_ms":16580}
+2026-03-27T14:09:46.851Z WARN billing-worker job_id=job-6115 invoice_id=inv-9115 attempt=3 retrying reason="downstream timeout" backoff_ms=2000 queue_depth=26
+{"ts":"2026-03-27T14:09:48.240Z","level":"WARN","service":"billing-worker","job_id":"job-6115","invoice_id":"inv-9115","msg":"queue depth updated","queue_depth":26,"oldest_job_age_ms":15760}
+2026-03-27T14:09:49.379Z WARN billing-worker job_id=job-6116 invoice_id=inv-9116 attempt=3 retrying reason="downstream timeout" backoff_ms=2000 queue_depth=23
+{"ts":"2026-03-27T14:09:50.434Z","level":"WARN","service":"billing-worker","job_id":"job-6116","invoice_id":"inv-9116","msg":"queue depth updated","queue_depth":23,"oldest_job_age_ms":14530}
+2026-03-27T14:09:51.483Z INFO billing-worker job_id=job-6117 invoice_id=inv-9117 attempt=2 status=completed queue_depth=20 duration_ms=1944
+{"ts":"2026-03-27T14:09:52.549Z","level":"INFO","service":"billing-worker","job_id":"job-6117","invoice_id":"inv-9117","msg":"queue depth updated","queue_depth":20,"oldest_job_age_ms":13300}
+2026-03-27T14:09:54.049Z INFO billing-worker job_id=job-6118 invoice_id=inv-9118 attempt=2 status=completed queue_depth=17 duration_ms=1881
+{"ts":"2026-03-27T14:09:55.502Z","level":"INFO","service":"billing-worker","job_id":"job-6118","invoice_id":"inv-9118","msg":"queue depth updated","queue_depth":17,"oldest_job_age_ms":12070}
+2026-03-27T14:09:56.686Z WARN billing-worker job_id=job-6119 invoice_id=inv-9119 attempt=2 retrying reason="downstream timeout" backoff_ms=2000 queue_depth=15
+{"ts":"2026-03-27T14:09:58.360Z","level":"WARN","service":"billing-worker","job_id":"job-6119","invoice_id":"inv-9119","msg":"queue depth updated","queue_depth":15,"oldest_job_age_ms":11250}
+2026-03-27T14:09:59.850Z WARN inventory-service reconcile loop caught up partially pending_events=18 max_event_lag_ms=2211
+2026-03-27T14:10:01.836Z WARN notification-service delivery queue lag decreasing pending_messages=11 oldest_message_age_ms=3034
+2026-03-27T14:10:03.475Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=264 sync_files=18 duration_ms=119
+2026-03-27T14:10:04.506Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:10:06.463Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=liveness latency_ms=2
+2026-03-27T14:10:07.494Z WARN payment-service db timeout acquiring connection wait_ms=3000 pool_in_use=30 pool_idle=1
+2026-03-27T14:10:08.699Z INFO api-gateway request_id=req-84236 method=POST path=/v1/orders user_id=usr-120 status=202 upstream=order-service latency_ms=902
+2026-03-27T14:10:10.123Z INFO order-service request_id=req-84236 order_id=ord-51132 stage=validate items=1 db_latency_ms=141 cache_hit=true
+2026-03-27T14:10:11.541Z INFO payment-service request_id=req-84236 order_id=ord-51132 payment_id=pay-7809 authorized amount_cents=2899 provider=stripe latency_ms=612
+2026-03-27T14:10:13.254Z WARN inventory-service request_id=req-84236 order_id=ord-51132 sku=sku-44 reserved qty=1 lag_ms=944
+2026-03-27T14:10:15.012Z INFO order-service request_id=req-84236 order_id=ord-51132 state=confirmed total_cents=2899 latency_ms=1181
+2026-03-27T14:10:16.455Z INFO notification-service request_id=req-84236 order_id=ord-51132 channel=email template=order-confirmed status=sent latency_ms=611
+2026-03-27T14:10:17.582Z INFO postgres-primary db_cluster=orders-payments active_connections=73 idle_connections=11 waiting_clients=5 txn_per_s=79
+2026-03-27T14:10:18.900Z WARN billing-worker queue drain slow queue_depth=15 oldest_job_age_ms=11188 success_rate_5m=0.83
+2026-03-27T14:10:20.125Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=2
+2026-03-27T14:10:21.361Z WARN notification-service delivery attempt failed provider=smtp reason="connection reset by peer" retry_in_ms=500
+2026-03-27T14:10:22.533Z INFO notification-service delivery retry succeeded provider=smtp latency_ms=412
+2026-03-27T14:10:24.304Z WARN billing-worker job_id=job-6119 invoice_id=inv-9119 attempt=3 retrying reason="payment-service timeout" backoff_ms=2000 queue_depth=13
+2026-03-27T14:10:25.347Z INFO billing-worker job_id=job-6115 invoice_id=inv-9115 attempt=4 status=completed queue_depth=11 duration_ms=2099
+2026-03-27T14:10:27.007Z INFO billing-worker job_id=job-6116 invoice_id=inv-9116 attempt=4 status=completed queue_depth=9 duration_ms=2144
+2026-03-27T14:10:29.015Z INFO postgres-primary db_cluster=orders-payments active_connections=69 idle_connections=14 waiting_clients=2 txn_per_s=84
+2026-03-27T14:10:31.038Z INFO api-gateway request_id=req-84241 method=POST path=/v1/orders user_id=usr-477 status=202 upstream=order-service latency_ms=488
+2026-03-27T14:10:32.552Z INFO order-service request_id=req-84241 order_id=ord-51133 stage=validate items=1 db_latency_ms=87 cache_hit=true
+2026-03-27T14:10:33.919Z INFO payment-service request_id=req-84241 order_id=ord-51133 payment_id=pay-7810 authorized amount_cents=3099 provider=stripe latency_ms=344
+2026-03-27T14:10:35.099Z INFO inventory-service request_id=req-84241 order_id=ord-51133 sku=sku-18 reserved qty=1 lag_ms=211
+2026-03-27T14:10:36.622Z INFO order-service request_id=req-84241 order_id=ord-51133 state=confirmed total_cents=3099 latency_ms=612
+2026-03-27T14:10:37.878Z INFO notification-service request_id=req-84241 order_id=ord-51133 channel=email template=order-confirmed status=sent latency_ms=205
+2026-03-27T14:10:39.911Z WARN billing-worker job_id=job-6119 invoice_id=inv-9119 attempt=4 retrying reason="payment-service timeout" backoff_ms=2000 queue_depth=7
+2026-03-27T14:10:41.378Z INFO inventory-service reconcile loop caught up partially pending_events=7 max_event_lag_ms=822
+2026-03-27T14:10:43.136Z WARN payment-service db acquire connection slow wait_ms=711 pool_in_use=27 pool_idle=3
+2026-03-27T14:10:44.540Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=208 sync_files=16 duration_ms=97
+2026-03-27T14:10:45.837Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=47 used_memory_mb=419
+2026-03-27T14:10:47.606Z INFO billing-worker job_id=job-6119 invoice_id=inv-9119 attempt=5 status=completed queue_depth=4 duration_ms=2333
+2026-03-27T14:10:49.395Z WARN notification-service delivery queue lag decreasing pending_messages=3 oldest_message_age_ms=944
+2026-03-27T14:10:51.358Z INFO api-gateway request_id=req-84247 method=POST path=/v1/orders user_id=usr-888 status=202 upstream=order-service latency_ms=366
+2026-03-27T14:10:52.850Z INFO order-service request_id=req-84247 order_id=ord-51134 stage=validate items=2 db_latency_ms=44 cache_hit=true
+2026-03-27T14:10:54.366Z INFO payment-service request_id=req-84247 order_id=ord-51134 payment_id=pay-7811 authorized amount_cents=5599 provider=stripe latency_ms=289
+2026-03-27T14:10:55.483Z INFO inventory-service request_id=req-84247 order_id=ord-51134 sku=sku-33 reserved qty=1 lag_ms=133
+2026-03-27T14:10:56.688Z INFO order-service request_id=req-84247 order_id=ord-51134 state=confirmed total_cents=5599 latency_ms=521
+2026-03-27T14:10:57.821Z INFO notification-service request_id=req-84247 order_id=ord-51134 channel=email template=order-confirmed status=sent latency_ms=177
+2026-03-27T14:10:59.104Z INFO postgres-primary db_cluster=orders-payments active_connections=63 idle_connections=18 waiting_clients=1 txn_per_s=91
+2026-03-27T14:11:00.651Z INFO billing-worker queue depth normalized queue_depth=2 oldest_job_age_ms=1440 success_rate_5m=0.91
+2026-03-27T14:11:01.936Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=1
+2026-03-27T14:11:23.936Z INFO api-gateway request_id=req-84253 method=POST path=/v1/orders user_id=usr-612 status=202 upstream=order-service latency_ms=1179
+2026-03-27T14:11:29.936Z INFO order-service request_id=req-84253 order_id=ord-51135 stage=validate items=1 db_latency_ms=221 cache_hit=true
+2026-03-27T14:11:35.936Z INFO payment-service request_id=req-84253 order_id=ord-51135 payment_id=pay-7835 authorized amount_cents=2699 provider=stripe latency_ms=439
+2026-03-27T14:11:41.936Z WARN inventory-service request_id=req-84253 order_id=ord-51135 sku=sku-44 reserved qty=1 lag_ms=739
+2026-03-27T14:11:47.936Z INFO order-service request_id=req-84253 order_id=ord-51135 state=confirmed total_cents=2699 latency_ms=1379
+2026-03-27T14:11:53.936Z INFO notification-service request_id=req-84253 order_id=ord-51135 channel=email template=order-confirmed status=sent latency_ms=309
+2026-03-27T14:12:11.936Z INFO postgres-primary db_cluster=orders-payments active_connections=58 idle_connections=24 waiting_clients=0 txn_per_s=89
+2026-03-27T14:12:29.936Z INFO billing-worker job_id=job-6141 invoice_id=inv-9141 attempt=1 status=completed queue_depth=0 duration_ms=201
+2026-03-27T14:12:49.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:13:07.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:13:25.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:14:00.936Z INFO api-gateway request_id=req-84258 method=POST path=/v1/orders user_id=usr-512 status=202 upstream=order-service latency_ms=679
+2026-03-27T14:14:06.936Z WARN order-service request_id=req-84258 order_id=ord-51136 stage=validate items=1 db_latency_ms=189 cache_hit=false
+2026-03-27T14:14:12.936Z INFO payment-service request_id=req-84258 order_id=ord-51136 payment_id=pay-7836 authorized amount_cents=4899 provider=stripe latency_ms=539
+2026-03-27T14:14:18.936Z INFO inventory-service request_id=req-84258 order_id=ord-51136 sku=sku-31 reserved qty=1 lag_ms=839
+2026-03-27T14:14:24.936Z INFO order-service request_id=req-84258 order_id=ord-51136 state=confirmed total_cents=4899 latency_ms=879
+2026-03-27T14:14:30.936Z INFO notification-service request_id=req-84258 order_id=ord-51136 channel=email template=order-confirmed status=sent latency_ms=429
+2026-03-27T14:14:48.936Z INFO postgres-primary db_cluster=orders-payments active_connections=61 idle_connections=22 waiting_clients=0 txn_per_s=92
+2026-03-27T14:15:06.936Z INFO billing-worker job_id=job-6142 invoice_id=inv-9142 attempt=1 status=completed queue_depth=0 duration_ms=202
+2026-03-27T14:15:26.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:15:44.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:16:02.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:16:42.936Z INFO api-gateway request_id=req-84264 method=POST path=/v1/orders user_id=usr-904 status=202 upstream=order-service latency_ms=479
+2026-03-27T14:16:48.936Z INFO order-service request_id=req-84264 order_id=ord-51137 stage=validate items=1 db_latency_ms=61 cache_hit=true
+2026-03-27T14:16:54.936Z WARN payment-service request_id=req-84264 order_id=ord-51137 authorization succeeded after retry attempt=2 db_wait_ms=688 amount_cents=1999
+2026-03-27T14:17:00.936Z INFO inventory-service request_id=req-84264 order_id=ord-51137 sku=sku-12 reserved qty=1 lag_ms=739
+2026-03-27T14:17:06.936Z INFO order-service request_id=req-84264 order_id=ord-51137 state=confirmed total_cents=1999 latency_ms=679
+2026-03-27T14:17:12.936Z INFO notification-service request_id=req-84264 order_id=ord-51137 channel=email template=order-confirmed status=sent latency_ms=649
+2026-03-27T14:17:30.936Z INFO postgres-primary db_cluster=orders-payments active_connections=55 idle_connections=26 waiting_clients=0 txn_per_s=87
+2026-03-27T14:17:48.936Z INFO billing-worker job_id=job-6143 invoice_id=inv-9143 attempt=1 status=completed queue_depth=0 duration_ms=203
+2026-03-27T14:18:08.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:18:26.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:18:44.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:19:26.936Z INFO api-gateway request_id=req-84269 method=POST path=/v1/orders user_id=usr-108 status=202 upstream=order-service latency_ms=479
+2026-03-27T14:19:32.936Z INFO order-service request_id=req-84269 order_id=ord-51138 stage=validate items=1 db_latency_ms=61 cache_hit=true
+2026-03-27T14:19:38.936Z INFO payment-service request_id=req-84269 order_id=ord-51138 payment_id=pay-7838 authorized amount_cents=3799 provider=stripe latency_ms=279
+2026-03-27T14:19:44.936Z WARN inventory-service request_id=req-84269 order_id=ord-51138 sku=sku-22 reserved qty=1 lag_ms=439
+2026-03-27T14:19:50.936Z INFO order-service request_id=req-84269 order_id=ord-51138 state=confirmed total_cents=3799 latency_ms=679
+2026-03-27T14:19:56.936Z INFO notification-service request_id=req-84269 order_id=ord-51138 channel=email template=order-confirmed status=sent latency_ms=369
+2026-03-27T14:20:14.936Z INFO postgres-primary db_cluster=orders-payments active_connections=60 idle_connections=23 waiting_clients=0 txn_per_s=94
+2026-03-27T14:20:32.936Z INFO billing-worker job_id=job-6144 invoice_id=inv-9144 attempt=1 status=completed queue_depth=0 duration_ms=204
+2026-03-27T14:20:52.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:21:10.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:21:28.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:22:14.936Z INFO api-gateway request_id=req-84274 method=POST path=/v1/orders user_id=usr-441 status=202 upstream=order-service latency_ms=879
+2026-03-27T14:22:20.936Z WARN order-service request_id=req-84274 order_id=ord-51139 stage=validate items=1 db_latency_ms=209 cache_hit=false
+2026-03-27T14:22:26.936Z INFO payment-service request_id=req-84274 order_id=ord-51139 payment_id=pay-7839 authorized amount_cents=3299 provider=stripe latency_ms=619
+2026-03-27T14:22:32.936Z INFO inventory-service request_id=req-84274 order_id=ord-51139 sku=sku-18 reserved qty=1 lag_ms=639
+2026-03-27T14:22:38.936Z INFO order-service request_id=req-84274 order_id=ord-51139 state=confirmed total_cents=3299 latency_ms=1079
+2026-03-27T14:22:44.936Z INFO notification-service request_id=req-84274 order_id=ord-51139 channel=email template=order-confirmed status=sent latency_ms=389
+2026-03-27T14:23:02.936Z INFO postgres-primary db_cluster=orders-payments active_connections=57 idle_connections=25 waiting_clients=0 txn_per_s=88
+2026-03-27T14:23:20.936Z INFO billing-worker job_id=job-6145 invoice_id=inv-9145 attempt=1 status=completed queue_depth=0 duration_ms=205
+2026-03-27T14:23:40.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:23:58.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:24:16.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:25:03.936Z INFO api-gateway request_id=req-84281 method=POST path=/v1/orders user_id=usr-233 status=202 upstream=order-service latency_ms=1079
+2026-03-27T14:25:09.936Z INFO order-service request_id=req-84281 order_id=ord-51140 stage=validate items=1 db_latency_ms=121 cache_hit=true
+2026-03-27T14:25:15.936Z WARN payment-service request_id=req-84281 order_id=ord-51140 authorization succeeded after retry attempt=2 db_wait_ms=744 amount_cents=6199
+2026-03-27T14:25:21.936Z INFO inventory-service request_id=req-84281 order_id=ord-51140 sku=sku-33 reserved qty=1 lag_ms=739
+2026-03-27T14:25:27.936Z INFO order-service request_id=req-84281 order_id=ord-51140 state=confirmed total_cents=6199 latency_ms=1279
+2026-03-27T14:25:33.936Z INFO notification-service request_id=req-84281 order_id=ord-51140 channel=email template=order-confirmed status=sent latency_ms=689
+2026-03-27T14:25:51.936Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=202 sync_files=15 duration_ms=88
+2026-03-27T14:26:09.936Z INFO billing-worker queue depth normalized queue_depth=1 oldest_job_age_ms=910 success_rate_5m=0.94
+2026-03-27T14:26:29.936Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=2
+2026-03-27T14:26:47.936Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:27:39.936Z INFO api-gateway request_id=req-84288 method=GET path=/v1/orders/ord-51140 user_id=usr-233 status=200 upstream=order-service latency_ms=244
+2026-03-27T14:27:45.936Z INFO order-service request_id=req-84288 order_id=ord-51140 read status=confirmed db_latency_ms=58
+2026-03-27T14:28:05.936Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=0 duration_ms=1
+2026-03-27T14:28:27.936Z INFO postgres-primary db_cluster=orders-payments active_connections=53 idle_connections=29 waiting_clients=0 txn_per_s=81
+2026-03-27T14:29:13.936Z INFO api-gateway request_id=req-84311 method=POST path=/v1/orders user_id=usr-144 upstream=order-service
+2026-03-27T14:29:17.936Z INFO order-service request_id=req-84311 order_id=ord-51143 stage=validate items=1 db_latency_ms=51 cache_hit=true
+2026-03-27T14:29:21.936Z INFO payment-service request_id=req-84311 order_id=ord-51143 payment_id=pay-7843 authorization_pending amount_cents=2599 provider=stripe
+2026-03-27T14:29:23.936Z ERROR postgres-primary terminating connection because of crash of another server process
+2026-03-27T14:29:24.936Z ERROR postgres-primary all server processes terminated; reinitializing
+2026-03-27T14:29:26.936Z ERROR payment-service request_id=req-84311 order_id=ord-51143 charge write failed error="server closed the connection unexpectedly"
+2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error="pq: server closed the connection unexpectedly"
+{"ts":"2026-03-27T14:29:30.936Z","level":"ERROR","service":"api-gateway","request_id":"req-84311","method":"POST","path":"/v1/orders","msg":"upstream error","upstream":"order-service","status":502,"error":"connection terminated"}
+2026-03-27T14:29:32.936Z WARN inventory-service request_id=req-84311 order_id=ord-51143 reservation state unknown sku=sku-44 reason="order finalization interrupted"
+2026-03-27T14:29:34.936Z WARN notification-service request_id=req-84311 order_id=ord-51143 delivery deferred reason="order finalization interrupted" queue_delay_ms=912
+2026-03-27T14:29:36.936Z WARN billing-worker job_id=job-6148 invoice_id=inv-9148 attempt=1 retrying reason="database connection lost" backoff_ms=1000 queue_depth=3
+2026-03-27T14:29:38.936Z WARN postgres-primary systemd[1]: postgresql.service: Main process exited, code=killed, status=9/KILL
+2026-03-27T14:29:39.936Z INFO postgres-primary systemd[1]: postgresql.service: Failed with result "signal".
+2026-03-27T14:29:40.936Z INFO postgres-primary systemd[1]: postgresql.service: Scheduled restart job, restart counter=1.
+2026-03-27T14:29:43.936Z INFO api-gateway request_id=req-84313 method=POST path=/v1/orders user_id=usr-677 upstream=order-service
+2026-03-27T14:29:45.936Z ERROR order-service request_id=req-84313 order_id=ord-51144 db connect failed error="dial tcp 10.42.0.15:5432: connect: connection refused"
+{"ts":"2026-03-27T14:29:47.936Z","level":"ERROR","service":"api-gateway","request_id":"req-84313","method":"POST","path":"/v1/orders","msg":"upstream timeout","upstream":"order-service","timeout_ms":3000,"status":504}
+2026-03-27T14:29:49.936Z WARN billing-worker job_id=job-6149 invoice_id=inv-9149 attempt=1 retrying reason="connection refused" backoff_ms=1000 queue_depth=5
+2026-03-27T14:29:52.936Z INFO postgres-primary systemd[1]: Starting PostgreSQL 15 database server...
+2026-03-27T14:29:54.936Z INFO postgres-primary database system was interrupted; last known up at 2026-03-27 14:29:21 UTC
+2026-03-27T14:29:55.936Z INFO postgres-primary database system is starting up
+2026-03-27T14:29:57.936Z INFO api-gateway request_id=req-84315 method=POST path=/v1/orders user_id=usr-288 upstream=order-service
+2026-03-27T14:29:58.936Z ERROR order-service request_id=req-84315 order_id=ord-51145 failed to persist order error="pq: the database system is starting up"
+2026-03-27T14:29:59.936Z ERROR payment-service request_id=req-84315 order_id=ord-51145 db connect failed error="pq: the database system is starting up"
+{"ts":"2026-03-27T14:30:01.936Z","level":"ERROR","service":"api-gateway","request_id":"req-84315","method":"POST","path":"/v1/orders","msg":"upstream error","upstream":"payment-service","status":502,"error":"database unavailable"}
+2026-03-27T14:30:03.936Z WARN inventory-service request_id=req-84315 order_id=ord-51145 reservation skipped reason="order not persisted" sku=sku-31
+2026-03-27T14:30:05.936Z WARN notification-service request_id=req-84315 order_id=ord-51145 suppressed template=order-confirmed reason="order not finalized"
+2026-03-27T14:30:07.936Z WARN billing-worker job_id=job-6150 invoice_id=inv-9150 attempt=1 retrying reason="database system is starting up" backoff_ms=1500 queue_depth=7
+2026-03-27T14:30:09.936Z INFO redis-cache role=master active_expire_cycle sampled_keys=20 expired_keys=1 duration_ms=2
+2026-03-27T14:30:11.936Z INFO postgres-primary redo starts at 0/16B4EA0
+2026-03-27T14:30:12.936Z INFO postgres-primary invalid record length at 0/16B4F10: wanted 24, got 0
+2026-03-27T14:30:14.936Z INFO postgres-primary redo done at 0/16B4ED8 system usage: CPU: user: 0.02 s, system: 0.01 s, elapsed: 0.03 s
+2026-03-27T14:30:15.936Z INFO postgres-primary checkpoint starting: end-of-recovery immediate wait
+2026-03-27T14:30:16.936Z INFO postgres-primary checkpoint complete: wrote 44 buffers duration_ms=41
+2026-03-27T14:30:17.936Z INFO postgres-primary database system is ready to accept connections
+2026-03-27T14:30:18.936Z INFO postgres-primary systemd[1]: Started PostgreSQL 15 database server.
+2026-03-27T14:30:21.936Z INFO api-gateway request_id=req-84318 method=POST path=/v1/orders user_id=usr-905 status=202 upstream=order-service latency_ms=1604
+2026-03-27T14:30:23.936Z WARN order-service request_id=req-84318 order_id=ord-51146 stage=validate items=1 db_latency_ms=611 cache_hit=false
+2026-03-27T14:30:25.936Z WARN payment-service request_id=req-84318 order_id=ord-51146 authorization succeeded after retry attempt=3 db_wait_ms=1408 amount_cents=5599
+2026-03-27T14:30:27.936Z WARN inventory-service request_id=req-84318 order_id=ord-51146 sku=sku-33 reserved qty=1 lag_ms=1633
+2026-03-27T14:30:29.936Z INFO order-service request_id=req-84318 order_id=ord-51146 state=confirmed total_cents=5599 latency_ms=2144
+2026-03-27T14:30:31.936Z WARN notification-service request_id=req-84318 order_id=ord-51146 channel=email template=order-confirmed status=sent latency_ms=988 queue_delay_ms=1774
+2026-03-27T14:30:33.936Z INFO billing-worker job_id=job-6148 invoice_id=inv-9148 attempt=2 status=completed queue_depth=5 duration_ms=2211
+2026-03-27T14:30:35.936Z INFO billing-worker job_id=job-6149 invoice_id=inv-9149 attempt=2 status=completed queue_depth=3 duration_ms=2098
+2026-03-27T14:30:37.936Z INFO billing-worker job_id=job-6150 invoice_id=inv-9150 attempt=2 status=completed queue_depth=2 duration_ms=2331
+2026-03-27T14:30:40.936Z INFO postgres-primary db_cluster=orders-payments active_connections=38 idle_connections=40 waiting_clients=0 txn_per_s=61
+2026-03-27T14:30:47.936Z INFO api-gateway request_id=req-84321 method=POST path=/v1/orders user_id=usr-522 status=202 upstream=order-service latency_ms=711
+2026-03-27T14:30:49.936Z INFO order-service request_id=req-84321 order_id=ord-51147 stage=validate items=1 db_latency_ms=134 cache_hit=true
+2026-03-27T14:30:51.936Z INFO payment-service request_id=req-84321 order_id=ord-51147 payment_id=pay-7847 authorized amount_cents=2999 provider=stripe latency_ms=522
+2026-03-27T14:30:53.936Z INFO inventory-service request_id=req-84321 order_id=ord-51147 sku=sku-12 reserved qty=1 lag_ms=388
+2026-03-27T14:30:55.936Z INFO order-service request_id=req-84321 order_id=ord-51147 state=confirmed total_cents=2999 latency_ms=905
+2026-03-27T14:30:57.936Z INFO notification-service request_id=req-84321 order_id=ord-51147 channel=email template=order-confirmed status=sent latency_ms=422
+2026-03-27T14:31:01.936Z INFO redis-cache role=master evictions=0 hit_rate=0.98 connected_clients=46 used_memory_mb=420
+2026-03-27T14:31:08.936Z INFO billing-worker queue depth normalized queue_depth=0 oldest_job_age_ms=0 success_rate_5m=0.93
+2026-03-27T14:31:12.936Z INFO postgres-primary db_cluster=orders-payments active_connections=49 idle_connections=31 waiting_clients=0 txn_per_s=79
+2026-03-27T14:31:16.936Z INFO ingress-controller backend_sync namespace=prod upstreams=6 config_hash=aa17e7 reload=false latency_ms=5
+2026-03-27T14:31:20.936Z INFO kubelet pod=order-service-6b9fd ready=true restart_count=0 probe=readiness latency_ms=2
+2026-03-27T14:31:24.936Z INFO kubelet pod=payment-service-7c8df ready=true restart_count=0 probe=readiness latency_ms=2

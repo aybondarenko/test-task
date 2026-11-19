@@ -1,0 +1,78 @@
+2026-03-27T14:00:00.000Z INFO front-gateway request served request_id=r-0000 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=40
+2026-03-27T14:00:10.000Z INFO orders-service order stored request_id=r-0001 db_latency_ms=11 latency_ms=31
+-- partial write, record lost --
+2026-03-27T14:00:20.000Z INFO orders-db stats db_cluster=main active_connections=22 max_connections=100 waiting_clients=0
+2026-03-27T14:00:30.000Z INFO audit-worker export done batch=3
+2026-03-27T14:00:40.000Z INFO front-gateway request served request_id=r-0004 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=52
+2026-03-27T14:00:50.000Z INFO orders-service order stored request_id=r-0005 db_latency_ms=12 latency_ms=31
+2026-03-27T14:01:00.000Z INFO orders-db stats db_cluster=main active_connections=20 max_connections=100 waiting_clients=0
+2026-03-27T14:01:10.000Z INFO audit-worker export done batch=7
+2026-03-27T14:01:20.000Z INFO front-gateway request served request_id=r-0008 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=49
+2026-03-27T14:01:30.000Z INFO orders-service order stored request_id=r-0009 db_latency_ms=10 latency_ms=31
+2026-03-27T14:01:40.000Z INFO orders-db stats db_cluster=main active_connections=21 max_connections=100 waiting_clients=0
+2026-03-27T14:01:50.000Z INFO audit-worker export done batch=11
+2026-03-27T14:02:00.000Z INFO front-gateway request served request_id=r-0012 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=46
+2026-03-27T14:02:10.000Z INFO orders-service order stored request_id=r-0013 db_latency_ms=11 latency_ms=31
+2026-03-27T14:02:20.000Z INFO orders-db stats db_cluster=main active_connections=22 max_connections=100 waiting_clients=0
+2026-03-27T14:02:30.000Z INFO audit-worker export done batch=15
+2026-03-27T14:02:40.000Z INFO front-gateway request served request_id=r-0016 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=43
+2026-03-27T14:02:50.000Z INFO orders-service order stored request_id=r-0017 db_latency_ms=12 latency_ms=31
+2026-03-27T14:03:00.000Z INFO orders-db stats db_cluster=main active_connections=20 max_connections=100 waiting_clients=0
+2026-03-27T14:03:10.000Z INFO audit-worker export done batch=19
+2026-03-27T14:03:20.000Z INFO front-gateway request served request_id=r-0020 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=40
+2026-03-27T14:03:30.000Z INFO orders-service order stored request_id=r-0021 db_latency_ms=10 latency_ms=31
+2026-03-27T14:03:40.000Z INFO orders-db stats db_cluster=main active_connections=21 max_connections=100 waiting_clients=0
+2026-03-27T14:03:50.000Z INFO audit-worker export done batch=23
+2026-03-27T14:04:00.000Z INFO front-gateway request served request_id=r-0024 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=52
+2026-03-27T14:04:10.000Z INFO orders-service order stored request_id=r-0025 db_latency_ms=11 latency_ms=31
+2026-03-27T14:04:20.000Z INFO orders-db stats db_cluster=main active_connections=22 max_connections=100 waiting_clients=0
+2026-03-27T14:04:30.000Z INFO audit-worker export done batch=27
+2026-03-27T14:04:40.000Z INFO front-gateway request served request_id=r-0028 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=49
+2026-03-27T14:04:50.000Z INFO orders-service order stored request_id=r-0029 db_latency_ms=12 latency_ms=31
+2026-03-27T14:05:00.000Z WARN orders-db stats db_cluster=main active_connections=88 max_connections=100 waiting_clients=6
+2026-03-27T14:05:05.000Z WARN orders-service db acquire connection slow request_id=r-1001 wait_ms=850 pool_in_use=20 pool_idle=0
+{"ts":"2026-03-27T14:05:15.000Z","level":"ERROR","service":"front-gateway","msg":"upstream timeout","request_id":"r-1001","upstream":"orders-service","status":504,"latency_ms":3000.12345}
+2026-03-27T14:05:20.000Z WARN orders-db stats db_cluster=main active_connections=89 max_connections=100 waiting_clients=9
+2026-03-27T14:05:25.000Z WARN orders-service db acquire connection slow request_id=r-1002 wait_ms=900 pool_in_use=20 pool_idle=0
+{"ts":"2026-03-27T14:05:35.000Z","level":"ERROR","service":"front-gateway","msg":"upstream timeout","request_id":"r-1002","upstream":"orders-service","status":504,"latency_ms":2999.5}
+2026-03-27T14:05:45.000Z WARN orders-service db acquire connection slow request_id=r-1003 wait_ms=950 pool_in_use=20 pool_idle=0
+2026-03-27T14:05:50.000Z ERROR orders-service order write failed request_id=r-1005
+2026-03-27T14:05:50.200Z ERROR orders-service request_id=r-1005 	at com.shop.orders.OrderRepository.save(OrderRepository.java:42)
+2026-03-27T14:05:50.400Z ERROR orders-service request_id=r-1005 Caused by: java.net.SocketTimeoutException: Read timed out
+{"ts":"2026-03-27T14:05:52.000Z","level":"ERROR","service":"front-gateway","msg":"upstream error","request_id":"r-1005","upstream":"orders-service","status":502}
+{"ts":"2026-03-27T14:05:55.000Z","level":"ERROR","service":"front-gateway","msg":"upstream timeout","request_id":"r-1003","upstream":"orders-service","status":504,"latency_ms":3000.0}
+2026-03-27T14:06:05.000Z WARN orders-db stats db_cluster=main active_connections=86 max_connections=100 waiting_clients=7
+2026-03-27T14:06:10.000Z WARN orders-service db acquire connection slow request_id=r-1004 wait_ms=990 pool_in_use=20 pool_idle=0
+{"ts":"2026-03-27T14:06:20.000Z","level":"ERROR","service":"front-gateway","msg":"upstream timeout","request_id":"r-1004","upstream":"orders-service","status":504,"latency_ms":3000.0}
+
+2026-03-27T14:07:00.000Z INFO front-gateway request served request_id=r-0100 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=40
+2026-03-27T14:07:10.000Z INFO orders-service order stored request_id=r-0101 db_latency_ms=12 latency_ms=31
+2026-03-27T14:07:20.000Z INFO orders-db stats db_cluster=main active_connections=20 max_connections=100 waiting_clients=0
+2026-03-27T14:07:30.000Z INFO audit-worker export done batch=103
+2026-03-27T14:07:40.000Z INFO front-gateway request served request_id=r-0104 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=52
+2026-03-27T14:07:50.000Z INFO orders-service order stored request_id=r-0105 db_latency_ms=10 latency_ms=31
+2026-03-27T14:08:00.000Z INFO orders-db stats db_cluster=main active_connections=21 max_connections=100 waiting_clients=0
+2026-03-27T14:08:10.000Z INFO audit-worker export done batch=107
+2026-03-27T14:08:20.000Z INFO front-gateway request served request_id=r-0108 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=49
+2026-03-27T14:08:30.000Z INFO orders-service order stored request_id=r-0109 db_latency_ms=11 latency_ms=31
+2026-03-27T14:08:40.000Z INFO orders-db stats db_cluster=main active_connections=22 max_connections=100 waiting_clients=0
+2026-03-27T14:08:50.000Z INFO audit-worker export done batch=111
+2026-03-27T14:09:00.000Z INFO front-gateway request served request_id=r-0112 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=46
+2026-03-27T14:09:10.000Z INFO orders-service order stored request_id=r-0113 db_latency_ms=12 latency_ms=31
+2026-03-27T14:09:20.000Z INFO orders-db stats db_cluster=main active_connections=20 max_connections=100 waiting_clients=0
+2026-03-27T14:09:30.000Z INFO audit-worker export done batch=115
+2026-03-27T14:09:40.000Z INFO front-gateway request served request_id=r-0116 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=43
+2026-03-27T14:09:50.000Z INFO orders-service order stored request_id=r-0117 db_latency_ms=10 latency_ms=31
+2026-03-27T14:10:00.000Z INFO orders-db stats db_cluster=main active_connections=21 max_connections=100 waiting_clients=0
+2026-03-27T14:10:10.000Z INFO audit-worker export done batch=119
+2026-03-27T14:10:20.000Z INFO front-gateway request served request_id=r-0120 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=40
+2026-03-27T14:10:30.000Z INFO orders-service order stored request_id=r-0121 db_latency_ms=11 latency_ms=31
+2026-03-27T14:10:40.000Z INFO orders-db stats db_cluster=main active_connections=22 max_connections=100 waiting_clients=0
+2026-03-27T14:10:50.000Z INFO audit-worker export done batch=123
+2026-03-27T14:11:00.000Z WARN audit-worker export batch slow
+2026-03-27T14:11:00.000Z INFO front-gateway request served request_id=r-0124 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=52
+2026-03-27T14:11:10.000Z INFO orders-service order stored request_id=r-0125 db_latency_ms=12 latency_ms=31
+2026-03-27T14:11:20.000Z INFO orders-db stats db_cluster=main active_connections=20 max_connections=100 waiting_clients=0
+2026-03-27T14:11:30.000Z INFO audit-worker export done batch=127
+2026-03-27T14:11:40.000Z INFO front-gateway request served request_id=r-0128 method=GET path=/v1/orders status=200 upstream=orders-service latency_ms=49
+2026-03-27T14:11:50.000Z INFO orders-service order stored request_id=r-0129 db_latency_ms=10 latency_ms=31

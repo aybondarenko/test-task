@@ -1,0 +1,3850 @@
+{
+  "schema_version": "2.0",
+  "source": {
+    "file_name": "it_task_log (2).log",
+    "sha256": "376c84ce0ae23fe216dea46d789a47410ebdd0ebd8bf9b4b834073f4dac2c839",
+    "total_lines": 521,
+    "blank_lines": 0,
+    "parsed_lines": 521,
+    "failed_lines": 0,
+    "noise_lines": 262,
+    "anomalous_lines": 248,
+    "continuation_lines": 11,
+    "services": [
+      "api-gateway",
+      "billing-worker",
+      "ingress-controller",
+      "inventory-service",
+      "kubelet",
+      "notification-service",
+      "order-service",
+      "payment-service",
+      "postgres-primary",
+      "redis-cache"
+    ]
+  },
+  "parse_failures": [],
+  "incident_summary": "The log appears to show 2 degradation episodes, the first starting at 14:04:42 UTC, with 8 findings across 7 services. The likely causes, by severity, are: postgres-primary restart at 14:29:23 UTC (F5, critical); postgres-primary pool saturation at 14:05:02 UTC (F3, high). The episodes may be linked (H3). Recovery after E2 was observed, but the observation window is short.",
+  "key_findings": [
+    {
+      "id": "F1",
+      "title": "51 connection error, timeout and connection pool saturation events recorded in order-service and payment-service.",
+      "kind": "pool_saturation",
+      "service_class": "internal",
+      "services": [
+        "order-service",
+        "payment-service"
+      ],
+      "severity": "high",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:04:42; depends on postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E1",
+      "window": {
+        "start": "2026-03-27T14:04:42.803Z",
+        "end": "2026-03-27T14:30:55.936Z"
+      },
+      "count": 51,
+      "db_related": true,
+      "db_categories": [
+        "db_latency",
+        "pool_exhaustion",
+        "connection_errors"
+      ],
+      "group_ids": [
+        "P1",
+        "P2",
+        "P10",
+        "P13",
+        "P17",
+        "P20",
+        "P23",
+        "P26"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "db_latency_ms",
+            "unit": "ms",
+            "count": 14,
+            "min": 77.0,
+            "p50": 141.0,
+            "max": 611.0,
+            "baseline_p95": 16.0
+          },
+          {
+            "metric": "db_wait_ms",
+            "unit": "ms",
+            "count": 3,
+            "min": 688.0,
+            "p50": 744.0,
+            "max": 1188.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "duration_ms",
+            "unit": "ms",
+            "count": 1,
+            "min": 641.0,
+            "p50": 641.0,
+            "max": 641.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "latency_ms",
+            "unit": "ms",
+            "count": 16,
+            "min": 521.0,
+            "p50": 905.0,
+            "max": 2144.0,
+            "baseline_p95": 89.0
+          },
+          {
+            "metric": "pool_idle",
+            "unit": "count",
+            "count": 15,
+            "min": 0.0,
+            "p50": 0.0,
+            "max": 3.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "pool_in_use",
+            "unit": "count",
+            "count": 15,
+            "min": 27.0,
+            "p50": 32.0,
+            "max": 32.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "wait_ms",
+            "unit": "ms",
+            "count": 14,
+            "min": 418.0,
+            "p50": 1822.0,
+            "max": 3000.0,
+            "baseline_p95": null
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 143,
+            "ts": "2026-03-27T14:04:42.803Z",
+            "service": "order-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+          },
+          {
+            "line_no": 144,
+            "ts": "2026-03-27T14:04:46.050Z",
+            "service": "payment-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:46.050Z WARN payment-service db query latency high op=select_payment_profile duration_ms=641 pool_in_use=27 pool_idle=2"
+          },
+          {
+            "line_no": 166,
+            "ts": "2026-03-27T14:05:29.231Z",
+            "service": "payment-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:29.231Z WARN payment-service request_id=req-84172 order_id=ord-51121 db timeout acquiring connection wait_ms=3000 pool_in_use=32 pool_idle=0"
+          }
+        ],
+        "templates": [
+          {
+            "template": "{latency_ms,state,total_cents}",
+            "count": 16
+          },
+          {
+            "template": "{cache_hit,db_latency_ms,items,stage}",
+            "count": 14
+          },
+          {
+            "template": "db acquire connection slow",
+            "count": 11
+          },
+          {
+            "template": "authorization succeeded after retry",
+            "count": 3
+          },
+          {
+            "template": "db timeout acquiring connection",
+            "count": 3
+          }
+        ],
+        "request_ids": [
+          "req-84084",
+          "req-84172",
+          "req-84175",
+          "req-84183",
+          "req-84188"
+        ],
+        "shifts": [
+          {
+            "service": "order-service",
+            "metric": "db_latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:42.803Z",
+              "end": "2026-03-27T14:30:55.936Z"
+            },
+            "baseline_p50": 11.0,
+            "baseline_p95": 16.0,
+            "low": 33.0,
+            "high": 611.0,
+            "worst": 611.0,
+            "worst_line_no": 501,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 54.545
+          },
+          {
+            "service": "order-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:42.803Z",
+              "end": "2026-03-27T14:30:55.936Z"
+            },
+            "baseline_p50": 65.0,
+            "baseline_p95": 89.0,
+            "low": 247.0,
+            "high": 2144.0,
+            "worst": 2144.0,
+            "worst_line_no": 504,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 31.985
+          },
+          {
+            "service": "payment-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:42.803Z",
+              "end": "2026-03-27T14:30:55.936Z"
+            },
+            "baseline_p50": 145.0,
+            "baseline_p95": 169.0,
+            "low": 244.0,
+            "high": 1189.0,
+            "worst": 1189.0,
+            "worst_line_no": 160,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 7.2
+          }
+        ],
+        "composites": []
+      },
+      "kinds": [
+        "connection_error",
+        "timeout",
+        "pool_saturation",
+        "retry",
+        "latency"
+      ]
+    },
+    {
+      "id": "F2",
+      "title": "116 timeout, retry and queue backlog events recorded in billing-worker, inventory-service, notification-service, order-service and payment-service.",
+      "kind": "timeout",
+      "service_class": "internal",
+      "services": [
+        "billing-worker",
+        "inventory-service",
+        "notification-service",
+        "order-service",
+        "payment-service"
+      ],
+      "severity": "high",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:04:54; depends on postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E1",
+      "window": {
+        "start": "2026-03-27T14:04:54.851Z",
+        "end": "2026-03-27T14:25:33.936Z"
+      },
+      "count": 116,
+      "db_related": false,
+      "db_categories": [],
+      "group_ids": [
+        "P3",
+        "P6",
+        "P8",
+        "P9",
+        "P12",
+        "P15",
+        "P16",
+        "P18",
+        "P19",
+        "P21",
+        "P22",
+        "P25"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "cache_version_lag",
+            "unit": "count",
+            "count": 4,
+            "min": 1.0,
+            "p50": 1.0,
+            "max": 1.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "duration_ms",
+            "unit": "ms",
+            "count": 9,
+            "min": 1881.0,
+            "p50": 2144.0,
+            "max": 2440.0,
+            "baseline_p95": 240.0
+          },
+          {
+            "metric": "event_lag_ms",
+            "unit": "ms",
+            "count": 4,
+            "min": 6262.0,
+            "p50": 7165.0,
+            "max": 9067.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "lag_ms",
+            "unit": "ms",
+            "count": 15,
+            "min": 133.0,
+            "p50": 739.0,
+            "max": 1467.0,
+            "baseline_p95": 36.0
+          },
+          {
+            "metric": "last_duration_ms",
+            "unit": "ms",
+            "count": 4,
+            "min": 1580.0,
+            "p50": 1894.0,
+            "max": 2254.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "latency_ms",
+            "unit": "ms",
+            "count": 16,
+            "min": 369.0,
+            "p50": 510.0,
+            "max": 1422.0,
+            "baseline_p95": 169.0
+          },
+          {
+            "metric": "max_event_lag_ms",
+            "unit": "ms",
+            "count": 1,
+            "min": 2211.0,
+            "p50": 2211.0,
+            "max": 2211.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "oldest_job_age_ms",
+            "unit": "ms",
+            "count": 25,
+            "min": 5580.0,
+            "p50": 16580.0,
+            "max": 27600.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "oldest_message_age_ms",
+            "unit": "ms",
+            "count": 2,
+            "min": 944.0,
+            "p50": 944.0,
+            "max": 3034.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "pending_events",
+            "unit": "count",
+            "count": 1,
+            "min": 18.0,
+            "p50": 18.0,
+            "max": 18.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "pending_messages",
+            "unit": "count",
+            "count": 6,
+            "min": 3.0,
+            "p50": 14.0,
+            "max": 24.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "queue_age_ms",
+            "unit": "ms",
+            "count": 4,
+            "min": 1634.0,
+            "p50": 2741.0,
+            "max": 5021.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "queue_delay_ms",
+            "unit": "ms",
+            "count": 8,
+            "min": 2210.0,
+            "p50": 4450.0,
+            "max": 7738.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "queue_depth",
+            "unit": "count",
+            "count": 59,
+            "min": 2.0,
+            "p50": 17.0,
+            "max": 45.0,
+            "baseline_p95": 2.0
+          },
+          {
+            "metric": "success_rate_5m",
+            "unit": "ratio",
+            "count": 2,
+            "min": 0.71,
+            "p50": 0.71,
+            "max": 0.83,
+            "baseline_p95": null
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 148,
+            "ts": "2026-03-27T14:04:54.851Z",
+            "service": "inventory-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:54.851Z WARN inventory-service request_id=req-84079 order_id=ord-51107 reservation write latency high sku=sku-22 lag_ms=412"
+          },
+          {
+            "line_no": 156,
+            "ts": "2026-03-27T14:05:09.633Z",
+            "service": "billing-worker",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:09.633Z WARN billing-worker job_id=job-6111 invoice_id=inv-9111 attempt=1 retrying reason=\"payment-service latency high\" backoff_ms=500 queue_depth=2"
+          },
+          {
+            "line_no": 160,
+            "ts": "2026-03-27T14:05:18.003Z",
+            "service": "payment-service",
+            "level": "INFO",
+            "text": "2026-03-27T14:05:18.003Z INFO payment-service request_id=req-84084 order_id=ord-51108 payment_id=pay-7718 authorized amount_cents=3899 provider=stripe latency_ms=1189"
+          }
+        ],
+        "templates": [
+          {
+            "template": "retrying",
+            "count": 25
+          },
+          {
+            "template": "queue depth updated",
+            "count": 15
+          },
+          {
+            "template": "reserved",
+            "count": 14
+          },
+          {
+            "template": "{attempt,duration_ms,queue_depth,status}",
+            "count": 9
+          },
+          {
+            "template": "backlog growing",
+            "count": 8
+          }
+        ],
+        "request_ids": [
+          "req-84079",
+          "req-84084",
+          "req-84172",
+          "req-84175",
+          "req-84183"
+        ],
+        "shifts": [
+          {
+            "service": "inventory-service",
+            "metric": "lag_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 25.0,
+            "baseline_p95": 36.0,
+            "low": 133.0,
+            "high": 1467.0,
+            "worst": 1467.0,
+            "worst_line_no": 330,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 57.68
+          },
+          {
+            "service": "billing-worker",
+            "metric": "queue_depth",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 1.0,
+            "baseline_p95": 2.0,
+            "low": 0.0,
+            "high": 45.0,
+            "worst": 45.0,
+            "worst_line_no": 277,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 44.0
+          },
+          {
+            "service": "order-service",
+            "metric": "db_latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 11.0,
+            "baseline_p95": 16.0,
+            "low": 41.0,
+            "high": 293.0,
+            "worst": 293.0,
+            "worst_line_no": 298,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 25.636
+          },
+          {
+            "service": "order-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 65.0,
+            "baseline_p95": 89.0,
+            "low": 247.0,
+            "high": 1379.0,
+            "worst": 1379.0,
+            "worst_line_no": 399,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 20.215
+          },
+          {
+            "service": "notification-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 81.0,
+            "baseline_p95": 122.0,
+            "low": 177.0,
+            "high": 1422.0,
+            "worst": 1422.0,
+            "worst_line_no": 302,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 16.556
+          },
+          {
+            "service": "billing-worker",
+            "metric": "duration_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 194.0,
+            "baseline_p95": 240.0,
+            "low": 201.0,
+            "high": 2440.0,
+            "worst": 2440.0,
+            "worst_line_no": 338,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 11.577
+          },
+          {
+            "service": "payment-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:04:54.851Z",
+              "end": "2026-03-27T14:25:33.936Z"
+            },
+            "baseline_p50": 145.0,
+            "baseline_p95": 169.0,
+            "low": 256.0,
+            "high": 1189.0,
+            "worst": 1189.0,
+            "worst_line_no": 160,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 7.2
+          }
+        ],
+        "composites": []
+      },
+      "kinds": [
+        "timeout",
+        "retry",
+        "queue_backlog",
+        "latency",
+        "warning"
+      ]
+    },
+    {
+      "id": "F3",
+      "title": "26 connection error and connection pool saturation events recorded in postgres-primary.",
+      "kind": "pool_saturation",
+      "service_class": "db_server",
+      "services": [
+        "postgres-primary"
+      ],
+      "severity": "high",
+      "role": "cause",
+      "role_rationale": "Starts at 14:05:02, within 30s of episode onset 14:04:42; it has no dependencies in the service graph.",
+      "episode_id": "E1",
+      "window": {
+        "start": "2026-03-27T14:05:02.164Z",
+        "end": "2026-03-27T14:20:14.936Z"
+      },
+      "count": 26,
+      "db_related": true,
+      "db_categories": [
+        "server_saturation",
+        "connection_errors",
+        "aborted_transactions"
+      ],
+      "group_ids": [
+        "P4",
+        "P5",
+        "P24"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "active_connections",
+            "unit": "count",
+            "count": 15,
+            "min": 44.0,
+            "p50": 73.0,
+            "max": 100.0,
+            "baseline_p95": 30.0
+          },
+          {
+            "metric": "idle_connections",
+            "unit": "count",
+            "count": 13,
+            "min": 0.0,
+            "p50": 10.0,
+            "max": 28.0,
+            "baseline_p95": 55.0
+          },
+          {
+            "metric": "txn_per_s",
+            "unit": "per_s",
+            "count": 13,
+            "min": 51.0,
+            "p50": 79.0,
+            "max": 101.0,
+            "baseline_p95": 121.0
+          },
+          {
+            "metric": "waiting_clients",
+            "unit": "count",
+            "count": 15,
+            "min": 0.0,
+            "p50": 9.0,
+            "max": 31.0,
+            "baseline_p95": 0.0
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 152,
+            "ts": "2026-03-27T14:05:02.164Z",
+            "service": "postgres-primary",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:02.164Z WARN postgres-primary db_cluster=orders-payments active_connections=44 idle_connections=28 waiting_clients=3 txn_per_s=101"
+          },
+          {
+            "line_no": 153,
+            "ts": "2026-03-27T14:05:04.970Z",
+            "service": "postgres-primary",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:04.970Z WARN postgres-primary client=10.42.5.14 db=payments pid=48211 could not receive data from client: Connection timed out"
+          },
+          {
+            "line_no": 434,
+            "ts": "2026-03-27T14:20:14.936Z",
+            "service": "postgres-primary",
+            "level": "INFO",
+            "text": "2026-03-27T14:20:14.936Z INFO postgres-primary db_cluster=orders-payments active_connections=60 idle_connections=23 waiting_clients=0 txn_per_s=94"
+          }
+        ],
+        "templates": [
+          {
+            "template": "{active_connections,db_cluster,idle_connections,txn_per_s,waiting_clients}",
+            "count": 13
+          },
+          {
+            "template": "could not receive data from client: Connection timed out",
+            "count": 3
+          },
+          {
+            "template": "could not send data to client: Broken pipe",
+            "count": 3
+          },
+          {
+            "template": "unexpected EOF on client connection with an open transaction",
+            "count": 3
+          },
+          {
+            "template": "could not receive data from client: Connection reset by peer",
+            "count": 2
+          }
+        ],
+        "request_ids": [],
+        "shifts": [
+          {
+            "service": "postgres-primary",
+            "metric": "active_connections",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 30.0,
+            "baseline_p95": 30.0,
+            "low": 44.0,
+            "high": 100.0,
+            "worst": 100.0,
+            "worst_line_no": 290,
+            "limit_metric": "max_connections",
+            "limit": 100.0,
+            "limit_reached": true,
+            "relative_deviation": 2.333
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "waiting_clients",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 0.0,
+            "baseline_p95": 0.0,
+            "low": 0.0,
+            "high": 31.0,
+            "worst": 31.0,
+            "worst_line_no": 290,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 31.0
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "duration_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 55.0,
+            "baseline_p95": 61.0,
+            "low": 97.0,
+            "high": 119.0,
+            "worst": 119.0,
+            "worst_line_no": 354,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 1.164
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "idle_connections",
+            "unit": "count",
+            "higher_is_worse": false,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 48.0,
+            "baseline_p95": 55.0,
+            "low": 0.0,
+            "high": 28.0,
+            "worst": 0.0,
+            "worst_line_no": 226,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 1.0
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "txn_per_s",
+            "unit": "per_s",
+            "higher_is_worse": false,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 107.0,
+            "baseline_p95": 121.0,
+            "low": 51.0,
+            "high": 101.0,
+            "worst": 51.0,
+            "worst_line_no": 290,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 0.523
+          }
+        ],
+        "composites": [
+          {
+            "kind": "connections_held",
+            "service": "postgres-primary",
+            "rising": {
+              "service": "postgres-primary",
+              "metric": "active_connections",
+              "unit": "count",
+              "higher_is_worse": true,
+              "window": {
+                "start": "2026-03-27T14:05:02.164Z",
+                "end": "2026-03-27T14:20:14.936Z"
+              },
+              "baseline_p50": 30.0,
+              "baseline_p95": 30.0,
+              "low": 44.0,
+              "high": 100.0,
+              "worst": 100.0,
+              "worst_line_no": 290,
+              "limit_metric": "max_connections",
+              "limit": 100.0,
+              "limit_reached": true,
+              "relative_deviation": 2.333
+            },
+            "falling": {
+              "service": "postgres-primary",
+              "metric": "txn_per_s",
+              "unit": "per_s",
+              "higher_is_worse": false,
+              "window": {
+                "start": "2026-03-27T14:05:02.164Z",
+                "end": "2026-03-27T14:20:14.936Z"
+              },
+              "baseline_p50": 107.0,
+              "baseline_p95": 121.0,
+              "low": 51.0,
+              "high": 101.0,
+              "worst": 51.0,
+              "worst_line_no": 290,
+              "limit_metric": null,
+              "limit": null,
+              "limit_reached": false,
+              "relative_deviation": 0.523
+            },
+            "interpretation": "active_connections rose 30 → 100 while txn_per_s fell 107 → 51: connections appear to be held rather than serving load."
+          }
+        ]
+      },
+      "kinds": [
+        "connection_error",
+        "pool_saturation"
+      ]
+    },
+    {
+      "id": "F4",
+      "title": "24 timeout, server error status and latency deviation events recorded in api-gateway.",
+      "kind": "timeout",
+      "service_class": "entry_point",
+      "services": [
+        "api-gateway"
+      ],
+      "severity": "critical",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:05:11; depends on order-service, payment-service and postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E1",
+      "window": {
+        "start": "2026-03-27T14:05:11.316Z",
+        "end": "2026-03-27T14:30:47.936Z"
+      },
+      "count": 24,
+      "db_related": false,
+      "db_categories": [],
+      "group_ids": [
+        "P7",
+        "P11",
+        "P14"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "latency_ms",
+            "unit": "ms",
+            "count": 18,
+            "min": 244.0,
+            "p50": 711.0,
+            "max": 1855.0,
+            "baseline_p95": 71.0
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 157,
+            "ts": "2026-03-27T14:05:11.316Z",
+            "service": "api-gateway",
+            "level": "WARN",
+            "text": "{\"ts\":\"2026-03-27T14:05:11.316Z\",\"level\":\"WARN\",\"service\":\"api-gateway\",\"request_id\":\"req-84084\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"slow upstream response\",\"upstream\":\"payment-service\",\"latency_ms\":1855,\"status\":202}"
+          },
+          {
+            "line_no": 167,
+            "ts": "2026-03-27T14:05:31.514Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:05:31.514Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84172\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream timeout\",\"upstream\":\"payment-service\",\"timeout_ms\":3000,\"status\":504}"
+          },
+          {
+            "line_no": 174,
+            "ts": "2026-03-27T14:05:43.887Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:05:43.887Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84175\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream error\",\"upstream\":\"order-service\",\"status\":502,\"error\":\"create order failed\"}"
+          }
+        ],
+        "templates": [
+          {
+            "template": "{latency_ms,method,path,status,upstream}",
+            "count": 17
+          },
+          {
+            "template": "upstream timeout",
+            "count": 4
+          },
+          {
+            "template": "upstream error",
+            "count": 2
+          },
+          {
+            "template": "slow upstream response",
+            "count": 1
+          }
+        ],
+        "request_ids": [
+          "req-84084",
+          "req-84172",
+          "req-84175",
+          "req-84183",
+          "req-84188"
+        ],
+        "shifts": [
+          {
+            "service": "api-gateway",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:11.316Z",
+              "end": "2026-03-27T14:30:47.936Z"
+            },
+            "baseline_p50": 54.0,
+            "baseline_p95": 71.0,
+            "low": 244.0,
+            "high": 1855.0,
+            "worst": 1855.0,
+            "worst_line_no": 157,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 33.352
+          }
+        ],
+        "composites": []
+      },
+      "kinds": [
+        "timeout",
+        "server_error_status",
+        "latency"
+      ]
+    },
+    {
+      "id": "F5",
+      "title": "7 restart events recorded in postgres-primary.",
+      "kind": "restart",
+      "service_class": "db_server",
+      "services": [
+        "postgres-primary"
+      ],
+      "severity": "critical",
+      "role": "cause",
+      "role_rationale": "Starts at 14:29:23, within 30s of episode onset 14:29:23; it has no dependencies in the service graph.",
+      "episode_id": "E2",
+      "window": {
+        "start": "2026-03-27T14:29:23.936Z",
+        "end": "2026-03-27T14:30:11.936Z"
+      },
+      "count": 7,
+      "db_related": true,
+      "db_categories": [
+        "server_restart"
+      ],
+      "group_ids": [
+        "P27"
+      ],
+      "evidence": {
+        "metrics": [],
+        "samples": [
+          {
+            "line_no": 467,
+            "ts": "2026-03-27T14:29:23.936Z",
+            "service": "postgres-primary",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:23.936Z ERROR postgres-primary terminating connection because of crash of another server process"
+          },
+          {
+            "line_no": 468,
+            "ts": "2026-03-27T14:29:24.936Z",
+            "service": "postgres-primary",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:24.936Z ERROR postgres-primary all server processes terminated; reinitializing"
+          },
+          {
+            "line_no": 475,
+            "ts": "2026-03-27T14:29:38.936Z",
+            "service": "postgres-primary",
+            "level": "WARN",
+            "text": "2026-03-27T14:29:38.936Z WARN postgres-primary systemd[1]: postgresql.service: Main process exited, code=killed, status=9/KILL"
+          }
+        ],
+        "templates": [
+          {
+            "template": "all server processes terminated; reinitializing",
+            "count": 1
+          },
+          {
+            "template": "database system is starting up",
+            "count": 1
+          },
+          {
+            "template": "database system was interrupted; last known up at <n><n><n> <n>:<n>:<n> UTC",
+            "count": 1
+          },
+          {
+            "template": "redo starts at <n>/<n>6B4EA0",
+            "count": 1
+          },
+          {
+            "template": "systemd[<n>]: postgresql.service: Main process exited,",
+            "count": 1
+          }
+        ],
+        "request_ids": [],
+        "shifts": [],
+        "composites": []
+      },
+      "kinds": [
+        "restart"
+      ]
+    },
+    {
+      "id": "F6",
+      "title": "16 connection error, retry and queue backlog events recorded in billing-worker, inventory-service, notification-service and payment-service.",
+      "kind": "connection_error",
+      "service_class": "internal",
+      "services": [
+        "billing-worker",
+        "inventory-service",
+        "notification-service",
+        "payment-service"
+      ],
+      "severity": "high",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:29:26; depends on order-service, payment-service and postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E2",
+      "window": {
+        "start": "2026-03-27T14:29:26.936Z",
+        "end": "2026-03-27T14:30:57.936Z"
+      },
+      "count": 16,
+      "db_related": false,
+      "db_categories": [],
+      "group_ids": [
+        "P28",
+        "P31",
+        "P32",
+        "P33",
+        "P37",
+        "P39",
+        "P40",
+        "P41"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "duration_ms",
+            "unit": "ms",
+            "count": 3,
+            "min": 2098.0,
+            "p50": 2211.0,
+            "max": 2331.0,
+            "baseline_p95": 240.0
+          },
+          {
+            "metric": "lag_ms",
+            "unit": "ms",
+            "count": 2,
+            "min": 388.0,
+            "p50": 388.0,
+            "max": 1633.0,
+            "baseline_p95": 36.0
+          },
+          {
+            "metric": "latency_ms",
+            "unit": "ms",
+            "count": 3,
+            "min": 422.0,
+            "p50": 522.0,
+            "max": 988.0,
+            "baseline_p95": 169.0
+          },
+          {
+            "metric": "queue_delay_ms",
+            "unit": "ms",
+            "count": 2,
+            "min": 912.0,
+            "p50": 912.0,
+            "max": 1774.0,
+            "baseline_p95": null
+          },
+          {
+            "metric": "queue_depth",
+            "unit": "count",
+            "count": 6,
+            "min": 2.0,
+            "p50": 3.0,
+            "max": 7.0,
+            "baseline_p95": 2.0
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 469,
+            "ts": "2026-03-27T14:29:26.936Z",
+            "service": "payment-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:26.936Z ERROR payment-service request_id=req-84311 order_id=ord-51143 charge write failed error=\"server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 472,
+            "ts": "2026-03-27T14:29:32.936Z",
+            "service": "inventory-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:29:32.936Z WARN inventory-service request_id=req-84311 order_id=ord-51143 reservation state unknown sku=sku-44 reason=\"order finalization interrupted\""
+          },
+          {
+            "line_no": 473,
+            "ts": "2026-03-27T14:29:34.936Z",
+            "service": "notification-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:29:34.936Z WARN notification-service request_id=req-84311 order_id=ord-51143 delivery deferred reason=\"order finalization interrupted\" queue_delay_ms=912"
+          }
+        ],
+        "templates": [
+          {
+            "template": "retrying",
+            "count": 3
+          },
+          {
+            "template": "{attempt,duration_ms,queue_depth,status}",
+            "count": 3
+          },
+          {
+            "template": "reserved",
+            "count": 2
+          },
+          {
+            "template": "authorized",
+            "count": 1
+          },
+          {
+            "template": "charge write failed",
+            "count": 1
+          }
+        ],
+        "request_ids": [
+          "req-84311",
+          "req-84315",
+          "req-84318",
+          "req-84321"
+        ],
+        "shifts": [
+          {
+            "service": "inventory-service",
+            "metric": "lag_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:26.936Z",
+              "end": "2026-03-27T14:30:57.936Z"
+            },
+            "baseline_p50": 25.0,
+            "baseline_p95": 36.0,
+            "low": 388.0,
+            "high": 1633.0,
+            "worst": 1633.0,
+            "worst_line_no": 503,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 64.32
+          },
+          {
+            "service": "notification-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:26.936Z",
+              "end": "2026-03-27T14:30:57.936Z"
+            },
+            "baseline_p50": 81.0,
+            "baseline_p95": 122.0,
+            "low": 422.0,
+            "high": 988.0,
+            "worst": 988.0,
+            "worst_line_no": 505,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 11.198
+          },
+          {
+            "service": "billing-worker",
+            "metric": "duration_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:26.936Z",
+              "end": "2026-03-27T14:30:57.936Z"
+            },
+            "baseline_p50": 194.0,
+            "baseline_p95": 240.0,
+            "low": 2098.0,
+            "high": 2331.0,
+            "worst": 2331.0,
+            "worst_line_no": 508,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 11.015
+          },
+          {
+            "service": "billing-worker",
+            "metric": "queue_depth",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:26.936Z",
+              "end": "2026-03-27T14:30:57.936Z"
+            },
+            "baseline_p50": 1.0,
+            "baseline_p95": 2.0,
+            "low": 2.0,
+            "high": 7.0,
+            "worst": 7.0,
+            "worst_line_no": 491,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 6.0
+          },
+          {
+            "service": "payment-service",
+            "metric": "latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:26.936Z",
+              "end": "2026-03-27T14:30:57.936Z"
+            },
+            "baseline_p50": 145.0,
+            "baseline_p95": 169.0,
+            "low": 522.0,
+            "high": 522.0,
+            "worst": 522.0,
+            "worst_line_no": 512,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 2.6
+          }
+        ],
+        "composites": []
+      },
+      "kinds": [
+        "connection_error",
+        "retry",
+        "queue_backlog",
+        "latency",
+        "warning"
+      ]
+    },
+    {
+      "id": "F7",
+      "title": "5 dependency unavailable, connection error and retry events recorded in order-service and payment-service.",
+      "kind": "connection_error",
+      "service_class": "internal",
+      "services": [
+        "order-service",
+        "payment-service"
+      ],
+      "severity": "high",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:29:28; depends on postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E2",
+      "window": {
+        "start": "2026-03-27T14:29:28.936Z",
+        "end": "2026-03-27T14:30:25.936Z"
+      },
+      "count": 5,
+      "db_related": true,
+      "db_categories": [
+        "connection_errors"
+      ],
+      "group_ids": [
+        "P29",
+        "P35",
+        "P36",
+        "P38"
+      ],
+      "evidence": {
+        "metrics": [
+          {
+            "metric": "db_wait_ms",
+            "unit": "ms",
+            "count": 1,
+            "min": 1408.0,
+            "p50": 1408.0,
+            "max": 1408.0,
+            "baseline_p95": null
+          }
+        ],
+        "samples": [
+          {
+            "line_no": 470,
+            "ts": "2026-03-27T14:29:28.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 486,
+            "ts": "2026-03-27T14:29:58.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:58.936Z ERROR order-service request_id=req-84315 order_id=ord-51145 failed to persist order error=\"pq: the database system is starting up\""
+          },
+          {
+            "line_no": 487,
+            "ts": "2026-03-27T14:29:59.936Z",
+            "service": "payment-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:59.936Z ERROR payment-service request_id=req-84315 order_id=ord-51145 db connect failed error=\"pq: the database system is starting up\""
+          }
+        ],
+        "templates": [
+          {
+            "template": "db connect failed",
+            "count": 2
+          },
+          {
+            "template": "authorization succeeded after retry",
+            "count": 1
+          },
+          {
+            "template": "failed to persist order",
+            "count": 1
+          },
+          {
+            "template": "finalize failed",
+            "count": 1
+          }
+        ],
+        "request_ids": [
+          "req-84311",
+          "req-84313",
+          "req-84315",
+          "req-84318"
+        ],
+        "shifts": [
+          {
+            "service": "order-service",
+            "metric": "db_latency_ms",
+            "unit": "ms",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:29:28.936Z",
+              "end": "2026-03-27T14:30:25.936Z"
+            },
+            "baseline_p50": 11.0,
+            "baseline_p95": 16.0,
+            "low": 611.0,
+            "high": 611.0,
+            "worst": 611.0,
+            "worst_line_no": 501,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 54.545
+          }
+        ],
+        "composites": []
+      },
+      "kinds": [
+        "dependency_unavailable",
+        "connection_error",
+        "retry"
+      ]
+    },
+    {
+      "id": "F8",
+      "title": "3 connection error and timeout events recorded in api-gateway.",
+      "kind": "connection_error",
+      "service_class": "entry_point",
+      "services": [
+        "api-gateway"
+      ],
+      "severity": "critical",
+      "role": "symptom",
+      "role_rationale": "Starts at 14:29:30; depends on order-service, payment-service and postgres-primary, which show an upstream deviation in the same episode.",
+      "episode_id": "E2",
+      "window": {
+        "start": "2026-03-27T14:29:30.936Z",
+        "end": "2026-03-27T14:30:01.936Z"
+      },
+      "count": 3,
+      "db_related": false,
+      "db_categories": [],
+      "group_ids": [
+        "P30",
+        "P34"
+      ],
+      "evidence": {
+        "metrics": [],
+        "samples": [
+          {
+            "line_no": 471,
+            "ts": "2026-03-27T14:29:30.936Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:29:30.936Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84311\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream error\",\"upstream\":\"order-service\",\"status\":502,\"error\":\"connection terminated\"}"
+          },
+          {
+            "line_no": 480,
+            "ts": "2026-03-27T14:29:47.936Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:29:47.936Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84313\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream timeout\",\"upstream\":\"order-service\",\"timeout_ms\":3000,\"status\":504}"
+          },
+          {
+            "line_no": 488,
+            "ts": "2026-03-27T14:30:01.936Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:30:01.936Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84315\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream error\",\"upstream\":\"payment-service\",\"status\":502,\"error\":\"database unavailable\"}"
+          }
+        ],
+        "templates": [
+          {
+            "template": "upstream error",
+            "count": 2
+          },
+          {
+            "template": "upstream timeout",
+            "count": 1
+          }
+        ],
+        "request_ids": [
+          "req-84311",
+          "req-84313",
+          "req-84315"
+        ],
+        "shifts": [],
+        "composites": []
+      },
+      "kinds": [
+        "connection_error",
+        "timeout"
+      ]
+    }
+  ],
+  "probable_causes": {
+    "primary": [
+      {
+        "id": "H1",
+        "statement": "The pool saturation in postgres-primary appears to be a probable origin of the degradation in E1, with downstream effects possible in api-gateway.",
+        "confidence": "medium",
+        "episode_ids": [
+          "E1"
+        ],
+        "supporting": [
+          "Strongest deviations in postgres-primary: active_connections 100 at max_connections=100, waiting_clients up to 31 vs baseline 0.",
+          "active_connections rose 30 → 100 while txn_per_s fell 107 → 51: connections appear to be held rather than serving load.",
+          "Later deviations in api-gateway follow: F4 (24 timeout, from 14:05:11), after the deviation in postgres-primary began at 14:05:02."
+        ],
+        "contradicting": [
+          "Dependent services show deviations earlier: F1 at 14:04:42, F2 at 14:04:54, before postgres-primary at 14:05:02."
+        ],
+        "finding_ids": [
+          "F3",
+          "F4"
+        ],
+        "db_categories": [
+          "server_saturation",
+          "connection_errors",
+          "aborted_transactions"
+        ],
+        "kind": "source",
+        "verdict": null,
+        "cause_finding_ids": [
+          "F3"
+        ],
+        "source_services": [
+          "postgres-primary"
+        ],
+        "shifts": [
+          {
+            "service": "postgres-primary",
+            "metric": "active_connections",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 30.0,
+            "baseline_p95": 30.0,
+            "low": 44.0,
+            "high": 100.0,
+            "worst": 100.0,
+            "worst_line_no": 290,
+            "limit_metric": "max_connections",
+            "limit": 100.0,
+            "limit_reached": true,
+            "relative_deviation": 2.333
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "waiting_clients",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 0.0,
+            "baseline_p95": 0.0,
+            "low": 0.0,
+            "high": 31.0,
+            "worst": 31.0,
+            "worst_line_no": 290,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 31.0
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "txn_per_s",
+            "unit": "per_s",
+            "higher_is_worse": false,
+            "window": {
+              "start": "2026-03-27T14:05:02.164Z",
+              "end": "2026-03-27T14:20:14.936Z"
+            },
+            "baseline_p50": 107.0,
+            "baseline_p95": 121.0,
+            "low": 51.0,
+            "high": 101.0,
+            "worst": 51.0,
+            "worst_line_no": 290,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 0.523
+          }
+        ],
+        "samples": []
+      },
+      {
+        "id": "H2",
+        "statement": "The restart in postgres-primary appears to be a probable origin of the degradation in E2, with downstream effects possible in api-gateway, billing-worker, inventory-service, notification-service, order-service and payment-service.",
+        "confidence": "high",
+        "episode_ids": [
+          "E2"
+        ],
+        "supporting": [
+          "F5 records 7 restart events in postgres-primary from 14:29:23.",
+          "Later deviations in api-gateway, billing-worker, inventory-service, notification-service, order-service and payment-service follow: F6 (16 connection error, from 14:29:26), F7 (5 connection error, from 14:29:28), F8 (3 connection error, from 14:29:30), after the deviation in postgres-primary began at 14:29:23."
+        ],
+        "contradicting": [],
+        "finding_ids": [
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ],
+        "db_categories": [
+          "connection_errors",
+          "server_restart"
+        ],
+        "kind": "source",
+        "verdict": null,
+        "cause_finding_ids": [
+          "F5"
+        ],
+        "source_services": [
+          "postgres-primary"
+        ],
+        "shifts": [],
+        "samples": []
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "H3",
+        "statement": "The degradation in E2 may be a consequence of E1, because postgres-primary did not return to its baseline in between.",
+        "confidence": "medium",
+        "episode_ids": [
+          "E1",
+          "E2"
+        ],
+        "supporting": [
+          "Between E1 and E2 the source stayed off baseline: active_connections 53–61 vs baseline 30, idle_connections 22–29 vs baseline 48.",
+          "E2 starts at 14:29:23, 1103 s after E1 ended at 14:11:00."
+        ],
+        "contradicting": [],
+        "finding_ids": [
+          "F3",
+          "F5"
+        ],
+        "db_categories": [
+          "server_saturation",
+          "connection_errors",
+          "aborted_transactions",
+          "server_restart"
+        ],
+        "kind": "episode_link",
+        "verdict": null,
+        "cause_finding_ids": [
+          "F3",
+          "F5"
+        ],
+        "source_services": [
+          "postgres-primary"
+        ],
+        "shifts": [
+          {
+            "service": "postgres-primary",
+            "metric": "active_connections",
+            "unit": "count",
+            "higher_is_worse": true,
+            "window": {
+              "start": "2026-03-27T14:11:00.651Z",
+              "end": "2026-03-27T14:29:23.936Z"
+            },
+            "baseline_p50": 30.0,
+            "baseline_p95": 30.0,
+            "low": 53.0,
+            "high": 61.0,
+            "worst": 61.0,
+            "worst_line_no": 412,
+            "limit_metric": "max_connections",
+            "limit": 100.0,
+            "limit_reached": false,
+            "relative_deviation": 1.033
+          },
+          {
+            "service": "postgres-primary",
+            "metric": "idle_connections",
+            "unit": "count",
+            "higher_is_worse": false,
+            "window": {
+              "start": "2026-03-27T14:11:00.651Z",
+              "end": "2026-03-27T14:29:23.936Z"
+            },
+            "baseline_p50": 48.0,
+            "baseline_p95": 55.0,
+            "low": 22.0,
+            "high": 29.0,
+            "worst": 22.0,
+            "worst_line_no": 412,
+            "limit_metric": null,
+            "limit": null,
+            "limit_reached": false,
+            "relative_deviation": 0.542
+          }
+        ],
+        "samples": []
+      },
+      {
+        "id": "H4",
+        "statement": "The connection pool exhaustion in order-service and payment-service might be a client-side problem rather than a consequence of postgres-primary in E1.",
+        "confidence": "medium",
+        "episode_ids": [
+          "E1"
+        ],
+        "supporting": [
+          "F1 records 51 pool saturation events in order-service and payment-service from 14:04:42, with wait_ms up to 3000.",
+          "The deviation in order-service and payment-service began at 14:04:42, before postgres-primary at 14:05:02."
+        ],
+        "contradicting": [
+          "Pressure on the database server is suggested by F3: 26 pool saturation at postgres-primary since 14:05:02."
+        ],
+        "finding_ids": [
+          "F1"
+        ],
+        "db_categories": [
+          "db_latency",
+          "pool_exhaustion",
+          "connection_errors"
+        ],
+        "kind": "client_side",
+        "verdict": null,
+        "cause_finding_ids": [],
+        "source_services": [
+          "order-service",
+          "payment-service"
+        ],
+        "shifts": [],
+        "samples": []
+      },
+      {
+        "id": "H5",
+        "statement": "A surge of incoming load at api-gateway might have contributed to the degradation in E1.",
+        "confidence": "low",
+        "episode_ids": [
+          "E1"
+        ],
+        "supporting": [],
+        "contradicting": [
+          "Requests at api-gateway arrive at 1.3 per minute during E1 against 4.3 per minute in the baseline window (x0.31): a load spike is not supported by the log."
+        ],
+        "finding_ids": [
+          "F3"
+        ],
+        "db_categories": [
+          "server_saturation",
+          "connection_errors",
+          "aborted_transactions"
+        ],
+        "kind": "load_spike",
+        "verdict": "not_supported",
+        "cause_finding_ids": [],
+        "source_services": [
+          "api-gateway"
+        ],
+        "shifts": [],
+        "samples": []
+      },
+      {
+        "id": "H6",
+        "statement": "Unusual events in postgres-primary shortly before the onset of E1 might have triggered the degradation.",
+        "confidence": "low",
+        "episode_ids": [
+          "E1"
+        ],
+        "supporting": [
+          "Events not seen in the rest of the baseline occur within 60s before the onset at 14:04:42: 3 x \"checkpointer checkpoint_complete\" in postgres-primary (14:04:31 to 14:04:40)."
+        ],
+        "contradicting": [],
+        "finding_ids": [
+          "F3"
+        ],
+        "db_categories": [
+          "server_saturation",
+          "connection_errors",
+          "aborted_transactions"
+        ],
+        "kind": "pre_onset_trigger",
+        "verdict": null,
+        "cause_finding_ids": [],
+        "source_services": [
+          "postgres-primary"
+        ],
+        "shifts": [],
+        "samples": [
+          {
+            "line_no": 136,
+            "ts": "2026-03-27T14:04:31.273Z",
+            "service": "postgres-primary",
+            "level": "INFO",
+            "text": "2026-03-27T14:04:31.273Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=182 sync_files=12 duration_ms=61"
+          },
+          {
+            "line_no": 139,
+            "ts": "2026-03-27T14:04:35.345Z",
+            "service": "postgres-primary",
+            "level": "INFO",
+            "text": "2026-03-27T14:04:35.345Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=183 sync_files=15 duration_ms=53"
+          },
+          {
+            "line_no": 142,
+            "ts": "2026-03-27T14:04:40.565Z",
+            "service": "postgres-primary",
+            "level": "INFO",
+            "text": "2026-03-27T14:04:40.565Z INFO postgres-primary checkpointer checkpoint_complete buffers_written=137 sync_files=11 duration_ms=55"
+          }
+        ]
+      },
+      {
+        "id": "H7",
+        "statement": "A surge of incoming load at api-gateway might have contributed to the degradation in E2.",
+        "confidence": "low",
+        "episode_ids": [
+          "E2"
+        ],
+        "supporting": [],
+        "contradicting": [
+          "Requests at api-gateway arrive at 4.5 per minute during E2 against 4.3 per minute in the baseline window (x1.03): a load spike is not supported by the log."
+        ],
+        "finding_ids": [
+          "F5"
+        ],
+        "db_categories": [
+          "server_restart"
+        ],
+        "kind": "load_spike",
+        "verdict": "not_supported",
+        "cause_finding_ids": [],
+        "source_services": [
+          "api-gateway"
+        ],
+        "shifts": [],
+        "samples": []
+      }
+    ]
+  },
+  "impact": {
+    "services": [
+      {
+        "service": "order-service",
+        "service_class": "internal",
+        "first_affected": "2026-03-27T14:04:42.803Z",
+        "anomalous_events": 43,
+        "error_events": 6,
+        "failed_requests": 6,
+        "finding_ids": [
+          "F1",
+          "F2",
+          "F7"
+        ]
+      },
+      {
+        "service": "payment-service",
+        "service_class": "internal",
+        "first_affected": "2026-03-27T14:04:46.050Z",
+        "anomalous_events": 22,
+        "error_events": 3,
+        "failed_requests": 3,
+        "finding_ids": [
+          "F1",
+          "F2",
+          "F6",
+          "F7"
+        ]
+      },
+      {
+        "service": "inventory-service",
+        "service_class": "internal",
+        "first_affected": "2026-03-27T14:04:54.851Z",
+        "anomalous_events": 31,
+        "error_events": 0,
+        "failed_requests": 0,
+        "finding_ids": [
+          "F2",
+          "F6"
+        ]
+      },
+      {
+        "service": "postgres-primary",
+        "service_class": "db_server",
+        "first_affected": "2026-03-27T14:05:02.164Z",
+        "anomalous_events": 33,
+        "error_events": 12,
+        "failed_requests": 0,
+        "finding_ids": [
+          "F3",
+          "F5"
+        ]
+      },
+      {
+        "service": "billing-worker",
+        "service_class": "internal",
+        "first_affected": "2026-03-27T14:05:09.633Z",
+        "anomalous_events": 65,
+        "error_events": 0,
+        "failed_requests": 0,
+        "finding_ids": [
+          "F2",
+          "F6"
+        ]
+      },
+      {
+        "service": "api-gateway",
+        "service_class": "entry_point",
+        "first_affected": "2026-03-27T14:05:11.316Z",
+        "anomalous_events": 27,
+        "error_events": 9,
+        "failed_requests": 9,
+        "finding_ids": [
+          "F4",
+          "F8"
+        ]
+      },
+      {
+        "service": "notification-service",
+        "service_class": "internal",
+        "first_affected": "2026-03-27T14:05:34.857Z",
+        "anomalous_events": 27,
+        "error_events": 0,
+        "failed_requests": 0,
+        "finding_ids": [
+          "F2",
+          "F6"
+        ]
+      }
+    ],
+    "propagation": [
+      {
+        "episode_id": "E1",
+        "from_service": "postgres-primary",
+        "to_service": "order-service",
+        "via": "db_access",
+        "first_seen": "2026-03-27T14:04:42.803Z",
+        "evidence": [
+          {
+            "line_no": 152,
+            "ts": "2026-03-27T14:05:02.164Z",
+            "service": "postgres-primary",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:02.164Z WARN postgres-primary db_cluster=orders-payments active_connections=44 idle_connections=28 waiting_clients=3 txn_per_s=101"
+          },
+          {
+            "line_no": 143,
+            "ts": "2026-03-27T14:04:42.803Z",
+            "service": "order-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+          }
+        ]
+      },
+      {
+        "episode_id": "E1",
+        "from_service": "postgres-primary",
+        "to_service": "payment-service",
+        "via": "db_access",
+        "first_seen": "2026-03-27T14:04:46.050Z",
+        "evidence": [
+          {
+            "line_no": 152,
+            "ts": "2026-03-27T14:05:02.164Z",
+            "service": "postgres-primary",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:02.164Z WARN postgres-primary db_cluster=orders-payments active_connections=44 idle_connections=28 waiting_clients=3 txn_per_s=101"
+          },
+          {
+            "line_no": 144,
+            "ts": "2026-03-27T14:04:46.050Z",
+            "service": "payment-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:46.050Z WARN payment-service db query latency high op=select_payment_profile duration_ms=641 pool_in_use=27 pool_idle=2"
+          }
+        ]
+      },
+      {
+        "episode_id": "E1",
+        "from_service": "order-service",
+        "to_service": "inventory-service",
+        "via": "trace_order",
+        "first_seen": "2026-03-27T14:04:54.851Z",
+        "evidence": [
+          {
+            "line_no": 143,
+            "ts": "2026-03-27T14:04:42.803Z",
+            "service": "order-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+          },
+          {
+            "line_no": 148,
+            "ts": "2026-03-27T14:04:54.851Z",
+            "service": "inventory-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:54.851Z WARN inventory-service request_id=req-84079 order_id=ord-51107 reservation write latency high sku=sku-22 lag_ms=412"
+          }
+        ]
+      },
+      {
+        "episode_id": "E1",
+        "from_service": "order-service",
+        "to_service": "api-gateway",
+        "via": "peer_field",
+        "first_seen": "2026-03-27T14:05:11.316Z",
+        "evidence": [
+          {
+            "line_no": 143,
+            "ts": "2026-03-27T14:04:42.803Z",
+            "service": "order-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+          },
+          {
+            "line_no": 157,
+            "ts": "2026-03-27T14:05:11.316Z",
+            "service": "api-gateway",
+            "level": "WARN",
+            "text": "{\"ts\":\"2026-03-27T14:05:11.316Z\",\"level\":\"WARN\",\"service\":\"api-gateway\",\"request_id\":\"req-84084\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"slow upstream response\",\"upstream\":\"payment-service\",\"latency_ms\":1855,\"status\":202}"
+          }
+        ]
+      },
+      {
+        "episode_id": "E1",
+        "from_service": "payment-service",
+        "to_service": "api-gateway",
+        "via": "peer_field",
+        "first_seen": "2026-03-27T14:05:11.316Z",
+        "evidence": [
+          {
+            "line_no": 144,
+            "ts": "2026-03-27T14:04:46.050Z",
+            "service": "payment-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:46.050Z WARN payment-service db query latency high op=select_payment_profile duration_ms=641 pool_in_use=27 pool_idle=2"
+          },
+          {
+            "line_no": 157,
+            "ts": "2026-03-27T14:05:11.316Z",
+            "service": "api-gateway",
+            "level": "WARN",
+            "text": "{\"ts\":\"2026-03-27T14:05:11.316Z\",\"level\":\"WARN\",\"service\":\"api-gateway\",\"request_id\":\"req-84084\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"slow upstream response\",\"upstream\":\"payment-service\",\"latency_ms\":1855,\"status\":202}"
+          }
+        ]
+      },
+      {
+        "episode_id": "E1",
+        "from_service": "order-service",
+        "to_service": "notification-service",
+        "via": "trace_order",
+        "first_seen": "2026-03-27T14:05:34.857Z",
+        "evidence": [
+          {
+            "line_no": 143,
+            "ts": "2026-03-27T14:04:42.803Z",
+            "service": "order-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+          },
+          {
+            "line_no": 169,
+            "ts": "2026-03-27T14:05:34.857Z",
+            "service": "notification-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:05:34.857Z WARN notification-service request_id=req-84172 order_id=ord-51121 delivery deferred reason=\"order state pending\" queue_delay_ms=2210"
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "postgres-primary",
+        "to_service": "payment-service",
+        "via": "db_access",
+        "first_seen": "2026-03-27T14:29:26.936Z",
+        "evidence": [
+          {
+            "line_no": 467,
+            "ts": "2026-03-27T14:29:23.936Z",
+            "service": "postgres-primary",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:23.936Z ERROR postgres-primary terminating connection because of crash of another server process"
+          },
+          {
+            "line_no": 469,
+            "ts": "2026-03-27T14:29:26.936Z",
+            "service": "payment-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:26.936Z ERROR payment-service request_id=req-84311 order_id=ord-51143 charge write failed error=\"server closed the connection unexpectedly\""
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "postgres-primary",
+        "to_service": "order-service",
+        "via": "db_access",
+        "first_seen": "2026-03-27T14:29:28.936Z",
+        "evidence": [
+          {
+            "line_no": 467,
+            "ts": "2026-03-27T14:29:23.936Z",
+            "service": "postgres-primary",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:23.936Z ERROR postgres-primary terminating connection because of crash of another server process"
+          },
+          {
+            "line_no": 470,
+            "ts": "2026-03-27T14:29:28.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "order-service",
+        "to_service": "api-gateway",
+        "via": "peer_field",
+        "first_seen": "2026-03-27T14:29:30.936Z",
+        "evidence": [
+          {
+            "line_no": 470,
+            "ts": "2026-03-27T14:29:28.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 471,
+            "ts": "2026-03-27T14:29:30.936Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:29:30.936Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84311\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream error\",\"upstream\":\"order-service\",\"status\":502,\"error\":\"connection terminated\"}"
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "payment-service",
+        "to_service": "api-gateway",
+        "via": "peer_field",
+        "first_seen": "2026-03-27T14:29:30.936Z",
+        "evidence": [
+          {
+            "line_no": 469,
+            "ts": "2026-03-27T14:29:26.936Z",
+            "service": "payment-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:26.936Z ERROR payment-service request_id=req-84311 order_id=ord-51143 charge write failed error=\"server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 471,
+            "ts": "2026-03-27T14:29:30.936Z",
+            "service": "api-gateway",
+            "level": "ERROR",
+            "text": "{\"ts\":\"2026-03-27T14:29:30.936Z\",\"level\":\"ERROR\",\"service\":\"api-gateway\",\"request_id\":\"req-84311\",\"method\":\"POST\",\"path\":\"/v1/orders\",\"msg\":\"upstream error\",\"upstream\":\"order-service\",\"status\":502,\"error\":\"connection terminated\"}"
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "order-service",
+        "to_service": "inventory-service",
+        "via": "trace_order",
+        "first_seen": "2026-03-27T14:29:32.936Z",
+        "evidence": [
+          {
+            "line_no": 470,
+            "ts": "2026-03-27T14:29:28.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 472,
+            "ts": "2026-03-27T14:29:32.936Z",
+            "service": "inventory-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:29:32.936Z WARN inventory-service request_id=req-84311 order_id=ord-51143 reservation state unknown sku=sku-44 reason=\"order finalization interrupted\""
+          }
+        ]
+      },
+      {
+        "episode_id": "E2",
+        "from_service": "order-service",
+        "to_service": "notification-service",
+        "via": "trace_order",
+        "first_seen": "2026-03-27T14:29:34.936Z",
+        "evidence": [
+          {
+            "line_no": 470,
+            "ts": "2026-03-27T14:29:28.936Z",
+            "service": "order-service",
+            "level": "ERROR",
+            "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+          },
+          {
+            "line_no": 473,
+            "ts": "2026-03-27T14:29:34.936Z",
+            "service": "notification-service",
+            "level": "WARN",
+            "text": "2026-03-27T14:29:34.936Z WARN notification-service request_id=req-84311 order_id=ord-51143 delivery deferred reason=\"order finalization interrupted\" queue_delay_ms=912"
+          }
+        ]
+      }
+    ],
+    "failed_requests": 9,
+    "example_trace_ids": [
+      "req-84183",
+      "req-84172",
+      "req-84194"
+    ]
+  },
+  "uncertainty": [
+    {
+      "statement": "The logs do not name the cause explicitly; the hypotheses are inferred from timing and dependencies and may be wrong.",
+      "related_ids": [
+        "H1",
+        "H2"
+      ]
+    },
+    {
+      "statement": "The logs do not include query plans or statement statistics, so which queries became slow cannot be determined.",
+      "related_ids": [
+        "F1",
+        "H4"
+      ]
+    },
+    {
+      "statement": "The logs contain no query-level records, so what held the client pool connections (long transactions, locks or slow queries) cannot be determined.",
+      "related_ids": [
+        "F1",
+        "H4"
+      ]
+    },
+    {
+      "statement": "The logs contain no query-level records, so what held the database connections (long transactions, locks or slow queries) cannot be determined.",
+      "related_ids": [
+        "H1",
+        "F3",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "statement": "The logs do not show whether connection failures came from the network path, the database itself or client-side timeouts.",
+      "related_ids": [
+        "F1",
+        "H1",
+        "H2",
+        "F3",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "F7"
+      ]
+    },
+    {
+      "statement": "The logs do not show which transactions were aborted when connections dropped or whether their work was retried.",
+      "related_ids": [
+        "H1",
+        "F3",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "statement": "The logs show that the database process was killed but not who sent the signal (the OOM killer or an operator).",
+      "related_ids": [
+        "H2",
+        "H3",
+        "F5",
+        "H7"
+      ]
+    },
+    {
+      "statement": "The logs do not include traffic metrics upstream of the entry point, so whether incoming load changed cannot be fully determined.",
+      "related_ids": [
+        "H5",
+        "H7"
+      ]
+    },
+    {
+      "statement": "Recovery of E2 is observed, but the observation window after it is short.",
+      "related_ids": [
+        "E2"
+      ]
+    }
+  ],
+  "next_steps": [
+    {
+      "id": "N1",
+      "priority": 1,
+      "action": "Check the kernel log (dmesg/journalctl) for OOM killer events and the DB host memory usage and container memory limits around the crash time.",
+      "rationale": "Database server crash / restart appears in postgres-primary (7 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "H2",
+        "H3",
+        "F5",
+        "H7"
+      ]
+    },
+    {
+      "id": "N2",
+      "priority": 2,
+      "action": "Check the PostgreSQL server log around the crash for the process that was killed and verify crash recovery completed cleanly.",
+      "rationale": "Database server crash / restart appears in postgres-primary (7 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "H2",
+        "H3",
+        "F5",
+        "H7"
+      ]
+    },
+    {
+      "id": "N3",
+      "priority": 3,
+      "action": "Check network path between services and the DB (packet loss, TCP resets, load balancer/NAT idle timeouts).",
+      "rationale": "Database connection errors appears in order-service, payment-service, postgres-primary (17 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "F1",
+        "H1",
+        "H2",
+        "F3",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "F7"
+      ]
+    },
+    {
+      "id": "N4",
+      "priority": 4,
+      "action": "Check PostgreSQL server log for disconnections and tcp_keepalives settings.",
+      "rationale": "Database connection errors appears in order-service, payment-service, postgres-primary (17 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "F1",
+        "H1",
+        "H2",
+        "F3",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "F7"
+      ]
+    },
+    {
+      "id": "N5",
+      "priority": 5,
+      "action": "Check pg_stat_activity grouped by state/application_name and compare total with max_connections.",
+      "rationale": "Database server connection saturation appears in postgres-primary (15 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "H1",
+        "F3",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "id": "N6",
+      "priority": 6,
+      "action": "Check whether a connection pooler (e.g. PgBouncer) is in place and its queue/wait metrics.",
+      "rationale": "Database server connection saturation appears in postgres-primary (15 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "H1",
+        "F3",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "id": "N7",
+      "priority": 7,
+      "action": "Check application logs and pg_stat_activity for transactions left open when client connections dropped, and whether the clients retried them.",
+      "rationale": "Connections dropped with open transactions appears in postgres-primary (11 events) and bears on the leading hypothesis.",
+      "related_ids": [
+        "H1",
+        "F3",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    }
+  ],
+  "db_signals": [
+    {
+      "category": "db_latency",
+      "title": "Elevated database latency",
+      "services": [
+        "order-service"
+      ],
+      "count": 30,
+      "window": {
+        "start": "2026-03-27T14:06:06.446Z",
+        "end": "2026-03-27T14:30:55.936Z"
+      },
+      "metrics": [
+        {
+          "metric": "db_latency_ms",
+          "unit": "ms",
+          "count": 14,
+          "min": 77.0,
+          "p50": 141.0,
+          "max": 611.0,
+          "baseline_p95": 16.0
+        },
+        {
+          "metric": "latency_ms",
+          "unit": "ms",
+          "count": 16,
+          "min": 521.0,
+          "p50": 905.0,
+          "max": 2144.0,
+          "baseline_p95": 89.0
+        }
+      ],
+      "samples": [
+        {
+          "line_no": 186,
+          "ts": "2026-03-27T14:06:06.446Z",
+          "service": "order-service",
+          "level": "INFO",
+          "text": "2026-03-27T14:06:06.446Z INFO order-service request_id=req-84183 order_id=ord-51123 stage=validate items=1 db_latency_ms=77 cache_hit=false"
+        },
+        {
+          "line_no": 298,
+          "ts": "2026-03-27T14:08:37.640Z",
+          "service": "order-service",
+          "level": "WARN",
+          "text": "2026-03-27T14:08:37.640Z WARN order-service request_id=req-84211 order_id=ord-51127 stage=validate items=1 db_latency_ms=293 cache_hit=true"
+        },
+        {
+          "line_no": 301,
+          "ts": "2026-03-27T14:08:42.939Z",
+          "service": "order-service",
+          "level": "INFO",
+          "text": "2026-03-27T14:08:42.939Z INFO order-service request_id=req-84211 order_id=ord-51127 state=confirmed total_cents=2799 latency_ms=846"
+        }
+      ],
+      "finding_ids": [
+        "F1"
+      ],
+      "hypothesis_ids": [
+        "H4"
+      ]
+    },
+    {
+      "category": "pool_exhaustion",
+      "title": "Client connection pool exhaustion",
+      "services": [
+        "order-service",
+        "payment-service"
+      ],
+      "count": 16,
+      "window": {
+        "start": "2026-03-27T14:04:42.803Z",
+        "end": "2026-03-27T14:10:43.136Z"
+      },
+      "metrics": [
+        {
+          "metric": "duration_ms",
+          "unit": "ms",
+          "count": 1,
+          "min": 641.0,
+          "p50": 641.0,
+          "max": 641.0,
+          "baseline_p95": null
+        },
+        {
+          "metric": "pool_idle",
+          "unit": "count",
+          "count": 7,
+          "min": 0.0,
+          "p50": 0.0,
+          "max": 1.0,
+          "baseline_p95": null
+        },
+        {
+          "metric": "pool_in_use",
+          "unit": "count",
+          "count": 7,
+          "min": 29.0,
+          "p50": 32.0,
+          "max": 32.0,
+          "baseline_p95": null
+        },
+        {
+          "metric": "wait_ms",
+          "unit": "ms",
+          "count": 7,
+          "min": 418.0,
+          "p50": 1822.0,
+          "max": 2894.0,
+          "baseline_p95": null
+        }
+      ],
+      "samples": [
+        {
+          "line_no": 143,
+          "ts": "2026-03-27T14:04:42.803Z",
+          "service": "order-service",
+          "level": "WARN",
+          "text": "2026-03-27T14:04:42.803Z WARN order-service db acquire connection slow wait_ms=418 pool_in_use=29 pool_idle=1"
+        },
+        {
+          "line_no": 144,
+          "ts": "2026-03-27T14:04:46.050Z",
+          "service": "payment-service",
+          "level": "WARN",
+          "text": "2026-03-27T14:04:46.050Z WARN payment-service db query latency high op=select_payment_profile duration_ms=641 pool_in_use=27 pool_idle=2"
+        },
+        {
+          "line_no": 166,
+          "ts": "2026-03-27T14:05:29.231Z",
+          "service": "payment-service",
+          "level": "WARN",
+          "text": "2026-03-27T14:05:29.231Z WARN payment-service request_id=req-84172 order_id=ord-51121 db timeout acquiring connection wait_ms=3000 pool_in_use=32 pool_idle=0"
+        }
+      ],
+      "finding_ids": [
+        "F1"
+      ],
+      "hypothesis_ids": [
+        "H4"
+      ]
+    },
+    {
+      "category": "server_saturation",
+      "title": "Database server connection saturation",
+      "services": [
+        "postgres-primary"
+      ],
+      "count": 15,
+      "window": {
+        "start": "2026-03-27T14:05:02.164Z",
+        "end": "2026-03-27T14:20:14.936Z"
+      },
+      "metrics": [
+        {
+          "metric": "active_connections",
+          "unit": "count",
+          "count": 14,
+          "min": 44.0,
+          "p50": 73.0,
+          "max": 100.0,
+          "baseline_p95": 30.0
+        },
+        {
+          "metric": "idle_connections",
+          "unit": "count",
+          "count": 12,
+          "min": 0.0,
+          "p50": 10.0,
+          "max": 28.0,
+          "baseline_p95": 55.0
+        },
+        {
+          "metric": "txn_per_s",
+          "unit": "per_s",
+          "count": 12,
+          "min": 51.0,
+          "p50": 79.0,
+          "max": 101.0,
+          "baseline_p95": 121.0
+        },
+        {
+          "metric": "waiting_clients",
+          "unit": "count",
+          "count": 14,
+          "min": 0.0,
+          "p50": 9.0,
+          "max": 31.0,
+          "baseline_p95": 0.0
+        }
+      ],
+      "samples": [
+        {
+          "line_no": 152,
+          "ts": "2026-03-27T14:05:02.164Z",
+          "service": "postgres-primary",
+          "level": "WARN",
+          "text": "2026-03-27T14:05:02.164Z WARN postgres-primary db_cluster=orders-payments active_connections=44 idle_connections=28 waiting_clients=3 txn_per_s=101"
+        },
+        {
+          "line_no": 177,
+          "ts": "2026-03-27T14:05:49.974Z",
+          "service": "postgres-primary",
+          "level": "WARN",
+          "text": "2026-03-27T14:05:49.974Z WARN postgres-primary db_cluster=orders-payments active_connections=71 idle_connections=4 waiting_clients=11 txn_per_s=88"
+        },
+        {
+          "line_no": 434,
+          "ts": "2026-03-27T14:20:14.936Z",
+          "service": "postgres-primary",
+          "level": "INFO",
+          "text": "2026-03-27T14:20:14.936Z INFO postgres-primary db_cluster=orders-payments active_connections=60 idle_connections=23 waiting_clients=0 txn_per_s=94"
+        }
+      ],
+      "finding_ids": [
+        "F3"
+      ],
+      "hypothesis_ids": [
+        "H1",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "category": "connection_errors",
+      "title": "Database connection errors",
+      "services": [
+        "order-service",
+        "payment-service",
+        "postgres-primary"
+      ],
+      "count": 17,
+      "window": {
+        "start": "2026-03-27T14:05:04.970Z",
+        "end": "2026-03-27T14:29:59.936Z"
+      },
+      "metrics": [],
+      "samples": [
+        {
+          "line_no": 153,
+          "ts": "2026-03-27T14:05:04.970Z",
+          "service": "postgres-primary",
+          "level": "WARN",
+          "text": "2026-03-27T14:05:04.970Z WARN postgres-primary client=10.42.5.14 db=payments pid=48211 could not receive data from client: Connection timed out"
+        },
+        {
+          "line_no": 173,
+          "ts": "2026-03-27T14:05:42.391Z",
+          "service": "order-service",
+          "level": "ERROR",
+          "text": "2026-03-27T14:05:42.391Z ERROR order-service request_id=req-84175 order_id=ord-51122 failed to persist order error=\"pq: connection reset by peer\""
+        },
+        {
+          "line_no": 470,
+          "ts": "2026-03-27T14:29:28.936Z",
+          "service": "order-service",
+          "level": "ERROR",
+          "text": "2026-03-27T14:29:28.936Z ERROR order-service request_id=req-84311 order_id=ord-51143 finalize failed error=\"pq: server closed the connection unexpectedly\""
+        }
+      ],
+      "finding_ids": [
+        "F1",
+        "F3",
+        "F7"
+      ],
+      "hypothesis_ids": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "category": "aborted_transactions",
+      "title": "Connections dropped with open transactions",
+      "services": [
+        "postgres-primary"
+      ],
+      "count": 11,
+      "window": {
+        "start": "2026-03-27T14:05:04.970Z",
+        "end": "2026-03-27T14:08:23.934Z"
+      },
+      "metrics": [],
+      "samples": [
+        {
+          "line_no": 153,
+          "ts": "2026-03-27T14:05:04.970Z",
+          "service": "postgres-primary",
+          "level": "WARN",
+          "text": "2026-03-27T14:05:04.970Z WARN postgres-primary client=10.42.5.14 db=payments pid=48211 could not receive data from client: Connection timed out"
+        },
+        {
+          "line_no": 178,
+          "ts": "2026-03-27T14:05:52.235Z",
+          "service": "postgres-primary",
+          "level": "ERROR",
+          "text": "2026-03-27T14:05:52.235Z ERROR postgres-primary client=10.42.7.18 db=orders pid=48289 could not receive data from client: Connection reset by peer"
+        },
+        {
+          "line_no": 179,
+          "ts": "2026-03-27T14:05:54.311Z",
+          "service": "postgres-primary",
+          "level": "ERROR",
+          "text": "2026-03-27T14:05:54.311Z ERROR postgres-primary client=10.42.5.14 db=payments pid=48291 unexpected EOF on client connection with an open transaction"
+        }
+      ],
+      "finding_ids": [
+        "F3"
+      ],
+      "hypothesis_ids": [
+        "H1",
+        "H3",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "category": "server_restart",
+      "title": "Database server crash / restart",
+      "services": [
+        "postgres-primary"
+      ],
+      "count": 7,
+      "window": {
+        "start": "2026-03-27T14:29:23.936Z",
+        "end": "2026-03-27T14:30:11.936Z"
+      },
+      "metrics": [],
+      "samples": [
+        {
+          "line_no": 467,
+          "ts": "2026-03-27T14:29:23.936Z",
+          "service": "postgres-primary",
+          "level": "ERROR",
+          "text": "2026-03-27T14:29:23.936Z ERROR postgres-primary terminating connection because of crash of another server process"
+        },
+        {
+          "line_no": 468,
+          "ts": "2026-03-27T14:29:24.936Z",
+          "service": "postgres-primary",
+          "level": "ERROR",
+          "text": "2026-03-27T14:29:24.936Z ERROR postgres-primary all server processes terminated; reinitializing"
+        },
+        {
+          "line_no": 475,
+          "ts": "2026-03-27T14:29:38.936Z",
+          "service": "postgres-primary",
+          "level": "WARN",
+          "text": "2026-03-27T14:29:38.936Z WARN postgres-primary systemd[1]: postgresql.service: Main process exited, code=killed, status=9/KILL"
+        }
+      ],
+      "finding_ids": [
+        "F5"
+      ],
+      "hypothesis_ids": [
+        "H2",
+        "H3",
+        "H7"
+      ]
+    }
+  ],
+  "timeline": {
+    "log_window": {
+      "start": "2026-03-27T14:00:02.968Z",
+      "end": "2026-03-27T14:31:24.936Z"
+    },
+    "baseline": {
+      "start": "2026-03-27T14:00:02.968Z",
+      "end": "2026-03-27T14:04:40.565Z"
+    },
+    "baseline_is_fallback": false,
+    "episodes": [
+      {
+        "id": "E1",
+        "onset": "2026-03-27T14:04:42.803Z",
+        "peak": {
+          "start": "2026-03-27T14:06:00.000Z",
+          "end": "2026-03-27T14:07:00.000Z"
+        },
+        "peak_anomalous": 32,
+        "peak_errors": 8,
+        "last_anomaly": "2026-03-27T14:25:33.936Z",
+        "recovered": true,
+        "recovery": "2026-03-27T14:11:00.651Z",
+        "window": {
+          "start": "2026-03-27T14:04:42.803Z",
+          "end": "2026-03-27T14:25:33.936Z"
+        },
+        "anomalous_events": 210,
+        "error_events": 20,
+        "recovery_status": "observed",
+        "recovery_evidence": [
+          {
+            "line_no": 393,
+            "ts": "2026-03-27T14:11:00.651Z",
+            "service": "billing-worker",
+            "level": "INFO",
+            "text": "2026-03-27T14:11:00.651Z INFO billing-worker queue depth normalized queue_depth=2 oldest_job_age_ms=1440 success_rate_5m=0.91"
+          },
+          {
+            "line_no": 457,
+            "ts": "2026-03-27T14:26:09.936Z",
+            "service": "billing-worker",
+            "level": "INFO",
+            "text": "2026-03-27T14:26:09.936Z INFO billing-worker queue depth normalized queue_depth=1 oldest_job_age_ms=910 success_rate_5m=0.94"
+          }
+        ]
+      },
+      {
+        "id": "E2",
+        "onset": "2026-03-27T14:29:23.936Z",
+        "peak": {
+          "start": "2026-03-27T14:29:23.936Z",
+          "end": "2026-03-27T14:30:00.000Z"
+        },
+        "peak_anomalous": 17,
+        "peak_errors": 9,
+        "last_anomaly": "2026-03-27T14:30:57.936Z",
+        "recovered": true,
+        "recovery": "2026-03-27T14:30:17.936Z",
+        "window": {
+          "start": "2026-03-27T14:29:23.936Z",
+          "end": "2026-03-27T14:30:57.936Z"
+        },
+        "anomalous_events": 37,
+        "error_events": 10,
+        "recovery_status": "observed_short_window",
+        "recovery_evidence": [
+          {
+            "line_no": 498,
+            "ts": "2026-03-27T14:30:17.936Z",
+            "service": "postgres-primary",
+            "level": "INFO",
+            "text": "2026-03-27T14:30:17.936Z INFO postgres-primary database system is ready to accept connections"
+          },
+          {
+            "line_no": 517,
+            "ts": "2026-03-27T14:31:08.936Z",
+            "service": "billing-worker",
+            "level": "INFO",
+            "text": "2026-03-27T14:31:08.936Z INFO billing-worker queue depth normalized queue_depth=0 oldest_job_age_ms=0 success_rate_5m=0.93"
+          }
+        ]
+      }
+    ],
+    "residual_anomalies": 1
+  },
+  "metric_comparison": [
+    {
+      "service": "api-gateway",
+      "metric": "duration_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 4,
+        "p50": 4.0,
+        "p95": 6.0,
+        "max": 6.0
+      },
+      "incident": null,
+      "p95_ratio": null
+    },
+    {
+      "service": "api-gateway",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 54.0,
+        "p95": 71.0,
+        "max": 71.0
+      },
+      "incident": {
+        "count": 18,
+        "p50": 711.0,
+        "p95": 1855.0,
+        "max": 1855.0
+      },
+      "p95_ratio": 26.13
+    },
+    {
+      "service": "billing-worker",
+      "metric": "duration_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 9,
+        "p50": 194.0,
+        "p95": 240.0,
+        "max": 240.0
+      },
+      "incident": {
+        "count": 18,
+        "p50": 1988.0,
+        "p95": 2440.0,
+        "max": 2440.0
+      },
+      "p95_ratio": 10.17
+    },
+    {
+      "service": "billing-worker",
+      "metric": "last_duration_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 4,
+        "p50": 1894.0,
+        "p95": 2254.0,
+        "max": 2254.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "billing-worker",
+      "metric": "oldest_job_age_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 26,
+        "p50": 15760.0,
+        "p95": 26040.0,
+        "max": 27600.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "billing-worker",
+      "metric": "queue_depth",
+      "unit": "count",
+      "baseline": {
+        "count": 9,
+        "p50": 1.0,
+        "p95": 2.0,
+        "max": 2.0
+      },
+      "incident": {
+        "count": 72,
+        "p50": 17.0,
+        "p95": 42.0,
+        "max": 45.0
+      },
+      "p95_ratio": 21.0
+    },
+    {
+      "service": "billing-worker",
+      "metric": "success_rate_5m",
+      "unit": "ratio",
+      "baseline": null,
+      "incident": {
+        "count": 3,
+        "p50": 0.83,
+        "p95": 0.91,
+        "max": 0.91
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "ingress-controller",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 5,
+        "p50": 6.0,
+        "p95": 9.0,
+        "max": 9.0
+      },
+      "incident": {
+        "count": 16,
+        "p50": 5.0,
+        "p95": 7.0,
+        "max": 7.0
+      },
+      "p95_ratio": 0.78
+    },
+    {
+      "service": "inventory-service",
+      "metric": "cache_version_lag",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 4,
+        "p50": 1.0,
+        "p95": 1.0,
+        "max": 1.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "inventory-service",
+      "metric": "event_lag_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 4,
+        "p50": 7165.0,
+        "p95": 9067.0,
+        "max": 9067.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "inventory-service",
+      "metric": "lag_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 25.0,
+        "p95": 36.0,
+        "max": 36.0
+      },
+      "incident": {
+        "count": 17,
+        "p50": 739.0,
+        "p95": 1633.0,
+        "max": 1633.0
+      },
+      "p95_ratio": 45.36
+    },
+    {
+      "service": "inventory-service",
+      "metric": "max_event_lag_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 2,
+        "p50": 822.0,
+        "p95": 2211.0,
+        "max": 2211.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "inventory-service",
+      "metric": "pending_events",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 2,
+        "p50": 7.0,
+        "p95": 18.0,
+        "max": 18.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "inventory-service",
+      "metric": "queue_age_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 4,
+        "p50": 2741.0,
+        "p95": 5021.0,
+        "max": 5021.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "kubelet",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 8,
+        "p50": 3.0,
+        "p95": 3.0,
+        "max": 3.0
+      },
+      "incident": {
+        "count": 11,
+        "p50": 2.0,
+        "p95": 4.0,
+        "max": 4.0
+      },
+      "p95_ratio": 1.33
+    },
+    {
+      "service": "notification-service",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 81.0,
+        "p95": 122.0,
+        "max": 122.0
+      },
+      "incident": {
+        "count": 19,
+        "p50": 412.0,
+        "p95": 1422.0,
+        "max": 1422.0
+      },
+      "p95_ratio": 11.66
+    },
+    {
+      "service": "notification-service",
+      "metric": "oldest_message_age_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 2,
+        "p50": 944.0,
+        "p95": 3034.0,
+        "max": 3034.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "notification-service",
+      "metric": "pending_messages",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 6,
+        "p50": 14.0,
+        "p95": 24.0,
+        "max": 24.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "notification-service",
+      "metric": "queue_delay_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 10,
+        "p50": 3874.0,
+        "p95": 7738.0,
+        "max": 7738.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "order-service",
+      "metric": "db_latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 11.0,
+        "p95": 16.0,
+        "max": 16.0
+      },
+      "incident": {
+        "count": 20,
+        "p50": 120.0,
+        "p95": 293.0,
+        "max": 611.0
+      },
+      "p95_ratio": 18.31
+    },
+    {
+      "service": "order-service",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 65.0,
+        "p95": 89.0,
+        "max": 89.0
+      },
+      "incident": {
+        "count": 17,
+        "p50": 905.0,
+        "p95": 2144.0,
+        "max": 2144.0
+      },
+      "p95_ratio": 24.09
+    },
+    {
+      "service": "order-service",
+      "metric": "pool_idle",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 7,
+        "p50": 0.0,
+        "p95": 1.0,
+        "max": 1.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "order-service",
+      "metric": "pool_in_use",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 7,
+        "p50": 32.0,
+        "p95": 32.0,
+        "max": 32.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "order-service",
+      "metric": "wait_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 7,
+        "p50": 1822.0,
+        "p95": 2894.0,
+        "max": 2894.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "payment-service",
+      "metric": "db_wait_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 4,
+        "p50": 744.0,
+        "p95": 1408.0,
+        "max": 1408.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "payment-service",
+      "metric": "duration_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 1,
+        "p50": 641.0,
+        "p95": 641.0,
+        "max": 641.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "payment-service",
+      "metric": "latency_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 16,
+        "p50": 145.0,
+        "p95": 169.0,
+        "max": 169.0
+      },
+      "incident": {
+        "count": 14,
+        "p50": 439.0,
+        "p95": 1189.0,
+        "max": 1189.0
+      },
+      "p95_ratio": 7.04
+    },
+    {
+      "service": "payment-service",
+      "metric": "pool_idle",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 8,
+        "p50": 0.0,
+        "p95": 3.0,
+        "max": 3.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "payment-service",
+      "metric": "pool_in_use",
+      "unit": "count",
+      "baseline": null,
+      "incident": {
+        "count": 8,
+        "p50": 30.0,
+        "p95": 32.0,
+        "max": 32.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "payment-service",
+      "metric": "wait_ms",
+      "unit": "ms",
+      "baseline": null,
+      "incident": {
+        "count": 7,
+        "p50": 2411.0,
+        "p95": 3000.0,
+        "max": 3000.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "postgres-primary",
+      "metric": "active_connections",
+      "unit": "count",
+      "baseline": {
+        "count": 6,
+        "p50": 30.0,
+        "p95": 30.0,
+        "max": 30.0
+      },
+      "incident": {
+        "count": 19,
+        "p50": 71.0,
+        "p95": 100.0,
+        "max": 100.0
+      },
+      "p95_ratio": 3.33
+    },
+    {
+      "service": "postgres-primary",
+      "metric": "duration_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 3,
+        "p50": 55.0,
+        "p95": 61.0,
+        "max": 61.0
+      },
+      "incident": {
+        "count": 3,
+        "p50": 97.0,
+        "p95": 119.0,
+        "max": 119.0
+      },
+      "p95_ratio": 1.95
+    },
+    {
+      "service": "postgres-primary",
+      "metric": "idle_connections",
+      "unit": "count",
+      "baseline": {
+        "count": 6,
+        "p50": 48.0,
+        "p95": 55.0,
+        "max": 55.0
+      },
+      "incident": {
+        "count": 17,
+        "p50": 14.0,
+        "p95": 40.0,
+        "max": 40.0
+      },
+      "p95_ratio": 0.73
+    },
+    {
+      "service": "postgres-primary",
+      "metric": "txn_per_s",
+      "unit": "per_s",
+      "baseline": {
+        "count": 6,
+        "p50": 107.0,
+        "p95": 121.0,
+        "max": 121.0
+      },
+      "incident": {
+        "count": 17,
+        "p50": 84.0,
+        "p95": 101.0,
+        "max": 101.0
+      },
+      "p95_ratio": 0.83
+    },
+    {
+      "service": "postgres-primary",
+      "metric": "waiting_clients",
+      "unit": "count",
+      "baseline": {
+        "count": 6,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "incident": {
+        "count": 19,
+        "p50": 5.0,
+        "p95": 31.0,
+        "max": 31.0
+      },
+      "p95_ratio": null
+    },
+    {
+      "service": "redis-cache",
+      "metric": "duration_ms",
+      "unit": "ms",
+      "baseline": {
+        "count": 8,
+        "p50": 2.0,
+        "p95": 4.0,
+        "max": 4.0
+      },
+      "incident": {
+        "count": 18,
+        "p50": 2.0,
+        "p95": 4.0,
+        "max": 4.0
+      },
+      "p95_ratio": 1.0
+    },
+    {
+      "service": "redis-cache",
+      "metric": "hit_rate",
+      "unit": "ratio",
+      "baseline": {
+        "count": 3,
+        "p50": 0.97,
+        "p95": 0.98,
+        "max": 0.98
+      },
+      "incident": {
+        "count": 7,
+        "p50": 0.98,
+        "p95": 0.98,
+        "max": 0.98
+      },
+      "p95_ratio": 1.0
+    }
+  ],
+  "error_rates": [
+    {
+      "service": "api-gateway",
+      "baseline_errors": 0,
+      "baseline_total": 20,
+      "baseline_rate": 0.0,
+      "incident_errors": 9,
+      "incident_total": 35,
+      "incident_rate": 0.257
+    },
+    {
+      "service": "billing-worker",
+      "baseline_errors": 0,
+      "baseline_total": 9,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 72,
+      "incident_rate": 0.0
+    },
+    {
+      "service": "ingress-controller",
+      "baseline_errors": 0,
+      "baseline_total": 5,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 16,
+      "incident_rate": 0.0
+    },
+    {
+      "service": "inventory-service",
+      "baseline_errors": 0,
+      "baseline_total": 16,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 32,
+      "incident_rate": 0.0
+    },
+    {
+      "service": "kubelet",
+      "baseline_errors": 0,
+      "baseline_total": 8,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 11,
+      "incident_rate": 0.0
+    },
+    {
+      "service": "notification-service",
+      "baseline_errors": 0,
+      "baseline_total": 16,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 34,
+      "incident_rate": 0.0
+    },
+    {
+      "service": "order-service",
+      "baseline_errors": 0,
+      "baseline_total": 32,
+      "baseline_rate": 0.0,
+      "incident_errors": 6,
+      "incident_total": 50,
+      "incident_rate": 0.12
+    },
+    {
+      "service": "payment-service",
+      "baseline_errors": 0,
+      "baseline_total": 16,
+      "baseline_rate": 0.0,
+      "incident_errors": 3,
+      "incident_total": 29,
+      "incident_rate": 0.103
+    },
+    {
+      "service": "postgres-primary",
+      "baseline_errors": 0,
+      "baseline_total": 9,
+      "baseline_rate": 0.0,
+      "incident_errors": 12,
+      "incident_total": 47,
+      "incident_rate": 0.255
+    },
+    {
+      "service": "redis-cache",
+      "baseline_errors": 0,
+      "baseline_total": 11,
+      "baseline_rate": 0.0,
+      "incident_errors": 0,
+      "incident_total": 25,
+      "incident_rate": 0.0
+    }
+  ],
+  "request_traces": [
+    {
+      "request_id": "req-84183",
+      "order_ids": [
+        "ord-51123"
+      ],
+      "services": [
+        "api-gateway",
+        "order-service",
+        "payment-service",
+        "inventory-service",
+        "notification-service"
+      ],
+      "hops": [
+        {
+          "line_no": 185,
+          "ts": "2026-03-27T14:06:05.081Z",
+          "service": "api-gateway",
+          "level": "INFO",
+          "anomalous": false,
+          "primary_kind": null,
+          "summary": "{method,path,upstream}"
+        },
+        {
+          "line_no": 186,
+          "ts": "2026-03-27T14:06:06.446Z",
+          "service": "order-service",
+          "level": "INFO",
+          "anomalous": true,
+          "primary_kind": "latency",
+          "summary": "{cache_hit,db_latency_ms,items,stage}"
+        },
+        {
+          "line_no": 187,
+          "ts": "2026-03-27T14:06:08.465Z",
+          "service": "payment-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "pool_saturation",
+          "summary": "db acquire connection slow"
+        },
+        {
+          "line_no": 188,
+          "ts": "2026-03-27T14:06:08.476Z",
+          "service": "payment-service",
+          "level": "ERROR",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "java.sql.SQLTransientConnectionException: HikariPool-<n> - Connection is not available, request timed out after <n>0ms."
+        },
+        {
+          "line_no": 195,
+          "ts": "2026-03-27T14:06:10.514Z",
+          "service": "api-gateway",
+          "level": "ERROR",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "upstream timeout"
+        },
+        {
+          "line_no": 197,
+          "ts": "2026-03-27T14:06:13.668Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "reservation event delayed"
+        },
+        {
+          "line_no": 198,
+          "ts": "2026-03-27T14:06:15.383Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery deferred"
+        },
+        {
+          "line_no": 281,
+          "ts": "2026-03-27T14:08:08.757Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "latency",
+          "summary": "stale reservation state detected"
+        },
+        {
+          "line_no": 282,
+          "ts": "2026-03-27T14:08:09.997Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery queue lag detected"
+        }
+      ],
+      "anomalous_hops": 8,
+      "window": {
+        "start": "2026-03-27T14:06:05.081Z",
+        "end": "2026-03-27T14:08:09.997Z"
+      }
+    },
+    {
+      "request_id": "req-84172",
+      "order_ids": [
+        "ord-51121"
+      ],
+      "services": [
+        "api-gateway",
+        "order-service",
+        "payment-service",
+        "inventory-service",
+        "notification-service"
+      ],
+      "hops": [
+        {
+          "line_no": 163,
+          "ts": "2026-03-27T14:05:24.168Z",
+          "service": "api-gateway",
+          "level": "INFO",
+          "anomalous": false,
+          "primary_kind": null,
+          "summary": "{method,path,upstream}"
+        },
+        {
+          "line_no": 164,
+          "ts": "2026-03-27T14:05:25.758Z",
+          "service": "order-service",
+          "level": "INFO",
+          "anomalous": false,
+          "primary_kind": null,
+          "summary": "{cache_hit,db_latency_ms,items,stage}"
+        },
+        {
+          "line_no": 165,
+          "ts": "2026-03-27T14:05:27.151Z",
+          "service": "order-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "pool_saturation",
+          "summary": "db acquire connection slow"
+        },
+        {
+          "line_no": 166,
+          "ts": "2026-03-27T14:05:29.231Z",
+          "service": "payment-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "db timeout acquiring connection"
+        },
+        {
+          "line_no": 167,
+          "ts": "2026-03-27T14:05:31.514Z",
+          "service": "api-gateway",
+          "level": "ERROR",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "upstream timeout"
+        },
+        {
+          "line_no": 168,
+          "ts": "2026-03-27T14:05:33.170Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "reservation update delayed awaiting order finalization"
+        },
+        {
+          "line_no": 169,
+          "ts": "2026-03-27T14:05:34.857Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery deferred"
+        },
+        {
+          "line_no": 279,
+          "ts": "2026-03-27T14:08:05.752Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "latency",
+          "summary": "stale reservation state detected"
+        },
+        {
+          "line_no": 280,
+          "ts": "2026-03-27T14:08:06.904Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery queue lag detected"
+        }
+      ],
+      "anomalous_hops": 7,
+      "window": {
+        "start": "2026-03-27T14:05:24.168Z",
+        "end": "2026-03-27T14:08:06.904Z"
+      }
+    },
+    {
+      "request_id": "req-84194",
+      "order_ids": [
+        "ord-51125"
+      ],
+      "services": [
+        "api-gateway",
+        "order-service",
+        "payment-service",
+        "inventory-service",
+        "notification-service"
+      ],
+      "hops": [
+        {
+          "line_no": 229,
+          "ts": "2026-03-27T14:06:57.889Z",
+          "service": "api-gateway",
+          "level": "INFO",
+          "anomalous": false,
+          "primary_kind": null,
+          "summary": "{method,path,upstream}"
+        },
+        {
+          "line_no": 230,
+          "ts": "2026-03-27T14:06:59.510Z",
+          "service": "order-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "pool_saturation",
+          "summary": "db acquire connection slow"
+        },
+        {
+          "line_no": 231,
+          "ts": "2026-03-27T14:07:00.772Z",
+          "service": "payment-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "db timeout acquiring connection"
+        },
+        {
+          "line_no": 232,
+          "ts": "2026-03-27T14:07:02.106Z",
+          "service": "api-gateway",
+          "level": "ERROR",
+          "anomalous": true,
+          "primary_kind": "timeout",
+          "summary": "upstream timeout"
+        },
+        {
+          "line_no": 233,
+          "ts": "2026-03-27T14:07:03.399Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "reservation event delayed"
+        },
+        {
+          "line_no": 234,
+          "ts": "2026-03-27T14:07:04.358Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery deferred"
+        },
+        {
+          "line_no": 283,
+          "ts": "2026-03-27T14:08:11.368Z",
+          "service": "inventory-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "latency",
+          "summary": "stale reservation state detected"
+        },
+        {
+          "line_no": 284,
+          "ts": "2026-03-27T14:08:12.747Z",
+          "service": "notification-service",
+          "level": "WARN",
+          "anomalous": true,
+          "primary_kind": "queue_backlog",
+          "summary": "delivery queue lag detected"
+        }
+      ],
+      "anomalous_hops": 7,
+      "window": {
+        "start": "2026-03-27T14:06:57.889Z",
+        "end": "2026-03-27T14:08:12.747Z"
+      }
+    }
+  ],
+  "severity_scale": [
+    {
+      "severity": "critical",
+      "criteria": "User-facing requests fail (5xx/timeouts at an entry point) or a data store is unavailable (crash, restart, connections refused)."
+    },
+    {
+      "severity": "high",
+      "criteria": "Errors inside a service or exhausted shared resources (connection pool, DB connections) that cause failed or aborted operations."
+    },
+    {
+      "severity": "medium",
+      "criteria": "Degradation without outright failure: latency well above baseline, retries that eventually succeed, growing queues/backlogs."
+    },
+    {
+      "severity": "low",
+      "criteria": "Isolated warnings or minor deviations with no visible effect on requests."
+    }
+  ]
+}
